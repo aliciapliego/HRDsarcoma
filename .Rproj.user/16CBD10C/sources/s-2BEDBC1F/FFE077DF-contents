@@ -44,30 +44,30 @@ fga is based on identifying common regions of alterations as fraction of the gen
 All the metrics were computed for TCGASARC, TCGA-OV, TCGA-CRC and log10 scaled in order to compare all the meassurements between them.
 
 #### TCGA-SARC
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
-query.maskCNV.hg39.SARC <- GDCquery(project = "TCGA-SARC",
-              data.category = "Copy Number Variation",
-              data.type = "Masked Copy Number Segment", legacy=FALSE)
-GDCdownload(query = query.maskCNV.hg39.SARC)
-maskCNV.SARC <- GDCprepare(query = query.maskCNV.hg39.SARC, summarizedExperiment = FALSE)
-maskCNV.SARC <- data.frame(maskCNV.SARC, stringsAsFactors = FALSE)
-tai.test <- tai(cnvData = maskCNV.SARC)
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#query.maskCNV.hg39.SARC <- GDCquery(project = "TCGA-SARC",
+#              data.category = "Copy Number Variation",
+#              data.type = "Masked Copy Number Segment", legacy=FALSE)
+#GDCdownload(query = query.maskCNV.hg39.SARC)
+#maskCNV.SARC <- GDCprepare(query = query.maskCNV.hg39.SARC, summarizedExperiment = FALSE)
+#maskCNV.SARC <- data.frame(maskCNV.SARC, stringsAsFactors = FALSE)
+#tai.test <- tai(cnvData = maskCNV.SARC)
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
-cinmetrics_test_sarc <- CINmetrics(cnvData = maskCNV.SARC)
-head(cinmetrics_test_sarc)
-write.table(cinmetrics_test_sarc, "/Users/aliciapliego/Projects/HRDsarcoma/data/cinmetrics_sarcoma.tsv", sep="\t", quote = FALSE, row.names = F)
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#cinmetrics_test_sarc <- CINmetrics(cnvData = maskCNV.SARC)
+#head(cinmetrics_test_sarc)
+#write.table(cinmetrics_test_sarc, "/Users/aliciapliego/Projects/HRDsarcoma/data/cinmetrics_sarcoma.tsv", sep="\t", quote = FALSE, row.names = F)
 ```
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -82,7 +82,7 @@ cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 
  tai does not capture this global pattern of difference between normal and tumour samples. tai is best suited for late stage cancers, thus should be used as a measure for studying overall genomic disorganization in individual patients with advanced tumours and not as a measure of genomic instability comparison between normal and tumour samples.
  
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -90,11 +90,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -113,14 +113,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### SINOVIAL SARCOMA (SS) Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_SS.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -130,7 +130,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -138,11 +138,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -160,14 +160,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### UPS Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_UPS.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -177,7 +177,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -185,11 +185,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -207,14 +207,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### MFS Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_MFS.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -224,7 +224,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -232,11 +232,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -254,14 +254,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### ddLPS Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_ddLPS.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -271,7 +271,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -279,11 +279,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -301,14 +301,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### LMS Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_LMS.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -318,7 +318,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -326,11 +326,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -348,14 +348,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### uLMS Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_uLMS.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -365,7 +365,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -373,11 +373,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -395,14 +395,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### MPNST Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_MPNST.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -412,7 +412,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -420,11 +420,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -442,14 +442,14 @@ heatmaply(cinmetrics_sarc_log10,
 
 ##### DT Heatmap of the different scores 
 
-```{r}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_sarc_anno <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_DT.tsv', sep = '\t')
 cinmetrics_sarc_anno
 cinmetrics_sarc_anno<- cinmetrics_sarc_anno[!duplicated(cinmetrics_sarc_anno), ]
 ```
 
-```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_sarc_anno_2 <- cinmetrics_sarc_anno 
 rownames(cinmetrics_sarc_anno_2) -> cinmetrics_sarc_anno_2$sample_id
 cinmetrics_sarc_anno_2$sample_id <- NULL
@@ -459,7 +459,7 @@ cinmetrics_sarc_anno_2$HRD34 <- NULL
 cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -467,11 +467,11 @@ heatmaply_cor(
 )
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -488,14 +488,14 @@ heatmaply(cinmetrics_sarc_log10,
 ```
 
 #### Correlation cinmetrics and HRD
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 #Load data from CINmetrics annotated in python
 cinmetrics_corr <- read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/CINmetrics_annotated_sarc_correlation_hrd.tsv', sep = '\t')
 cinmetrics_corr
 cinmetrics_corr<- cinmetrics_corr[!duplicated(cinmetrics_corr$sample_id), ]
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+````{r , include=FALSE, echo=FALSE, message=FALSE}
 cinmetrics_corr_2 <- cinmetrics_corr 
 rownames(cinmetrics_corr_2) -> cinmetrics_corr_2$sample_id
 cinmetrics_corr_2$sample_id <- NULL
@@ -504,12 +504,12 @@ cinmetrics_corr_2$Sample.Type <- NULL
 cinmetrics_corr_2$HRD34 <- NULL
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 row.names(cinmetrics_corr_2) <- cinmetrics_corr$sample_id
 ```
 
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_corr_2),
   #xlab = "Features", 
@@ -518,7 +518,7 @@ heatmaply_cor(
 ```
 
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 library(plotly)
 
 fig <- plot_ly(
@@ -530,7 +530,7 @@ fig <- plot_ly(
 fig
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 fig <- plot_ly(
   cinmetrics_corr_2, x = ~HRDscore, y = ~fga,
   # Hover text:
@@ -540,7 +540,7 @@ fig <- plot_ly(
 fig
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 fig <- plot_ly(
   cinmetrics_corr_2, x = ~HRDscore, y = ~tai,
   # Hover text:
@@ -550,7 +550,7 @@ fig <- plot_ly(
 fig
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 fig <- plot_ly(
   cinmetrics_corr_2, x = ~HRDscore, y = ~cna,
   # Hover text:
@@ -560,7 +560,7 @@ fig <- plot_ly(
 fig
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 fig <- plot_ly(
   cinmetrics_corr_2, x = ~HRDscore, y = ~base_segments,
   # Hover text:
@@ -570,24 +570,33 @@ fig <- plot_ly(
 fig
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
+```{r , include=FALSE, echo=FALSE, message=FALSE}
 library(stats)
-library(umap)
-digits.umap = umap(cinmetrics_corr_2, n_components = 2, k = 10) 
-layout <- digits.umap[["layout"]] 
-layout <- data.frame(layout) 
+library(tsne)
+tsne = tsne(cinmetrics_corr_2, initial_dims = 2, k =2) 
+tsne <- data.frame(tsne) 
 ```
 
-````{r setup, include=FALSE, echo=FALSE, message=FALSE}
-fig <- plot_ly(layout, x = ~X1, y = ~X2, split = ~rownames(layout),  type = 'scatter', mode = 'markers')%>%  
-  layout(  
-    plot_bgcolor = "#e5ecf6",
-    legend=list(title=list(text='digit')), 
-    xaxis = list( 
-      title = "0"),  
-    yaxis = list( 
-      title = "1")) 
+#### CINmetrics tSNE plot
+
+tSNE plot showing the clustering of normal and tumor tissue including HRD34 and the CINmetrics signatures.
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+pdb <- cbind(tsne,cinmetrics_corr$Sample.Type)
+options(warn = -1)
+fig <-  plot_ly(data = pdb ,x =  ~X1, y = ~X2, type = 'scatter', mode = 'markers', split = ~cinmetrics_corr$Sample.Type)
+
+fig <- fig %>%
+  layout(
+    plot_bgcolor = "#e5ecf6"
+  )
+
 fig
 ```
 
+
+#### CONCLUSION CINmetrics 
+
+There is a correlation between HRD34 and the CINmetric signatures except for tai, which is stated by the cinmetrics publication that is a marker of normal or tumors in an earlier stage. In some types of cancer there seems to be a correlation between low HRD and lower breakpoints and cna, however the small data set limits this conclusions and more statistics are needed.
+
+## CINdex
 
