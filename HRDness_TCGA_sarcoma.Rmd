@@ -1,0 +1,164 @@
+---
+title: "HRDness sarcoma"
+author: "Alicia Pliego"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: sandstone
+---
+
+# HRDness 
+```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+library(DT)
+library(plotly)
+```
+
+## TCGA HRDscore results table 
+```{r, echo=FALSE,  warning=FALSE, message=FALSE}
+genetal_metadata_tcga <- read.table("/Users/aliciapliego/Projects/HRDsarcoma/data/metadata_TCGA_general.tsv", sep = '\t', header = TRUE)
+DT::datatable(genetal_metadata_tcga)
+```
+
+## TCGA treatments table 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+drug_metadata_tcga <- read.table("/Users/aliciapliego/Projects/HRDsarcoma/data/metadata_drug_treatment_TCGA.tsv", sep = '\t', header = TRUE)
+DT::datatable(drug_metadata_tcga)
+```
+
+## TCGA HRDness in sarcoma 
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+df_sarcoma = read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDness_TCGA_sarcoma_all.tsv', sep = '\t', header = TRUE)
+```
+
+## TCGA LOH in different cancer types
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma, y = ~LOH, color = ~Cancer_type, type = "box",  text = df_sarcoma$Case_ID, notched=TRUE)
+
+fig
+```
+
+## TCGA TAI in different cancer types
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma, y = ~TAI, color = ~Cancer_type, type = "box",  text = df_sarcoma$Case_ID, notched=TRUE)
+
+fig
+```
+
+## TCGA LST in different cancer types
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma, y = ~LST, color = ~Cancer_type, type = "box",  text = df_sarcoma$Case_ID, notched=TRUE)
+
+fig
+```
+
+## TCGA total HRDscore in different cancer types
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma, y = ~HRDscore, color = ~Cancer_type, type = "box", text = df_sarcoma$Case_ID, notched=TRUE)
+
+fig
+```
+
+# Subgrouping sarcoma types
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+df_sarcoma_dv = read.csv('/Users/aliciapliego/Projects/HRDsarcoma/data/HRD_results_subgroupsSarcoma.tsv', sep = '\t', header= TRUE)
+```
+
+
+## TCGA LOH in sarcoma
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma_dv, y = ~LOH, color = ~Type, type = "box",  text = df_sarcoma_dv$Case_ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c('HGSOC',
+                         'TNBC',
+                         'CRC',
+                         'UPS',
+                         'MFS',
+                         'OS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+## TCGA TAI in sarcoma
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma_dv, y = ~TAI, color = ~Type, type = "box",  text = df_sarcoma_dv$Case_ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c('HGSOC',
+                         'TNBC',
+                         'CRC',
+                         'UPS',
+                         'MFS',
+                         'OS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+## TCGA LST in sarcoma
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma_dv, y = ~LST, color = ~Type,  type = "box",  text = df_sarcoma_dv$Case_ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c('HGSOC',
+                         'TNBC',
+                         'CRC',
+                         'UPS',
+                         'MFS',
+                         'OS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+## TCGA total HRDscore in sarcoma
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(df_sarcoma_dv, y = ~HRD.sum, color = ~Type,  type = "box",  text = df_sarcoma_dv$Case_ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c('HGSOC',
+                         'TNBC',
+                         'CRC',
+                         'UPS',
+                         'MFS',
+                         'OS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```

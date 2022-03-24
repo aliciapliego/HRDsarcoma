@@ -1,0 +1,124 @@
+Case ID	Tumor_type	pharmaceutical_therapy_drug_name	treatment_best_response_chemo	radiation_therapy_site	radiation_total_dose	treatment_best_response_radiation
+TCGA-DX-AB3C	Synovial Sarcoma	Ifosfamide	Complete Response	Primary Tumor Field	5580	[Not Available]
+TCGA-DX-AB3C	Synovial Sarcoma	Etoposide	Complete Response	Primary Tumor Field	5580	[Not Available]
+TCGA-DX-AB3C	Synovial Sarcoma	Adriamycin	Complete Response	Primary Tumor Field	5580	[Not Available]
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Avastin	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Avastin	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Everolimus	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Everolimus	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Tivozanib	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Tivozanib	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Avastin	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Avastin	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Everolimus	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Everolimus	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Tivozanib	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-SI-A71O	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Tivozanib	Clinical Progressive Disease	Primary Tumor Field	6000	Stable Disease
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	Adriamycin	[Unknown]	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	Adriamycin	[Unknown]	Distant site	4600	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	IFOSFAMIDE	[Unknown]	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	IFOSFAMIDE	[Unknown]	Distant site	4600	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	trabectedin	Clinical Progressive Disease	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	trabectedin	Clinical Progressive Disease	Distant site	4600	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	dacarbazine	Clinical Progressive Disease	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	dacarbazine	Clinical Progressive Disease	Distant site	4600	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	gemcitabine	Clinical Progressive Disease	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	gemcitabine	Clinical Progressive Disease	Distant site	4600	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	docetaxel	Clinical Progressive Disease	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	docetaxel	Clinical Progressive Disease	Distant site	4600	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	pazopanib	Clinical Progressive Disease	Primary Tumor Field	[Not Available]	[Unknown]
+TCGA-3B-A9HR	Leiomyosarcoma (LMS)	pazopanib	Clinical Progressive Disease	Distant site	4600	[Unknown]
+TCGA-DX-A8BU	Undifferentiated Pleomorphic Sarcoma (UPS)	Ifosfamide	Clinical Progressive Disease	Primary Tumor Field	6300	Radiographic Progressive Disease
+TCGA-DX-A8BU	Undifferentiated Pleomorphic Sarcoma (UPS)	Docetaxel	Clinical Progressive Disease	Primary Tumor Field	6300	Radiographic Progressive Disease
+TCGA-DX-A8BU	Undifferentiated Pleomorphic Sarcoma (UPS)	Gemcitabine	Clinical Progressive Disease	Primary Tumor Field	6300	Radiographic Progressive Disease
+TCGA-DX-A8BU	Undifferentiated Pleomorphic Sarcoma (UPS)	Doxil	Clinical Progressive Disease	Primary Tumor Field	6300	Radiographic Progressive Disease
+TCGA-DX-A8BU	Undifferentiated Pleomorphic Sarcoma (UPS)	Adriamycin	Clinical Progressive Disease	Primary Tumor Field	6300	Radiographic Progressive Disease
+TCGA-DX-A8BU	Undifferentiated Pleomorphic Sarcoma (UPS)	Ifosfamide	Clinical Progressive Disease	Primary Tumor Field	6300	Radiographic Progressive Disease
+TCGA-DX-A6YX	Myxofibrosarcoma	Gemcitabine	Clinical Progressive Disease	Primary Tumor Field	6300	Complete Response
+TCGA-DX-A6YX	Myxofibrosarcoma	Gemcitabine	Clinical Progressive Disease	Distant Recurrence	3500	Stable Disease
+TCGA-DX-A6YX	Myxofibrosarcoma	Docetaxel	Clinical Progressive Disease	Primary Tumor Field	6300	Complete Response
+TCGA-DX-A6YX	Myxofibrosarcoma	Docetaxel	Clinical Progressive Disease	Distant Recurrence	3500	Stable Disease
+TCGA-DX-A6YX	Myxofibrosarcoma	Liposomal doxorubicin	Clinical Progressive Disease	Primary Tumor Field	6300	Complete Response
+TCGA-DX-A6YX	Myxofibrosarcoma	Liposomal doxorubicin	Clinical Progressive Disease	Distant Recurrence	3500	Stable Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Gemcitabine	Clinical Progressive Disease	Primary Tumor Field	28	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Gemcitabine	Clinical Progressive Disease	Regional site	[Not Available]	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Docetaxel	Clinical Progressive Disease	Primary Tumor Field	28	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Docetaxel	Clinical Progressive Disease	Regional site	[Not Available]	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Gemcitabine	Clinical Progressive Disease	Primary Tumor Field	28	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Gemcitabine	Clinical Progressive Disease	Regional site	[Not Available]	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Docetaxel	Clinical Progressive Disease	Primary Tumor Field	28	Radiographic Progressive Disease
+TCGA-K1-A3PN	Leiomyosarcoma Uterus (LMS)	Docetaxel	Clinical Progressive Disease	Regional site	[Not Available]	Radiographic Progressive Disease
+TCGA-X6-A7WC	Leiomyosarcoma (LMS)	Gemcitabine	Stable Disease	Primary Tumor Field	7000	[Unknown]
+TCGA-X6-A7WC	Leiomyosarcoma (LMS)	Gemcitabine	Stable Disease	Distant Recurrence	50	Stable Disease
+TCGA-X6-A7WC	Leiomyosarcoma (LMS)	Gemcitabine	Stable Disease	Distant Recurrence	50	Radiographic Progressive Disease
+TCGA-X6-A7WC	Leiomyosarcoma (LMS)	Gemcitabine	Stable Disease	Distant Recurrence	50	Partial Response
+TCGA-HB-A43Z	Leiomyosarcoma Uterus (LMS)	Gemzar	Complete Response	Primary Tumor Field	4500	Complete Response
+TCGA-HB-A43Z	Leiomyosarcoma Uterus (LMS)	Taxotere	Complete Response	Primary Tumor Field	4500	Complete Response
+TCGA-HB-A43Z	Leiomyosarcoma Uterus (LMS)	Adriamycin	Complete Response	Primary Tumor Field	4500	Complete Response
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Dacarbazine (DTIC)	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Adriamycin	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Gemcitabine	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Taxotere	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	ET-743	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	AP-23573 (ARIAD)	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	EZN-2968	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Enoticumab	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Threshold-302	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-IE-A3OV	Leiomyosarcoma (LMS)	Alimta	Clinical Progressive Disease	Distant Recurrence	400	[Not Available]
+TCGA-3B-A9HZ	Leiomyosarcoma (LMS)	DOCETAXEL	Clinical Progressive Disease	Primary Tumor Field	6000	[Unknown]
+TCGA-3B-A9HZ	Leiomyosarcoma (LMS)	GEMCITABINE	Clinical Progressive Disease	Primary Tumor Field	6000	[Unknown]
+TCGA-3B-A9HZ	Leiomyosarcoma (LMS)	Pazopanib	Clinical Progressive Disease	Primary Tumor Field	6000	[Unknown]
+TCGA-3B-A9HZ	Leiomyosarcoma (LMS)	DOCETAXEL	Clinical Progressive Disease	Primary Tumor Field	6000	[Unknown]
+TCGA-3B-A9HZ	Leiomyosarcoma (LMS)	GEMCITABINE	Clinical Progressive Disease	Primary Tumor Field	6000	[Unknown]
+TCGA-3B-A9HT	Leiomyosarcoma (LMS)	CISPLATINUM	Complete Response	Primary Tumor Field	6600	Complete Response
+TCGA-SI-A71P	Malignant Peripheral Nerve Sheath Tumors (MPNST)	Ifosfamide	Complete Response	Primary Tumor Field	21.6	Complete Response
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	ADRIAMYCIN	[Unknown]	Regional site	5040	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	ADRIAMYCIN	[Unknown]	Regional site	52.45	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	IFOSFAMIDE	[Unknown]	Regional site	5040	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	IFOSFAMIDE	[Unknown]	Regional site	52.45	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	gemcitabine	Clinical Progressive Disease	Regional site	5040	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	gemcitabine	Clinical Progressive Disease	Regional site	52.45	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	docetaxel	Clinical Progressive Disease	Regional site	5040	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	docetaxel	Clinical Progressive Disease	Regional site	52.45	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	temozolomide	[Unknown]	Regional site	5040	[Unknown]
+TCGA-3B-A9HS	Leiomyosarcoma (LMS)	temozolomide	[Unknown]	Regional site	52.45	[Unknown]
+TCGA-3B-A9HI	Dedifferentiated liposarcoma	Adriamycin	Stable Disease	Primary Tumor Field	8640	[Unknown]
+TCGA-3B-A9HI	Dedifferentiated liposarcoma	dacarbazine	Stable Disease	Primary Tumor Field	8640	[Unknown]
+TCGA-3B-A9HI	Dedifferentiated liposarcoma	Gemcitabine	Partial Response	Primary Tumor Field	8640	[Unknown]
+TCGA-3B-A9HI	Dedifferentiated liposarcoma	Docetaxel	Partial Response	Primary Tumor Field	8640	[Unknown]
+TCGA-3B-A9HI	Dedifferentiated liposarcoma	Gemcitabine	[Not Applicable]	Primary Tumor Field	8640	[Unknown]
+TCGA-DX-A8BT	Undifferentiated Pleomorphic Sarcoma (UPS)	Gemcitabine	Complete Response	Primary Tumor Field	6300	Complete Response
+TCGA-DX-A8BT	Undifferentiated Pleomorphic Sarcoma (UPS)	Docetaxel	Complete Response	Primary Tumor Field	6300	Complete Response
+TCGA-3B-A9HP	Leiomyosarcoma (LMS)	Gemcitabine	Stable Disease	Primary Tumor Field	5760	[Unknown]
+TCGA-3B-A9HP	Leiomyosarcoma (LMS)	Taxotere	Stable Disease	Primary Tumor Field	5760	[Unknown]
+TCGA-K1-A6RU	Myxofibrosarcoma	Adriamycin	Clinical Progressive Disease	[Unknown]	[Not Available]	Radiographic Progressive Disease
+TCGA-DX-A3UC	Leiomyosarcoma (LMS)	Doxorubicin	Stable Disease	Distant Recurrence	2400	Radiographic Progressive Disease
+TCGA-DX-A3UC	Leiomyosarcoma (LMS)	Gemcitabine	Clinical Progressive Disease	Distant Recurrence	2400	Radiographic Progressive Disease
+TCGA-DX-A3UC	Leiomyosarcoma (LMS)	Taxotere	Clinical Progressive Disease	Distant Recurrence	2400	Radiographic Progressive Disease
+TCGA-DX-A3UC	Leiomyosarcoma (LMS)	Pazopanib	Clinical Progressive Disease	Distant Recurrence	2400	Radiographic Progressive Disease
+TCGA-DX-A3UC	Leiomyosarcoma (LMS)	ET-743	Clinical Progressive Disease	Distant Recurrence	2400	Radiographic Progressive Disease
+TCGA-DX-A3UC	Leiomyosarcoma (LMS)	Dacarbazine	Clinical Progressive Disease	Distant Recurrence	2400	Radiographic Progressive Disease
+TCGA-DX-A8BV	Myxofibrosarcoma	Docetaxel	Clinical Progressive Disease	Primary Tumor Field	5400	Partial Response
+TCGA-DX-A8BV	Myxofibrosarcoma	Gemcitabine	Clinical Progressive Disease	Primary Tumor Field	5400	Partial Response
+TCGA-DX-A8BV	Myxofibrosarcoma	Adriamycin	Stable Disease	Primary Tumor Field	5400	Partial Response
+TCGA-DX-A8BV	Myxofibrosarcoma	Ifosfamide	Stable Disease	Primary Tumor Field	5400	Partial Response
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Taxotere	Partial Response	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Gemcitabine	Partial Response	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Gemcitabine	Partial Response	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Taxotere	Clinical Progressive Disease	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Doxorubicin	Clinical Progressive Disease	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Doxil	Clinical Progressive Disease	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Pazopanib	Clinical Progressive Disease	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Dacarbazine	Clinical Progressive Disease	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-DX-A3U7	Leiomyosarcoma (LMS)	Ifosfamide	Clinical Progressive Disease	Distant Recurrence	3000	Radiographic Progressive Disease
+TCGA-MB-A5Y8	Undifferentiated Pleomorphic Sarcoma (UPS)	Doxil	[Not Applicable]	Primary Tumor Field	5800	[Unknown]
+TCGA-MB-A5Y8	Undifferentiated Pleomorphic Sarcoma (UPS)	ifosfamide	[Not Applicable]	Primary Tumor Field	5800	[Unknown]
+TCGA-X6-A8C2	Undifferentiated Pleomorphic Sarcoma (UPS)	Doxorubicin	[Not Available]	Primary Tumor Field	6600	Complete Response
+TCGA-X6-A8C2	Undifferentiated Pleomorphic Sarcoma (UPS)	Doxorubicin	[Not Available]	Distant Recurrence	30	Stable Disease
+TCGA-SG-A6Z4	Undifferentiated Pleomorphic Sarcoma (UPS)	[Not Available]	[Not Applicable]	Primary Tumor Field	[Not Available]	Stable Disease
+TCGA-DX-A7EQ	Synovial Sarcoma	Vorinostat	Clinical Progressive Disease	Primary Tumor Field	6600	Complete Response
+TCGA-DX-A7EQ	Synovial Sarcoma	Dacarbazine	Clinical Progressive Disease	Primary Tumor Field	6600	Complete Response
+TCGA-DX-A7EQ	Synovial Sarcoma	Sorafenib	Clinical Progressive Disease	Primary Tumor Field	6600	Complete Response
+TCGA-DX-A7EQ	Synovial Sarcoma	Cisplatin	Clinical Progressive Disease	Primary Tumor Field	6600	Complete Response
+TCGA-DX-A7EQ	Synovial Sarcoma	Ifosfamide	Clinical Progressive Disease	Primary Tumor Field	6600	Complete Response
+TCGA-DX-A7EQ	Synovial Sarcoma	Doxil	Clinical Progressive Disease	Primary Tumor Field	6600	Complete Response

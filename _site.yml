@@ -1,0 +1,22 @@
+name: "personal-website"
+output_dir: "."
+navbar:
+  title: "HRDsarcoma"
+  left:
+    - text: "TCGA"
+      menu:
+        - text: "HRDness"
+          href: HRDness_TCGA_sarcoma.html
+        - text: "CIN"
+          href: CIN_TCGA_sarcoma.html
+        - text: "RNAseq"
+          href: RNAseq_TCGA_sarcoma.html
+        - text: "RPPA"
+          href: RPPA_TCGA_sarcoma.html
+        
+output:
+  html_document:
+    theme: sandstone
+    highlight: default
+    include:
+      after_body: footer.html
