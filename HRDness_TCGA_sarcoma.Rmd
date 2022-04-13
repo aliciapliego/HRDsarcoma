@@ -10,7 +10,10 @@ output:
     number_sections: true
     theme: sandstone
 ---
-
+<style>
+body {
+text-align: justify}
+</style>
 # HRDness 
 ```{r setup, include=FALSE, echo=FALSE, message=FALSE}
 library(DT)

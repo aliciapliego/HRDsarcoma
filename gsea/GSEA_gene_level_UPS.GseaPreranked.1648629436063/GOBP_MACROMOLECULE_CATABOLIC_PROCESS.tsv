@@ -1,0 +1,25 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	FBXL5	F-box and leucine rich repeat protein 5 [Source:HGNC Symbol;Acc:HGNC:13602]	33	2.4968771934509277	-0.015375122	No	
+row_1	DVL1	dishevelled segment polarity protein 1 [Source:HGNC Symbol;Acc:HGNC:3084]	103	2.229660749435425	-0.107230626	No	
+row_2	UBE2J2	ubiquitin conjugating enzyme E2 J2 [Source:HGNC Symbol;Acc:HGNC:19268]	117	2.229660749435425	-0.088414185	No	
+row_3	DFFB	DNA fragmentation factor subunit beta [Source:HGNC Symbol;Acc:HGNC:2773]	148	2.2213194370269775	-0.10336109	No	
+row_4	UBB	ubiquitin B [Source:HGNC Symbol;Acc:HGNC:12463]	217	2.130510091781616	-0.19521955	No	
+row_5	UCHL1	ubiquitin C-terminal hydrolase L1 [Source:HGNC Symbol;Acc:HGNC:12513]	266	2.1075875759124756	-0.24800988	Yes	
+row_6	UBE2K	ubiquitin conjugating enzyme E2 K [Source:HGNC Symbol;Acc:HGNC:4914]	282	2.1075875759124756	-0.2355828	Yes	
+row_7	PRAMEF6	PRAME family member 6 [Source:HGNC Symbol;Acc:HGNC:30583]	309	2.0551846027374268	-0.24594094	Yes	
+row_8	EXOSC10	exosome component 10 [Source:HGNC Symbol;Acc:HGNC:9138]	312	2.0551846027374268	-0.20886824	Yes	
+row_9	FBXO44	F-box protein 44 [Source:HGNC Symbol;Acc:HGNC:24847]	325	2.0551846027374268	-0.19155838	Yes	
+row_10	TNFRSF1B	TNF receptor superfamily member 1B [Source:HGNC Symbol;Acc:HGNC:11917]	336	2.0551846027374268	-0.17029594	Yes	
+row_11	FBXO6	F-box protein 6 [Source:HGNC Symbol;Acc:HGNC:13585]	346	2.0551846027374268	-0.14705724	Yes	
+row_12	FBXO2	F-box protein 2 [Source:HGNC Symbol;Acc:HGNC:13581]	347	2.0551846027374268	-0.10603196	Yes	
+row_13	MAD2L2	mitotic arrest deficient 2 like 2 [Source:HGNC Symbol;Acc:HGNC:6764]	375	2.0551846027374268	-0.11836637	Yes	
+row_14	TARDBP	TAR DNA binding protein [Source:HGNC Symbol;Acc:HGNC:11571]	376	2.0551846027374268	-0.077341095	Yes	
+row_15	ATP13A2	ATPase cation transporting 13A2 [Source:HGNC Symbol;Acc:HGNC:30213]	389	2.0551846027374268	-0.06003124	Yes	
+row_16	DFFA	DNA fragmentation factor subunit alpha [Source:HGNC Symbol;Acc:HGNC:2772]	442	2.0123255252838135	-0.12262832	Yes	
+row_17	SPSB1	splA/ryanodine receptor domain and SOCS box containing 1 [Source:HGNC Symbol;Acc:HGNC:30628]	446	2.0123255252838135	-0.088387445	Yes	
+row_18	PARK7	Parkinsonism associated deglycase [Source:HGNC Symbol;Acc:HGNC:16369]	450	2.0123255252838135	-0.05414657	Yes	
+row_19	UBE4B	ubiquitination factor E4B [Source:HGNC Symbol;Acc:HGNC:12500]	466	2.0123255252838135	-0.04362111	Yes	
+row_20	ALKBH5	"alkB homolog 5, RNA demethylase [Source:HGNC Symbol;Acc:HGNC:25996]"	478	2.008535146713257	-0.025266182	Yes	
+row_21	GID4	GID complex subunit 4 homolog [Source:HGNC Symbol;Acc:HGNC:28453]	486	2.008535146713257	9.938893E-4	Yes	
+row_22	PLEKHN1	pleckstrin homology domain containing N1 [Source:HGNC Symbol;Acc:HGNC:25284]	511	2.0046682357788086	-0.006420068	Yes	
+row_23	ISG15	ISG15 ubiquitin like modifier [Source:HGNC Symbol;Acc:HGNC:4053]	521	2.0046682357788086	0.015810244	Yes	

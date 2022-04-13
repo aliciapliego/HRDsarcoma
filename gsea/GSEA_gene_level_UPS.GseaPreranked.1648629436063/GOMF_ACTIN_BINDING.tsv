@@ -1,0 +1,18 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	ESPN	espin [Source:HGNC Symbol;Acc:HGNC:13281]	50	2.382443428039551	-0.030490749	No	
+row_1	AFAP1	actin filament associated protein 1 [Source:HGNC Symbol;Acc:HGNC:24017]	82	2.2690484523773193	-0.027132213	No	
+row_2	MIB2	MIB E3 ubiquitin protein ligase 2 [Source:HGNC Symbol;Acc:HGNC:30577]	127	2.229660749435425	-0.050222076	No	
+row_3	ABLIM2	actin binding LIM protein family member 2 [Source:HGNC Symbol;Acc:HGNC:19195]	195	2.145602226257324	-0.1205093	No	
+row_4	LIMCH1	LIM and calponin homology domains 1 [Source:HGNC Symbol;Acc:HGNC:29191]	262	2.1075875759124756	-0.18991587	No	
+row_5	KLHL5	kelch like family member 5 [Source:HGNC Symbol;Acc:HGNC:6356]	274	2.1075875759124756	-0.15210995	No	
+row_6	CROCC	"ciliary rootlet coiled-coil, rootletin [Source:HGNC Symbol;Acc:HGNC:21299]"	340	2.0551846027374268	-0.22104034	No	
+row_7	GAS7	growth arrest specific 7 [Source:HGNC Symbol;Acc:HGNC:4169]	394	2.0401453971862793	-0.26700172	Yes	
+row_8	MYH1	myosin heavy chain 1 [Source:HGNC Symbol;Acc:HGNC:7567]	399	2.0401453971862793	-0.2174465	Yes	
+row_9	MYH2	myosin heavy chain 2 [Source:HGNC Symbol;Acc:HGNC:7572]	400	2.0401453971862793	-0.16009404	Yes	
+row_10	MYH3	myosin heavy chain 3 [Source:HGNC Symbol;Acc:HGNC:7573]	401	2.0401453971862793	-0.10274157	Yes	
+row_11	MYH8	myosin heavy chain 8 [Source:HGNC Symbol;Acc:HGNC:7578]	402	2.0401453971862793	-0.045389097	Yes	
+row_12	MYH4	myosin heavy chain 4 [Source:HGNC Symbol;Acc:HGNC:7574]	403	2.0401453971862793	0.011963375	Yes	
+row_13	TMEM201	transmembrane protein 201 [Source:HGNC Symbol;Acc:HGNC:33719]	475	2.0123255252838135	-0.06986778	Yes	
+row_14	FLII	FLII actin remodeling protein [Source:HGNC Symbol;Acc:HGNC:3750]	480	2.008535146713257	-0.021201205	Yes	
+row_15	MYO15A	myosin XVA [Source:HGNC Symbol;Acc:HGNC:7594]	506	2.008535146713257	-0.0134703	Yes	
+row_16	KLHL17	kelch like family member 17 [Source:HGNC Symbol;Acc:HGNC:24023]	518	2.0046682357788086	0.021442346	Yes	

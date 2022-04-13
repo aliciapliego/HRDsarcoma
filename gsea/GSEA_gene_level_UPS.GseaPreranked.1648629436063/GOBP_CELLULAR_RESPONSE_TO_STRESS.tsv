@@ -1,0 +1,30 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	CPEB2	cytoplasmic polyadenylation element binding protein 2 [Source:HGNC Symbol;Acc:HGNC:21745]	84	2.2459328174591064	-0.13051648	No	
+row_1	MAP2K3	mitogen-activated protein kinase kinase 3 [Source:HGNC Symbol;Acc:HGNC:6843]	88	2.2459328174591064	-0.09935631	No	
+row_2	UBE2J2	ubiquitin conjugating enzyme E2 J2 [Source:HGNC Symbol;Acc:HGNC:19268]	117	2.229660749435425	-0.11836548	No	
+row_3	TP73	tumor protein p73 [Source:HGNC Symbol;Acc:HGNC:12003]	160	2.2213194370269775	-0.16545674	No	
+row_4	FAAP20	FA core complex associated protein 20 [Source:HGNC Symbol;Acc:HGNC:26428]	164	2.2213194370269775	-0.13470368	No	
+row_5	TMEM33	transmembrane protein 33 [Source:HGNC Symbol;Acc:HGNC:25541]	247	2.1075875759124756	-0.2635164	Yes	
+row_6	RFC1	replication factor C subunit 1 [Source:HGNC Symbol;Acc:HGNC:9969]	257	2.1075875759124756	-0.24662054	Yes	
+row_7	TLR6	toll like receptor 6 [Source:HGNC Symbol;Acc:HGNC:16711]	271	2.1075875759124756	-0.23770872	Yes	
+row_8	SLC30A9	solute carrier family 30 member 9 [Source:HGNC Symbol;Acc:HGNC:1329]	278	2.1075875759124756	-0.21482483	Yes	
+row_9	PDS5A	PDS5 cohesin associated factor A [Source:HGNC Symbol;Acc:HGNC:29088]	280	2.1075875759124756	-0.1819609	Yes	
+row_10	BOD1L1	biorientation of chromosomes in cell division 1 like 1 [Source:HGNC Symbol;Acc:HGNC:31792]	287	2.084480047225952	-0.15945922	Yes	
+row_11	HSP90AB2P	"heat shock protein 90 alpha family class B member 2, pseudogene [Source:HGNC Symbol;Acc:HGNC:32537]"	290	2.084480047225952	-0.12897351	Yes	
+row_12	MFN2	mitofusin 2 [Source:HGNC Symbol;Acc:HGNC:16877]	315	2.0551846027374268	-0.14288452	Yes	
+row_13	FBXO44	F-box protein 44 [Source:HGNC Symbol;Acc:HGNC:24847]	325	2.0551846027374268	-0.12685542	Yes	
+row_14	TNFRSF1B	TNF receptor superfamily member 1B [Source:HGNC Symbol;Acc:HGNC:11917]	336	2.0551846027374268	-0.11282232	Yes	
+row_15	FBXO6	F-box protein 6 [Source:HGNC Symbol;Acc:HGNC:13585]	346	2.0551846027374268	-0.09679321	Yes	
+row_16	FBXO2	F-box protein 2 [Source:HGNC Symbol;Acc:HGNC:13581]	347	2.0551846027374268	-0.062800035	Yes	
+row_17	MAD2L2	mitotic arrest deficient 2 like 2 [Source:HGNC Symbol;Acc:HGNC:6764]	375	2.0551846027374268	-0.082699075	Yes	
+row_18	NPPA	natriuretic peptide A [Source:HGNC Symbol;Acc:HGNC:7939]	378	2.0551846027374268	-0.05269791	Yes	
+row_19	ARHGEF10L	Rho guanine nucleotide exchange factor 10 like [Source:HGNC Symbol;Acc:HGNC:25540]	385	2.0551846027374268	-0.030680785	Yes	
+row_20	ATP13A2	ATPase cation transporting 13A2 [Source:HGNC Symbol;Acc:HGNC:30213]	389	2.0551846027374268	-0.0026756313	Yes	
+row_21	ENO1	enolase 1 [Source:HGNC Symbol;Acc:HGNC:3350]	440	2.0123255252838135	-0.069191754	Yes	
+row_22	CENPS	centromere protein S [Source:HGNC Symbol;Acc:HGNC:23163]	448	2.0123255252838135	-0.049879532	Yes	
+row_23	PARK7	Parkinsonism associated deglycase [Source:HGNC Symbol;Acc:HGNC:16369]	450	2.0123255252838135	-0.018591264	Yes	
+row_24	ERRFI1	ERBB receptor feedback inhibitor 1 [Source:HGNC Symbol;Acc:HGNC:18185]	459	2.0123255252838135	-0.0012750512	Yes	
+row_25	UBE4B	ubiquitination factor E4B [Source:HGNC Symbol;Acc:HGNC:12500]	466	2.0123255252838135	0.020033177	Yes	
+row_26	MIR34A	microRNA 34a [Source:HGNC Symbol;Acc:HGNC:31635]	470	2.0123255252838135	0.04732943	Yes	
+row_27	SREBF1	sterol regulatory element binding transcription factor 1 [Source:HGNC Symbol;Acc:HGNC:11289]	498	2.008535146713257	0.0266588	Yes	
+row_28	TOP3A	DNA topoisomerase III alpha [Source:HGNC Symbol;Acc:HGNC:11992]	499	2.008535146713257	0.059880383	Yes	

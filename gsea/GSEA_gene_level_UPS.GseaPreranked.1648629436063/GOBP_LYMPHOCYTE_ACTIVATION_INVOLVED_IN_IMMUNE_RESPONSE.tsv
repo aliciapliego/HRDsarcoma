@@ -1,0 +1,19 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	IFNA13	interferon alpha 13 [Source:HGNC Symbol;Acc:HGNC:5419]	7	2.6216135025024414	0.04367945	Yes	
+row_1	IFNA14	interferon alpha 14 [Source:HGNC Symbol;Acc:HGNC:5420]	8	2.6216135025024414	0.101030774	Yes	
+row_2	IFNA16	interferon alpha 16 [Source:HGNC Symbol;Acc:HGNC:5421]	10	2.6216135025024414	0.15642898	Yes	
+row_3	IFNA17	interferon alpha 17 [Source:HGNC Symbol;Acc:HGNC:5422]	11	2.6216135025024414	0.2137803	Yes	
+row_4	IFNA10	interferon alpha 10 [Source:HGNC Symbol;Acc:HGNC:5418]	13	2.6216135025024414	0.2691785	Yes	
+row_5	IFNA21	interferon alpha 21 [Source:HGNC Symbol;Acc:HGNC:5424]	14	2.6216135025024414	0.32652983	Yes	
+row_6	IFNW1	interferon omega 1 [Source:HGNC Symbol;Acc:HGNC:5448]	15	2.6216135025024414	0.38388115	Yes	
+row_7	IFNA5	interferon alpha 5 [Source:HGNC Symbol;Acc:HGNC:5426]	19	2.6216135025024414	0.4353731	Yes	
+row_8	IFNA4	interferon alpha 4 [Source:HGNC Symbol;Acc:HGNC:5425]	20	2.6216135025024414	0.49272442	Yes	
+row_9	IFNA7	interferon alpha 7 [Source:HGNC Symbol;Acc:HGNC:5428]	21	2.6216135025024414	0.55007577	Yes	
+row_10	IFNA6	interferon alpha 6 [Source:HGNC Symbol;Acc:HGNC:5427]	22	2.6216135025024414	0.60742706	Yes	
+row_11	IFNA1	interferon alpha 1 [Source:HGNC Symbol;Acc:HGNC:5417]	23	2.6216135025024414	0.6647784	Yes	
+row_12	IFNA2	interferon alpha 2 [Source:HGNC Symbol;Acc:HGNC:5423]	24	2.6216135025024414	0.7221297	Yes	
+row_13	IFNA8	interferon alpha 8 [Source:HGNC Symbol;Acc:HGNC:5429]	25	2.6216135025024414	0.77948105	Yes	
+row_14	IFNE	interferon epsilon [Source:HGNC Symbol;Acc:HGNC:18163]	29	2.6216135025024414	0.83097297	Yes	
+row_15	PRKCZ	protein kinase C zeta [Source:HGNC Symbol;Acc:HGNC:9412]	143	2.2213194370269775	0.6588642	No	
+row_16	IFNB1	interferon beta 1 [Source:HGNC Symbol;Acc:HGNC:5434]	240	2.1107699871063232	0.51754016	No	
+row_17	MAD2L2	mitotic arrest deficient 2 like 2 [Source:HGNC Symbol;Acc:HGNC:6764]	375	2.0551846027374268	0.30078134	No	

@@ -1,0 +1,42 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	IFNA2	interferon alpha 2 [Source:HGNC Symbol;Acc:HGNC:5423]	24	2.6216135025024414	-0.018868279	No	
+row_1	CD38	CD38 molecule [Source:HGNC Symbol;Acc:HGNC:1667]	34	2.4968771934509277	-0.0084991725	No	
+row_2	HES2	hes family bHLH transcription factor 2 [Source:HGNC Symbol;Acc:HGNC:16005]	58	2.382443428039551	-0.028078657	No	
+row_3	FAM220BP	"family with sequence similarity 220 member B, pseudogene [Source:HGNC Symbol;Acc:HGNC:23678]"	66	2.32138991355896	-0.015641887	No	
+row_4	NFIB	nuclear factor I B [Source:HGNC Symbol;Acc:HGNC:7785]	74	2.281874656677246	-0.0036604889	No	
+row_5	TNFRSF4	TNF receptor superfamily member 4 [Source:HGNC Symbol;Acc:HGNC:11918]	101	2.229660749435425	-0.03113561	No	
+row_6	PRDM16	PR/SET domain 16 [Source:HGNC Symbol;Acc:HGNC:14000]	144	2.2213194370269775	-0.09142669	No	
+row_7	SKI	SKI proto-oncogene [Source:HGNC Symbol;Acc:HGNC:10896]	149	2.2213194370269775	-0.07400817	No	
+row_8	HES5	hes family bHLH transcription factor 5 [Source:HGNC Symbol;Acc:HGNC:19764]	171	2.2213194370269775	-0.09135446	No	
+row_9	ZNF25	zinc finger protein 25 [Source:HGNC Symbol;Acc:HGNC:13043]	182	2.1487691402435303	-0.087041944	No	
+row_10	ZNF248	zinc finger protein 248 [Source:HGNC Symbol;Acc:HGNC:13041]	184	2.1487691402435303	-0.06432451	No	
+row_11	RFC1	replication factor C subunit 1 [Source:HGNC Symbol;Acc:HGNC:9969]	257	2.1075875759124756	-0.18727593	No	
+row_12	KLF3	Kruppel like factor 3 [Source:HGNC Symbol;Acc:HGNC:16516]	260	2.1075875759124756	-0.16707808	No	
+row_13	APBB2	amyloid beta precursor protein binding family B member 2 [Source:HGNC Symbol;Acc:HGNC:582]	272	2.1075875759124756	-0.16528513	No	
+row_14	NKX3-2	NK3 homeobox 2 [Source:HGNC Symbol;Acc:HGNC:951]	288	2.084480047225952	-0.17193842	No	
+row_15	PRAMEF6	PRAME family member 6 [Source:HGNC Symbol;Acc:HGNC:30583]	309	2.0551846027374268	-0.18915427	Yes	
+row_16	PRAMEF5	PRAME family member 5 [Source:HGNC Symbol;Acc:HGNC:27995]	310	2.0551846027374268	-0.16547032	Yes	
+row_17	PRAMEF4	PRAME family member 4 [Source:HGNC Symbol;Acc:HGNC:31971]	311	2.0551846027374268	-0.14178637	Yes	
+row_18	EXOSC10	exosome component 10 [Source:HGNC Symbol;Acc:HGNC:9138]	312	2.0551846027374268	-0.11810242	Yes	
+row_19	PRAMEF2	PRAME family member 2 [Source:HGNC Symbol;Acc:HGNC:28841]	313	2.0551846027374268	-0.094418466	Yes	
+row_20	PRAMEF1	PRAME family member 1 [Source:HGNC Symbol;Acc:HGNC:28840]	314	2.0551846027374268	-0.07073452	Yes	
+row_21	PRAMEF8	PRAME family member 8 [Source:HGNC Symbol;Acc:HGNC:24074]	317	2.0551846027374268	-0.051140554	Yes	
+row_22	PRAMEF7	PRAME family member 7 [Source:HGNC Symbol;Acc:HGNC:28415]	318	2.0551846027374268	-0.027456604	Yes	
+row_23	PRAMEF20	PRAME family member 20 [Source:HGNC Symbol;Acc:HGNC:25224]	348	2.0551846027374268	-0.06307736	Yes	
+row_24	PRAMEF25	PRAME family member 25 [Source:HGNC Symbol;Acc:HGNC:49179]	351	2.0551846027374268	-0.043483388	Yes	
+row_25	PRAMEF11	PRAME family member 11 [Source:HGNC Symbol;Acc:HGNC:14086]	353	2.0551846027374268	-0.02184443	Yes	
+row_26	PRAMEF10	PRAME family member 10 [Source:HGNC Symbol;Acc:HGNC:27997]	354	2.0551846027374268	0.0018395185	Yes	
+row_27	PRAMEF17	PRAME family member 17 [Source:HGNC Symbol;Acc:HGNC:29485]	356	2.0551846027374268	0.023478478	Yes	
+row_28	PRAMEF19	PRAME family member 19 [Source:HGNC Symbol;Acc:HGNC:24908]	357	2.0551846027374268	0.047162425	Yes	
+row_29	PRAMEF12	PRAME family member 12 [Source:HGNC Symbol;Acc:HGNC:22125]	359	2.0551846027374268	0.06880139	Yes	
+row_30	PRAMEF14	PRAME family member 14 [Source:HGNC Symbol;Acc:HGNC:13576]	360	2.0551846027374268	0.09248533	Yes	
+row_31	MAD2L2	mitotic arrest deficient 2 like 2 [Source:HGNC Symbol;Acc:HGNC:6764]	375	2.0551846027374268	0.08753943	Yes	
+row_32	TARDBP	TAR DNA binding protein [Source:HGNC Symbol;Acc:HGNC:11571]	376	2.0551846027374268	0.11122337	Yes	
+row_33	ENO1	enolase 1 [Source:HGNC Symbol;Acc:HGNC:3350]	440	2.0123255252838135	0.005579061	Yes	
+row_34	DFFA	DNA fragmentation factor subunit alpha [Source:HGNC Symbol;Acc:HGNC:2772]	442	2.0123255252838135	0.026724111	Yes	
+row_35	CTNNBIP1	catenin beta interacting protein 1 [Source:HGNC Symbol;Acc:HGNC:16913]	451	2.0123255252838135	0.033554234	Yes	
+row_36	PER3	period circadian regulator 3 [Source:HGNC Symbol;Acc:HGNC:8847]	463	2.0123255252838135	0.034249388	Yes	
+row_37	RERE	arginine-glutamic acid dipeptide repeats [Source:HGNC Symbol;Acc:HGNC:9965]	469	2.0123255252838135	0.04721448	Yes	
+row_38	SREBF1	sterol regulatory element binding transcription factor 1 [Source:HGNC Symbol;Acc:HGNC:11289]	498	2.008535146713257	0.013101125	Yes	
+row_39	NOC2L	NOC2 like nucleolar associated transcriptional repressor [Source:HGNC Symbol;Acc:HGNC:24517]	507	2.0046682357788086	0.019843005	Yes	
+row_40	SAMD11	sterile alpha motif domain containing 11 [Source:HGNC Symbol;Acc:HGNC:28706]	508	2.0046682357788086	0.042944804	Yes	

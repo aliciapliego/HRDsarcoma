@@ -1,23 +1,23 @@
-sample_id	Tumor_type	tai	cna	base_segments	break_points	fga	Sample Type	HRD34
-TCGA-SI-A71O-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.447200964600695	311	1690775684	1238	0.55717106931159	Primary Tumor	High
-TCGA-SI-A71O-06A-11D-A386-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.296942720845179	186	1058524477	740	0.352967671922566	Metastatic	High
-TCGA-SI-A71O-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.556830765220218	84	2608504	228	0.0009040393631633	Blood Derived Normal	None
-TCGA-SI-A71O-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.447200964600695	311	1690775684	1238	0.55717106931159	Primary Tumor	High
-TCGA-SI-A71O-06A-11D-A386-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.296942720845179	186	1058524477	740	0.352967671922566	Metastatic	High
-TCGA-SI-A71O-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.556830765220218	84	2608504	228	0.0009040393631633	Blood Derived Normal	None
-TCGA-SI-A71P-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.24104316643547	24	496080528	86	0.172655444667677	Primary Tumor	Low
-TCGA-SI-A71P-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.55329235501234	165	5194580	438	0.0018006841924866	Blood Derived Normal	None
-TCGA-QQ-A8VB-01A-11D-A37B-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.392422930807673	87	2383194573	342	0.825869785062219	Primary Tumor	Low
-TCGA-QQ-A8VB-10A-01D-A37E-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.876741398190395	6	64655	16	2.25027574805231e-05	Blood Derived Normal	None
-TCGA-RN-AAAQ-01A-21D-A38Y-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.369402684445118	154	1850590860	588	0.640101673677836	Primary Tumor	High
-TCGA-RN-AAAQ-10A-01D-A38Y-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	1.18670549241194	11	46191	34	1.6076480872057e-05	Blood Derived Normal	None
-TCGA-SI-A71Q-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.529884995886423	211	7388947	714	0.0024907843011691	Blood Derived Normal	None
-TCGA-SI-A71Q-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.501837985008579	425	1717837398	1306	0.587947295264106	Primary Tumor	High
-TCGA-RN-A68Q-01A-11D-A306-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	1.42787127362994	4	26185	14	9.11352106762815e-06	Primary Tumor	Low
-TCGA-RN-A68Q-10A-01D-A306-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	1.51142637674017	5	16234	20	3.46964642059137e-06	Blood Derived Normal	None
-TCGA-QQ-A8VG-10A-01D-A37E-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.787701664845407	3	15557	10	5.41451392969606e-06	Blood Derived Normal	None
-TCGA-QQ-A8VG-01A-11D-A37B-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.264432554445006	13	71819581	48	0.0249963438805319	Primary Tumor	Low
-TCGA-SI-AA8C-01A-11D-A386-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.499884859057735	152	920915915	510	0.320518869309397	Primary Tumor	Low
-TCGA-SI-AA8C-10A-01D-A389-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.985296425221938	9	155674	20	5.4181335828984e-05	Blood Derived Normal	None
-TCGA-QQ-A8VH-01A-11D-A37B-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.530335863255123	269	1293653904	848	0.397906052409973	Primary Tumor	High
-TCGA-QQ-A8VH-10A-01D-A37E-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	1.90445106040478	6	63985	18	1.86377335562913e-05	Blood Derived Normal	None
+sample_id	Tumor_type	cna	base_segments	break_points	fga	Sample Type	HRD34
+TCGA-SI-A71O-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	311	1690775684	1238	0.557171069	Primary Tumor	High
+TCGA-SI-A71O-06A-11D-A386-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	186	1058524477	740	0.352967672	Metastatic	High
+TCGA-SI-A71O-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	84	2608504	228	0.000904039	Blood Derived Normal	None
+TCGA-SI-A71O-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	311	1690775684	1238	0.557171069	Primary Tumor	High
+TCGA-SI-A71O-06A-11D-A386-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	186	1058524477	740	0.352967672	Metastatic	High
+TCGA-SI-A71O-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	84	2608504	228	0.000904039	Blood Derived Normal	None
+TCGA-SI-A71P-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	24	496080528	86	0.172655445	Primary Tumor	Low
+TCGA-SI-A71P-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	165	5194580	438	0.001800684	Blood Derived Normal	None
+TCGA-QQ-A8VB-01A-11D-A37B-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	87	2383194573	342	0.825869785	Primary Tumor	Low
+TCGA-QQ-A8VB-10A-01D-A37E-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	6	64655	16	2.25E-05	Blood Derived Normal	None
+TCGA-RN-AAAQ-01A-21D-A38Y-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	154	1850590860	588	0.640101674	Primary Tumor	High
+TCGA-RN-AAAQ-10A-01D-A38Y-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	11	46191	34	1.61E-05	Blood Derived Normal	None
+TCGA-SI-A71Q-10A-01D-A33G-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	211	7388947	714	0.002490784	Blood Derived Normal	None
+TCGA-SI-A71Q-01A-12D-A33D-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	425	1717837398	1306	0.587947295	Primary Tumor	High
+TCGA-RN-A68Q-01A-11D-A306-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	4	26185	14	9.11E-06	Primary Tumor	Low
+TCGA-RN-A68Q-10A-01D-A306-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	5	16234	20	3.47E-06	Blood Derived Normal	None
+TCGA-QQ-A8VG-10A-01D-A37E-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	3	15557	10	5.41E-06	Blood Derived Normal	None
+TCGA-QQ-A8VG-01A-11D-A37B-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	13	71819581	48	0.024996344	Primary Tumor	Low
+TCGA-SI-AA8C-01A-11D-A386-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	152	920915915	510	0.320518869	Primary Tumor	Low
+TCGA-SI-AA8C-10A-01D-A389-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	9	155674	20	5.42E-05	Blood Derived Normal	None
+TCGA-QQ-A8VH-01A-11D-A37B-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	269	1293653904	848	0.397906052	Primary Tumor	High
+TCGA-QQ-A8VH-10A-01D-A37E-01	Malignant Peripheral Nerve Sheath Tumors (MPNST)	6	63985	18	1.86E-05	Blood Derived Normal	None

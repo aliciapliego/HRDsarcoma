@@ -1,0 +1,20 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	TNFRSF4	TNF receptor superfamily member 4 [Source:HGNC Symbol;Acc:HGNC:11918]	101	2.229660749435425	-0.14101699	No	
+row_1	PRKCZ	protein kinase C zeta [Source:HGNC Symbol;Acc:HGNC:9412]	143	2.2213194370269775	-0.16482902	No	
+row_2	TNFRSF14	TNF receptor superfamily member 14 [Source:HGNC Symbol;Acc:HGNC:11912]	154	2.2213194370269775	-0.12797567	No	
+row_3	RET	ret proto-oncogene [Source:HGNC Symbol;Acc:HGNC:9967]	224	2.122415542602539	-0.20909445	No	
+row_4	TLR1	toll like receptor 1 [Source:HGNC Symbol;Acc:HGNC:11847]	269	2.1075875759124756	-0.24166617	Yes	
+row_5	TLR6	toll like receptor 6 [Source:HGNC Symbol;Acc:HGNC:16711]	271	2.1075875759124756	-0.19008917	Yes	
+row_6	PADI2	peptidyl arginine deiminase 2 [Source:HGNC Symbol;Acc:HGNC:18341]	298	2.0551846027374268	-0.18876691	Yes	
+row_7	TNFRSF8	TNF receptor superfamily member 8 [Source:HGNC Symbol;Acc:HGNC:11923]	322	2.0551846027374268	-0.18157382	Yes	
+row_8	MAD2L2	mitotic arrest deficient 2 like 2 [Source:HGNC Symbol;Acc:HGNC:6764]	375	2.0551846027374268	-0.2311322	Yes	
+row_9	TARDBP	TAR DNA binding protein [Source:HGNC Symbol;Acc:HGNC:11571]	376	2.0551846027374268	-0.17892931	Yes	
+row_10	ATP13A2	ATPase cation transporting 13A2 [Source:HGNC Symbol;Acc:HGNC:30213]	389	2.0551846027374268	-0.1502098	Yes	
+row_11	ENO1	enolase 1 [Source:HGNC Symbol;Acc:HGNC:3350]	440	2.0123255252838135	-0.19694293	Yes	
+row_12	VAMP3	vesicle associated membrane protein 3 [Source:HGNC Symbol;Acc:HGNC:12644]	444	2.0123255252838135	-0.15169953	Yes	
+row_13	PARK7	Parkinsonism associated deglycase [Source:HGNC Symbol;Acc:HGNC:16369]	450	2.0123255252838135	-0.110370025	Yes	
+row_14	PIK3CD	"phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit delta [Source:HGNC Symbol;Acc:HGNC:8977]"	455	2.0123255252838135	-0.06708358	Yes	
+row_15	MIR34A	microRNA 34a [Source:HGNC Symbol;Acc:HGNC:31635]	470	2.0123255252838135	-0.043366604	Yes	
+row_16	MIR33B	microRNA 33b [Source:HGNC Symbol;Acc:HGNC:32791]	482	2.008535146713257	-0.0138750635	Yes	
+row_17	LGALS9C	galectin 9C [Source:HGNC Symbol;Acc:HGNC:33874]	502	2.008535146713257	-3.9100647E-5	Yes	
+row_18	ISG15	ISG15 ubiquitin like modifier [Source:HGNC Symbol;Acc:HGNC:4053]	521	2.0046682357788086	0.015655588	Yes	

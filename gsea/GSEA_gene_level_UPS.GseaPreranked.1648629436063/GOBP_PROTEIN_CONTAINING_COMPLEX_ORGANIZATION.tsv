@@ -1,0 +1,31 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	CHD5	chromodomain helicase DNA binding protein 5 [Source:HGNC Symbol;Acc:HGNC:16816]	55	2.382443428039551	-0.07201464	No	
+row_1	KCNJ12	potassium inwardly rectifying channel subfamily J member 12 [Source:HGNC Symbol;Acc:HGNC:6258]	92	2.2459328174591064	-0.10820578	No	
+row_2	MRPL20	mitochondrial ribosomal protein L20 [Source:HGNC Symbol;Acc:HGNC:14478]	95	2.229660749435425	-0.07665636	No	
+row_3	CPTP	ceramide-1-phosphate transfer protein [Source:HGNC Symbol;Acc:HGNC:28116]	136	2.229660749435425	-0.12110694	No	
+row_4	PRKCZ	protein kinase C zeta [Source:HGNC Symbol;Acc:HGNC:9412]	143	2.2213194370269775	-0.097690515	No	
+row_5	TP73	tumor protein p73 [Source:HGNC Symbol;Acc:HGNC:12003]	160	2.2213194370269775	-0.09427409	No	
+row_6	HES5	hes family bHLH transcription factor 5 [Source:HGNC Symbol;Acc:HGNC:19764]	171	2.2213194370269775	-0.07885766	No	
+row_7	CENPV	centromere protein V [Source:HGNC Symbol;Acc:HGNC:29920]	215	2.130510091781616	-0.13088909	No	
+row_8	WDR19	WD repeat domain 19 [Source:HGNC Symbol;Acc:HGNC:18340]	251	2.1075875759124756	-0.167286	No	
+row_9	UGDH	UDP-glucose 6-dehydrogenase [Source:HGNC Symbol;Acc:HGNC:12525]	270	2.1075875759124756	-0.16968289	No	
+row_10	TLR6	toll like receptor 6 [Source:HGNC Symbol;Acc:HGNC:16711]	271	2.1075875759124756	-0.13607979	No	
+row_11	UBE2K	ubiquitin conjugating enzyme E2 K [Source:HGNC Symbol;Acc:HGNC:4914]	282	2.1075875759124756	-0.12247669	No	
+row_12	COX10	cytochrome c oxidase assembly factor heme A:farnesyltransferase COX10 [Source:HGNC Symbol;Acc:HGNC:2260]	295	2.08150053024292	-0.11328951	No	
+row_13	PADI4	peptidyl arginine deiminase 4 [Source:HGNC Symbol;Acc:HGNC:18368]	299	2.0551846027374268	-0.086521916	No	
+row_14	KCNV2	potassium voltage-gated channel modifier subfamily V member 2 [Source:HGNC Symbol;Acc:HGNC:19698]	382	2.0551846027374268	-0.21775433	No	
+row_15	SCO1	synthesis of cytochrome C oxidase 1 [Source:HGNC Symbol;Acc:HGNC:10603]	392	2.0401453971862793	-0.2032265	No	
+row_16	GAS7	growth arrest specific 7 [Source:HGNC Symbol;Acc:HGNC:4169]	394	2.0401453971862793	-0.17269869	No	
+row_17	PSIP1	PC4 and SFRS1 interacting protein 1 [Source:HGNC Symbol;Acc:HGNC:9527]	437	2.017850399017334	-0.22452636	Yes	
+row_18	VAMP3	vesicle associated membrane protein 3 [Source:HGNC Symbol;Acc:HGNC:12644]	444	2.0123255252838135	-0.2044421	Yes	
+row_19	CENPS	centromere protein S [Source:HGNC Symbol;Acc:HGNC:23163]	448	2.0123255252838135	-0.17835784	Yes	
+row_20	PARK7	Parkinsonism associated deglycase [Source:HGNC Symbol;Acc:HGNC:16369]	450	2.0123255252838135	-0.14827359	Yes	
+row_21	CTNNBIP1	catenin beta interacting protein 1 [Source:HGNC Symbol;Acc:HGNC:16913]	451	2.0123255252838135	-0.11618933	Yes	
+row_22	SLC25A33	solute carrier family 25 member 33 [Source:HGNC Symbol;Acc:HGNC:29681]	458	2.0123255252838135	-0.09610508	Yes	
+row_23	FLII	FLII actin remodeling protein [Source:HGNC Symbol;Acc:HGNC:3750]	480	2.008535146713257	-0.106081255	Yes	
+row_24	SHMT1	serine hydroxymethyltransferase 1 [Source:HGNC Symbol;Acc:HGNC:10850]	481	2.008535146713257	-0.07405743	Yes	
+row_25	MIEF2	mitochondrial elongation factor 2 [Source:HGNC Symbol;Acc:HGNC:17920]	485	2.008535146713257	-0.048033603	Yes	
+row_26	SMCR8	SMCR8-C9orf72 complex subunit [Source:HGNC Symbol;Acc:HGNC:17921]	492	2.008535146713257	-0.02800978	Yes	
+row_27	LLGL1	LLGL scribble cell polarity complex component 1 [Source:HGNC Symbol;Acc:HGNC:6628]	494	2.008535146713257	0.0020140454	Yes	
+row_28	ATPAF2	ATP synthase mitochondrial F1 complex assembly factor 2 [Source:HGNC Symbol;Acc:HGNC:18802]	497	2.008535146713257	0.03003787	Yes	
+row_29	ISG15	ISG15 ubiquitin like modifier [Source:HGNC Symbol;Acc:HGNC:4053]	521	2.0046682357788086	0.01600004	Yes	

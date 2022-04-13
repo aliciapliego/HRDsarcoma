@@ -1,0 +1,22 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	KCNAB2	potassium voltage-gated channel subfamily A regulatory beta subunit 2 [Source:HGNC Symbol;Acc:HGNC:6229]	43	2.382443428039551	-0.030827327	No	
+row_1	ESPN	espin [Source:HGNC Symbol;Acc:HGNC:13281]	50	2.382443428039551	0.011036903	No	
+row_2	KLHL21	kelch like family member 21 [Source:HGNC Symbol;Acc:HGNC:29041]	52	2.382443428039551	0.062724315	No	
+row_3	SHB	SH2 domain containing adaptor protein B [Source:HGNC Symbol;Acc:HGNC:10838]	60	2.32138991355896	0.101248994	No	
+row_4	DVL1	dishevelled segment polarity protein 1 [Source:HGNC Symbol;Acc:HGNC:3084]	103	2.229660749435425	0.068945676	No	
+row_5	CENPV	centromere protein V [Source:HGNC Symbol;Acc:HGNC:29920]	215	2.130510091781616	-0.10115042	No	
+row_6	BOD1L1	biorientation of chromosomes in cell division 1 like 1 [Source:HGNC Symbol;Acc:HGNC:31792]	287	2.084480047225952	-0.19369763	No	
+row_7	MFAP2	microfibril associated protein 2 [Source:HGNC Symbol;Acc:HGNC:7033]	341	2.0551846027374268	-0.2515411	Yes	
+row_8	RCC2	regulator of chromosome condensation 2 [Source:HGNC Symbol;Acc:HGNC:30297]	361	2.0551846027374268	-0.24258696	Yes	
+row_9	TARDBP	TAR DNA binding protein [Source:HGNC Symbol;Acc:HGNC:11571]	376	2.0551846027374268	-0.22380961	Yes	
+row_10	SCO1	synthesis of cytochrome C oxidase 1 [Source:HGNC Symbol;Acc:HGNC:10603]	392	2.0401453971862793	-0.20733558	Yes	
+row_11	GAS7	growth arrest specific 7 [Source:HGNC Symbol;Acc:HGNC:4169]	394	2.0401453971862793	-0.16335665	Yes	
+row_12	MYH1	myosin heavy chain 1 [Source:HGNC Symbol;Acc:HGNC:7567]	399	2.0401453971862793	-0.12527162	Yes	
+row_13	MYH2	myosin heavy chain 2 [Source:HGNC Symbol;Acc:HGNC:7572]	400	2.0401453971862793	-0.07932804	Yes	
+row_14	MYH3	myosin heavy chain 3 [Source:HGNC Symbol;Acc:HGNC:7573]	401	2.0401453971862793	-0.033384457	Yes	
+row_15	MYH8	myosin heavy chain 8 [Source:HGNC Symbol;Acc:HGNC:7578]	402	2.0401453971862793	0.012559118	Yes	
+row_16	MYH4	myosin heavy chain 4 [Source:HGNC Symbol;Acc:HGNC:7574]	403	2.0401453971862793	0.058502696	Yes	
+row_17	ENO1	enolase 1 [Source:HGNC Symbol;Acc:HGNC:3350]	440	2.0123255252838135	0.033092856	Yes	
+row_18	CENPS	centromere protein S [Source:HGNC Symbol;Acc:HGNC:23163]	448	2.0123255252838135	0.06465748	Yes	
+row_19	KIF1B	kinesin family member 1B [Source:HGNC Symbol;Acc:HGNC:16636]	461	2.0123255252838135	0.08639892	Yes	
+row_20	EVPLL	envoplakin like [Source:HGNC Symbol;Acc:HGNC:35236]	484	2.008535146713257	0.088408634	Yes	

@@ -1,0 +1,23 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	ESPN	espin [Source:HGNC Symbol;Acc:HGNC:13281]	50	2.382443428039551	-0.046527296	No	
+row_1	AFAP1	actin filament associated protein 1 [Source:HGNC Symbol;Acc:HGNC:24017]	82	2.2690484523773193	-0.058123156	No	
+row_2	PROM1	prominin 1 [Source:HGNC Symbol;Acc:HGNC:9454]	83	2.2459328174591064	-0.009198935	No	
+row_3	MIB2	MIB E3 ubiquitin protein ligase 2 [Source:HGNC Symbol;Acc:HGNC:30577]	127	2.229660749435425	-0.045274843	No	
+row_4	ABLIM2	actin binding LIM protein family member 2 [Source:HGNC Symbol;Acc:HGNC:19195]	195	2.145602226257324	-0.13042593	No	
+row_5	LIMCH1	LIM and calponin homology domains 1 [Source:HGNC Symbol;Acc:HGNC:29191]	262	2.1075875759124756	-0.2144366	No	
+row_6	KLHL5	kelch like family member 5 [Source:HGNC Symbol;Acc:HGNC:6356]	274	2.1075875759124756	-0.19017957	No	
+row_7	CROCC	"ciliary rootlet coiled-coil, rootletin [Source:HGNC Symbol;Acc:HGNC:21299]"	340	2.0551846027374268	-0.27336326	No	
+row_8	RCC2	regulator of chromosome condensation 2 [Source:HGNC Symbol;Acc:HGNC:30297]	361	2.0551846027374268	-0.26796427	No	
+row_9	GAS7	growth arrest specific 7 [Source:HGNC Symbol;Acc:HGNC:4169]	394	2.0401453971862793	-0.28651494	Yes	
+row_10	MYH1	myosin heavy chain 1 [Source:HGNC Symbol;Acc:HGNC:7567]	399	2.0401453971862793	-0.2499475	Yes	
+row_11	MYH2	myosin heavy chain 2 [Source:HGNC Symbol;Acc:HGNC:7572]	400	2.0401453971862793	-0.20550604	Yes	
+row_12	MYH3	myosin heavy chain 3 [Source:HGNC Symbol;Acc:HGNC:7573]	401	2.0401453971862793	-0.1610646	Yes	
+row_13	MYH8	myosin heavy chain 8 [Source:HGNC Symbol;Acc:HGNC:7578]	402	2.0401453971862793	-0.11662313	Yes	
+row_14	MYH4	myosin heavy chain 4 [Source:HGNC Symbol;Acc:HGNC:7574]	403	2.0401453971862793	-0.07218167	Yes	
+row_15	CLSTN1	calsyntenin 1 [Source:HGNC Symbol;Acc:HGNC:17447]	449	2.0123255252838135	-0.116928905	Yes	
+row_16	KIF1B	kinesin family member 1B [Source:HGNC Symbol;Acc:HGNC:16636]	461	2.0123255252838135	-0.09474701	Yes	
+row_17	TMEM201	transmembrane protein 201 [Source:HGNC Symbol;Acc:HGNC:33719]	475	2.0123255252838135	-0.076502115	Yes	
+row_18	FLII	FLII actin remodeling protein [Source:HGNC Symbol;Acc:HGNC:3750]	480	2.008535146713257	-0.040623255	Yes	
+row_19	LLGL1	LLGL scribble cell polarity complex component 1 [Source:HGNC Symbol;Acc:HGNC:6628]	494	2.008535146713257	-0.022460934	Yes	
+row_20	MYO15A	myosin XVA [Source:HGNC Symbol;Acc:HGNC:7594]	506	2.008535146713257	-3.616009E-4	Yes	
+row_21	KLHL17	kelch like family member 17 [Source:HGNC Symbol;Acc:HGNC:24023]	518	2.0046682357788086	0.0216535	Yes	

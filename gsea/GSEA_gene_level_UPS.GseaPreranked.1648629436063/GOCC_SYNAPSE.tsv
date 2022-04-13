@@ -1,0 +1,23 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	KCNAB2	potassium voltage-gated channel subfamily A regulatory beta subunit 2 [Source:HGNC Symbol;Acc:HGNC:6229]	43	2.382443428039551	-0.033758372	No	
+row_1	NPHP4	nephrocystin 4 [Source:HGNC Symbol;Acc:HGNC:19104]	51	2.382443428039551	0.0033493992	No	
+row_2	CPEB2	cytoplasmic polyadenylation element binding protein 2 [Source:HGNC Symbol;Acc:HGNC:21745]	84	2.2459328174591064	-0.0116711985	No	
+row_3	DVL1	dishevelled segment polarity protein 1 [Source:HGNC Symbol;Acc:HGNC:3084]	103	2.229660749435425	5.196966E-4	No	
+row_4	TMEM240	transmembrane protein 240 [Source:HGNC Symbol;Acc:HGNC:25186]	132	2.229660749435425	-0.0069744475	No	
+row_5	GNB1	G protein subunit beta 1 [Source:HGNC Symbol;Acc:HGNC:4396]	133	2.229660749435425	0.04064952	No	
+row_6	TPRG1L	tumor protein p63 regulated 1 like [Source:HGNC Symbol;Acc:HGNC:27007]	142	2.2213194370269775	0.07234729	No	
+row_7	PRKCZ	protein kinase C zeta [Source:HGNC Symbol;Acc:HGNC:9412]	143	2.2213194370269775	0.119793095	No	
+row_8	GABRD	gamma-aminobutyric acid type A receptor subunit delta [Source:HGNC Symbol;Acc:HGNC:4084]	165	2.2213194370269775	0.12590031	No	
+row_9	PMP22	peripheral myelin protein 22 [Source:HGNC Symbol;Acc:HGNC:9118]	179	2.1987686157226562	0.1472739	No	
+row_10	APBB2	amyloid beta precursor protein binding family B member 2 [Source:HGNC Symbol;Acc:HGNC:582]	272	2.1075875759124756	0.01118811	No	
+row_11	FBXO2	F-box protein 2 [Source:HGNC Symbol;Acc:HGNC:13581]	347	2.0551846027374268	-0.0905839	No	
+row_12	VAMP3	vesicle associated membrane protein 3 [Source:HGNC Symbol;Acc:HGNC:12644]	444	2.0123255252838135	-0.23657843	Yes	
+row_13	CLSTN1	calsyntenin 1 [Source:HGNC Symbol;Acc:HGNC:17447]	449	2.0123255252838135	-0.20147061	Yes	
+row_14	PARK7	Parkinsonism associated deglycase [Source:HGNC Symbol;Acc:HGNC:16369]	450	2.0123255252838135	-0.15848877	Yes	
+row_15	UTS2	urotensin 2 [Source:HGNC Symbol;Acc:HGNC:12636]	453	2.0123255252838135	-0.11944394	Yes	
+row_16	KIF1B	kinesin family member 1B [Source:HGNC Symbol;Acc:HGNC:16636]	461	2.0123255252838135	-0.090241626	Yes	
+row_17	CORT	cortistatin [Source:HGNC Symbol;Acc:HGNC:2257]	474	2.0123255252838135	-0.07088183	Yes	
+row_18	SMCR8	SMCR8-C9orf72 complex subunit [Source:HGNC Symbol;Acc:HGNC:17921]	492	2.008535146713257	-0.061445512	Yes	
+row_19	AGRN	agrin [Source:HGNC Symbol;Acc:HGNC:329]	512	2.0046682357788086	-0.056028802	Yes	
+row_20	KLHL17	kelch like family member 17 [Source:HGNC Symbol;Acc:HGNC:24023]	518	2.0046682357788086	-0.023053037	Yes	
+row_21	MPDZ	multiple PDZ domain crumbs cell polarity complex component [Source:HGNC Symbol;Acc:HGNC:7208]	529	2.0009119510650635	-2.2351742E-8	Yes	

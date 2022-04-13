@@ -1,0 +1,22 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	CD38	CD38 molecule [Source:HGNC Symbol;Acc:HGNC:1667]	34	2.4968771934509277	-0.010156603	No	
+row_1	NPHP4	nephrocystin 4 [Source:HGNC Symbol;Acc:HGNC:19104]	51	2.382443428039551	0.012454352	No	
+row_2	CPEB2	cytoplasmic polyadenylation element binding protein 2 [Source:HGNC Symbol;Acc:HGNC:21745]	84	2.2459328174591064	5.344106E-4	No	
+row_3	SDF4	stromal cell derived factor 4 [Source:HGNC Symbol;Acc:HGNC:24188]	122	2.229660749435425	-0.021577843	No	
+row_4	SCNN1D	sodium channel epithelial 1 subunit delta [Source:HGNC Symbol;Acc:HGNC:10601]	131	2.229660749435425	0.013284367	No	
+row_5	HSP90AB2P	"heat shock protein 90 alpha family class B member 2, pseudogene [Source:HGNC Symbol;Acc:HGNC:32537]"	290	2.084480047225952	-0.2498423	No	
+row_6	PLOD1	"procollagen-lysine,2-oxoglutarate 5-dioxygenase 1 [Source:HGNC Symbol;Acc:HGNC:9081]"	321	2.0551846027374268	-0.26216006	Yes	
+row_7	TNFRSF8	TNF receptor superfamily member 8 [Source:HGNC Symbol;Acc:HGNC:11923]	322	2.0551846027374268	-0.2155387	Yes	
+row_8	AGTRAP	angiotensin II receptor associated protein [Source:HGNC Symbol;Acc:HGNC:13539]	370	2.0551846027374268	-0.26125526	Yes	
+row_9	NPPA	natriuretic peptide A [Source:HGNC Symbol;Acc:HGNC:7939]	378	2.0551846027374268	-0.22838637	Yes	
+row_10	CLCN6	chloride voltage-gated channel 6 [Source:HGNC Symbol;Acc:HGNC:2024]	388	2.0551846027374268	-0.19944675	Yes	
+row_11	PIRT	phosphoinositide interacting regulator of transient receptor potential channels [Source:HGNC Symbol;Acc:HGNC:37239]	397	2.0401453971862793	-0.16888365	Yes	
+row_12	PSIP1	PC4 and SFRS1 interacting protein 1 [Source:HGNC Symbol;Acc:HGNC:9527]	437	2.017850399017334	-0.19973004	Yes	
+row_13	ENO1	enolase 1 [Source:HGNC Symbol;Acc:HGNC:3350]	440	2.0123255252838135	-0.1580102	Yes	
+row_14	ERRFI1	ERBB receptor feedback inhibitor 1 [Source:HGNC Symbol;Acc:HGNC:18185]	459	2.0123255252838135	-0.14772455	Yes	
+row_15	PER3	period circadian regulator 3 [Source:HGNC Symbol;Acc:HGNC:8847]	463	2.0123255252838135	-0.10796936	Yes	
+row_16	UBE4B	ubiquitination factor E4B [Source:HGNC Symbol;Acc:HGNC:12500]	466	2.0123255252838135	-0.06624952	Yes	
+row_17	MIR34A	microRNA 34a [Source:HGNC Symbol;Acc:HGNC:31635]	470	2.0123255252838135	-0.026494322	Yes	
+row_18	ALKBH5	"alkB homolog 5, RNA demethylase [Source:HGNC Symbol;Acc:HGNC:25996]"	478	2.008535146713257	0.005316345	Yes	
+row_19	NOC2L	NOC2 like nucleolar associated transcriptional repressor [Source:HGNC Symbol;Acc:HGNC:24517]	507	2.0046682357788086	-0.004218079	Yes	
+row_20	PLEKHN1	pleckstrin homology domain containing N1 [Source:HGNC Symbol;Acc:HGNC:25284]	511	2.0046682357788086	0.035363413	Yes	

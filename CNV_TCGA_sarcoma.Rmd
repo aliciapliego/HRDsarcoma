@@ -1,0 +1,289 @@
+---
+title: "CNV"
+author: "Alicia Pliego"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: sandstone
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+# Copy Number Analysis
+```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+library(CINmetrics)
+library(TCGAbiolinks)
+library(heatmaply)
+library(GenomicRanges)
+library(AnnotationHub)
+library(pd.genomewidesnp.6)
+library(rtracklayer)
+library(biovizBase) #needed for stain information
+library(CINdex)
+library(IRanges)
+library(TxDb.Hsapiens.UCSC.hg18.knownGene)
+library(Homo.sapiens)
+library(ComplexHeatmap)
+library(pheatmap)
+library(limma)
+library(Glimma)
+library(edgeR)
+library(dplyr)
+```
+
+## CINdex amplification
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#Add amplifications CINdex
+
+cindex_results_amp_sarc <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_results.tsv', sep = '\t', header = TRUE)
+names(cindex_results_amp_sarc) <- sub("^X", "", names(cindex_results_amp_sarc))
+cindex_results_amp_sarc<- cindex_results_amp_sarc[!duplicated(cindex_results_amp_sarc), ]
+rownames(cindex_results_amp_sarc) <- cindex_results_amp_sarc$sample_id
+cindex_results_amp_sarc$sample_id <- NULL
+
+#Add deletions CINdex
+
+cindex_results_del_sarc <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results.tsv', sep = '\t', header = TRUE)
+names(cindex_results_del_sarc) <- sub("^X", "", names(cindex_results_del_sarc))
+cindex_results_del_sarc<- cindex_results_del_sarc[!duplicated(cindex_results_del_sarc), ]
+rownames(cindex_results_del_sarc) <- cindex_results_del_sarc$sample_id
+cindex_results_del_sarc$sample_id <- NULL
+
+cindex_results_sarc_amp_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_meta_results.tsv', sep = '\t', header = TRUE)
+
+cindex_results_sarc_del_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_meta_results.tsv', sep = '\t', header = TRUE)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_amp_sarc_scale <- scale(t(cindex_results_amp_sarc), center = TRUE, scale = TRUE)
+cindex_results_amp_sarc_scale <- cindex_results_amp_sarc_scale[, colSums(is.na(cindex_results_amp_sarc_scale)) != nrow(cindex_results_amp_sarc_scale)]
+cindex_results_amp_sarc_scale <- t(cindex_results_amp_sarc_scale)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_amp_sarc_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA amplifications",
+  row_side_colors = cindex_results_sarc_amp_meta[, c( "Sample.Type", "Tumor_type", "HRD34")]
+                           
+  )
+```
+## CINdex deletions
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_del_sarc_scale <- scale(t(cindex_results_del_sarc), center = TRUE, scale = TRUE)
+cindex_results_del_sarc_scale <- cindex_results_del_sarc_scale[, colSums(is.na(cindex_results_del_sarc_scale)) != nrow(cindex_results_del_sarc_scale)]
+cindex_results_del_sarc_scale <- t(cindex_results_del_sarc_scale)
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_del_sarc_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA deletions",
+  row_side_colors = cindex_results_sarc_del_meta[, c( "Sample.Type", "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+### CINdex Amplifications/Deletions only tumor
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#Add amplifications CINdex
+
+cindex_results_amp_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_results_onlytumor.tsv', sep = '\t', header = TRUE)
+names(cindex_results_amp_sarc_tumor) <- sub("^X", "", names(cindex_results_amp_sarc_tumor))
+cindex_results_amp_sarc_tumor<- cindex_results_amp_sarc_tumor[!duplicated(cindex_results_amp_sarc_tumor), ]
+rownames(cindex_results_amp_sarc_tumor) <- cindex_results_amp_sarc_tumor$sample_id
+cindex_results_amp_sarc_tumor$sample_id <- NULL
+
+#Add deletions CINdex
+
+cindex_results_del_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results_onlytumor.tsv', sep = '\t', header = TRUE)
+names(cindex_results_del_sarc_tumor) <- sub("^X", "", names(cindex_results_del_sarc_tumor))
+cindex_results_del_sarc_tumor<- cindex_results_del_sarc_tumor[!duplicated(cindex_results_del_sarc_tumor), ]
+rownames(cindex_results_del_sarc_tumor) <- cindex_results_del_sarc_tumor$sample_id
+cindex_results_del_sarc_tumor$sample_id <- NULL
+
+cindex_results_sarc_amp_meta_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_meta_results_onlytumor.tsv', sep = '\t', header = TRUE)
+
+cindex_results_sarc_del_meta_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_meta_results_onlytumor.tsv', sep = '\t', header = TRUE)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_amp_sarc_tumor_scale <- scale(t(cindex_results_amp_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_amp_sarc_tumor_scale <- cindex_results_amp_sarc_tumor_scale[, colSums(is.na(cindex_results_amp_sarc_tumor_scale)) != nrow(cindex_results_amp_sarc_tumor_scale)]
+cindex_results_amp_sarc_tumor_scale <- t(cindex_results_amp_sarc_tumor_scale)
+```
+
+
+```{r heatmap cindex plot amp pm, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_amp_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA amplifications Primary Tumor",
+  row_side_colors = cindex_results_sarc_amp_meta_tumor[, c(  "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_del_sarc_tumor_scale <- scale(t(cindex_results_del_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_del_sarc_tumor_scale <- cindex_results_del_sarc_tumor_scale[, colSums(is.na(cindex_results_del_sarc_tumor_scale)) != nrow(cindex_results_del_sarc_tumor_scale)]
+cindex_results_del_sarc_tumor_scale <- t(cindex_results_del_sarc_tumor_scale)
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_del_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA deletions Primary Tumor",
+  row_side_colors = cindex_results_sarc_del_meta_tumor[, c(  "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+
+## CIN personalized method.
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#Add amplifications CINdex
+
+cindex_results_amp_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/AMP_ownscript_sarc.tsv', sep = '\t', header = TRUE)
+names(cindex_results_amp_sarc_tumor) <- sub("^X", "", names(cindex_results_amp_sarc_tumor))
+cindex_results_amp_sarc_tumor<- cindex_results_amp_sarc_tumor[!duplicated(cindex_results_amp_sarc_tumor), ]
+rownames(cindex_results_amp_sarc_tumor) <- cindex_results_amp_sarc_tumor$sample_id
+cindex_results_amp_sarc_tumor$sample_id <- NULL
+
+cindex_results_amp_sarc_tumor_scale <- scale(t(cindex_results_amp_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_amp_sarc_tumor_scale <- cindex_results_amp_sarc_tumor_scale[, colSums(is.na(cindex_results_amp_sarc_tumor_scale)) != nrow(cindex_results_amp_sarc_tumor_scale)]
+cindex_results_amp_sarc_tumor_scale <- t(cindex_results_amp_sarc_tumor_scale)
+
+#Add deletions CINdex
+
+cindex_results_del_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/DEL_ownscript_sarc.tsv', sep = '\t', header = TRUE)
+names(cindex_results_del_sarc_tumor) <- sub("^X", "", names(cindex_results_del_sarc_tumor))
+cindex_results_del_sarc_tumor<- cindex_results_del_sarc_tumor[!duplicated(cindex_results_del_sarc_tumor), ]
+rownames(cindex_results_del_sarc_tumor) <- cindex_results_del_sarc_tumor$sample_id
+cindex_results_del_sarc_tumor$sample_id <- NULL
+
+cindex_results_del_sarc_tumor_scale <- scale(t(cindex_results_del_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_del_sarc_tumor_scale <- cindex_results_del_sarc_tumor_scale[, colSums(is.na(cindex_results_del_sarc_tumor_scale)) != nrow(cindex_results_del_sarc_tumor_scale)]
+cindex_results_del_sarc_tumor_scale <- t(cindex_results_del_sarc_tumor_scale)
+
+#Add cin CINdex
+
+cindex_results_cin_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/CIN_ownscript_sarc.tsv', sep = '\t', header = TRUE)
+names(cindex_results_cin_sarc_tumor) <- sub("^X", "", names(cindex_results_cin_sarc_tumor))
+cindex_results_cin_sarc_tumor<- cindex_results_cin_sarc_tumor[!duplicated(cindex_results_cin_sarc_tumor), ]
+rownames(cindex_results_cin_sarc_tumor) <- cindex_results_cin_sarc_tumor$sample_id
+cindex_results_cin_sarc_tumor$sample_id <- NULL
+
+cindex_results_cin_sarc_tumor_scale <- scale(t(cindex_results_cin_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_cin_sarc_tumor_scale <- cindex_results_cin_sarc_tumor_scale[, colSums(is.na(cindex_results_cin_sarc_tumor_scale)) != nrow(cindex_results_cin_sarc_tumor_scale)]
+cindex_results_cin_sarc_tumor_scale <- t(cindex_results_cin_sarc_tumor_scale)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+cindex_results_cin_sarc_tumor_scale <- unique(cindex_results_cin_sarc_tumor_scale)
+
+heatmaply(cindex_results_cin_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "Total CIN TCGA-SARC Primary Tumor"
+  )
+```
+
+```{r cindex ampr sarc, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+cindex_results_amp_sarc_tumor_scale <- unique(cindex_results_amp_sarc_tumor_scale)
+heatmaply(cindex_results_amp_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "Total Amplifications TCGA-SARC Primary Tumor"
+  )
+```
+
+
+```{r cindex del sarc, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+
+cindex_results_del_sarc_tumor_scale <- unique(cindex_results_del_sarc_tumor_scale)
+heatmaply(cindex_results_del_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "Total Deletions TCGA-SARC Primary Tumor"
+  )
+```
+

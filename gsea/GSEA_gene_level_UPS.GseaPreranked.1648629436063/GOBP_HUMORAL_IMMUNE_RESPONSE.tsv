@@ -1,0 +1,19 @@
+NAME	SYMBOL	TITLE	RANK IN GENE LIST	RANK METRIC SCORE	RUNNING ES	CORE ENRICHMENT	
+row_0	IFNA13	interferon alpha 13 [Source:HGNC Symbol;Acc:HGNC:5419]	7	2.6216135025024414	0.043335803	Yes	
+row_1	IFNA14	interferon alpha 14 [Source:HGNC Symbol;Acc:HGNC:5420]	8	2.6216135025024414	0.10034348	Yes	
+row_2	IFNA16	interferon alpha 16 [Source:HGNC Symbol;Acc:HGNC:5421]	10	2.6216135025024414	0.15539804	Yes	
+row_3	IFNA17	interferon alpha 17 [Source:HGNC Symbol;Acc:HGNC:5422]	11	2.6216135025024414	0.21240571	Yes	
+row_4	IFNA10	interferon alpha 10 [Source:HGNC Symbol;Acc:HGNC:5418]	13	2.6216135025024414	0.26746026	Yes	
+row_5	IFNA21	interferon alpha 21 [Source:HGNC Symbol;Acc:HGNC:5424]	14	2.6216135025024414	0.32446796	Yes	
+row_6	IFNW1	interferon omega 1 [Source:HGNC Symbol;Acc:HGNC:5448]	15	2.6216135025024414	0.38147563	Yes	
+row_7	IFNA5	interferon alpha 5 [Source:HGNC Symbol;Acc:HGNC:5426]	19	2.6216135025024414	0.43262392	Yes	
+row_8	IFNA4	interferon alpha 4 [Source:HGNC Symbol;Acc:HGNC:5425]	20	2.6216135025024414	0.4896316	Yes	
+row_9	IFNA7	interferon alpha 7 [Source:HGNC Symbol;Acc:HGNC:5428]	21	2.6216135025024414	0.54663926	Yes	
+row_10	IFNA6	interferon alpha 6 [Source:HGNC Symbol;Acc:HGNC:5427]	22	2.6216135025024414	0.60364693	Yes	
+row_11	IFNA1	interferon alpha 1 [Source:HGNC Symbol;Acc:HGNC:5417]	23	2.6216135025024414	0.66065466	Yes	
+row_12	IFNA2	interferon alpha 2 [Source:HGNC Symbol;Acc:HGNC:5423]	24	2.6216135025024414	0.71766233	Yes	
+row_13	IFNA8	interferon alpha 8 [Source:HGNC Symbol;Acc:HGNC:5429]	25	2.6216135025024414	0.77467	Yes	
+row_14	IFNE	interferon epsilon [Source:HGNC Symbol;Acc:HGNC:18163]	29	2.6216135025024414	0.8258183	Yes	
+row_15	BST1	bone marrow stromal cell antigen 1 [Source:HGNC Symbol;Acc:HGNC:1118]	32	2.4968771934509277	0.8762073	Yes	
+row_16	IFNB1	interferon beta 1 [Source:HGNC Symbol;Acc:HGNC:5434]	240	2.1107699871063232	0.5178097	No	
+row_17	MASP2	MBL associated serine protease 2 [Source:HGNC Symbol;Acc:HGNC:6902]	380	2.0551846027374268	0.29101583	No	

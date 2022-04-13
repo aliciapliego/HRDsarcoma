@@ -10,6 +10,10 @@ output:
     number_sections: true
     theme: sandstone
 ---
+<style>
+body {
+text-align: justify}
+</style>
 
 # Chromosomal Instability
 
@@ -19,6 +23,15 @@ Genomic instability, one of the hallmarks of cancer, is measured in many forms s
 library(CINmetrics)
 library(TCGAbiolinks)
 library(heatmaply)
+library(GenomicRanges)
+library(AnnotationHub)
+library(pd.genomewidesnp.6)
+library(rtracklayer)
+library(biovizBase) #needed for stain information
+library(CINdex)
+library(IRanges)
+library(TxDb.Hsapiens.UCSC.hg18.knownGene)
+library(Homo.sapiens)
 ```
 
 ## Genomic Instability meassurements
@@ -45,14 +58,16 @@ All the metrics were computed for TCGASARC, TCGA-OV, TCGA-CRC and log10 scaled i
 
 #### TCGA-SARC
 ```{r , include=FALSE, echo=FALSE, message=FALSE}
-#query.maskCNV.hg39.SARC <- GDCquery(project = "TCGA-SARC",
-#              data.category = "Copy Number Variation",
-#              data.type = "Masked Copy Number Segment", legacy=FALSE)
-#GDCdownload(query = query.maskCNV.hg39.SARC)
-#maskCNV.SARC <- GDCprepare(query = query.maskCNV.hg39.SARC, summarizedExperiment = FALSE)
-#maskCNV.SARC <- data.frame(maskCNV.SARC, stringsAsFactors = FALSE)
+query.maskCNV.hg39.SARC <- GDCquery(project = "TCGA-SARC",
+              data.category = "Copy Number Variation",
+              data.type = "Masked Copy Number Segment", legacy=FALSE)
+GDCdownload(query = query.maskCNV.hg39.SARC)
+maskCNV.SARC <- GDCprepare(query = query.maskCNV.hg39.SARC, summarizedExperiment = FALSE)
+maskCNV.SARC <- data.frame(maskCNV.SARC, stringsAsFactors = FALSE)
 #tai.test <- tai(cnvData = maskCNV.SARC)
 ```
+
+
 
 ```{r , include=FALSE, echo=FALSE, message=FALSE}
 #cinmetrics_test_sarc <- CINmetrics(cnvData = maskCNV.SARC)
@@ -82,7 +97,7 @@ cinmetrics_sarc_log10 <- log10(cinmetrics_sarc_anno_2)
 
  tai does not capture this global pattern of difference between normal and tumour samples. tai is best suited for late stage cancers, thus should be used as a measure for studying overall genomic disorganization in individual patients with advanced tumours and not as a measure of genomic instability comparison between normal and tumour samples.
  
-````{r , include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply_cor(
   cor(cinmetrics_sarc_log10),
   #xlab = "Features", 
@@ -94,7 +109,7 @@ heatmaply_cor(
 row.names(cinmetrics_sarc_log10) <- cinmetrics_sarc_anno$sample_id
 ```
 
-````{r , include=FALSE, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 heatmaply(cinmetrics_sarc_log10, 
           
   scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
@@ -540,15 +555,6 @@ fig <- plot_ly(
 fig
 ```
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- plot_ly(
-  cinmetrics_corr_2, x = ~HRDscore, y = ~tai,
-  # Hover text:
-  text = ~rownames(cinmetrics_corr_2),
-  color = ~HRDscore, size = ~break_points
-) %>% layout(title = 'HRD34 vs tai')
-fig
-```
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
 fig <- plot_ly(
@@ -597,3 +603,597 @@ fig
 #### CONCLUSION CINmetrics 
 
 There is a correlation between HRD34 and the CINmetric signatures except for tai, which is stated by the cinmetrics publication that is a marker of normal or tumors in an earlier stage. In some types of cancer there seems to be a correlation between low HRD and lower breakpoints and cna, however the small data set limits this conclusions and more statistics are needed.
+
+## CINdex
+
+### CINdex at chromosome level
+To mathematically and quantitatively describe these alternations we first locate
+their genomic positions and measure their ranges. Such algorithms are referred to
+as segmentation algorithms.
+
+I run CINDex in the masked copy number segments from TCGA-SARC downloaded from GDC data commons. 
+Masked copy number segments repport the segment mean which is the log2(copy-number/ 2). However, CINdex requires the CNV values. Therefore, in order to obtain the copy number value: 
+
+$$
+CNV = 2*2^{mean value}
+
+$$
+Settings:  CIN for a treshold gain of 2.25, threshold loss of 1.75, unnormalized (indicated by V.def=3), showing overall (gains and losses) CIN (indicated by V.mode=“sum’).
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#Masked copy number data downloaded from TCGA has the mean normalized values, this is the log2(copy-number/ 2), meaning that the values equal to 0 are diploid, whilst the the ones with positive values are amplifies and below 0 are losses. 
+maskCNV.SARC$norm <- 2*(2^maskCNV.SARC$Segment_Mean)
+maskCNV.SARC$norm <- round(maskCNV.SARC$norm, 4)
+```
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#function to convert Copy number data into GRanges object
+convert.to.gr.cnv <- function(cnv2) {
+cnv2$Chromosome <- cnv2$Chromosome
+# subset out SNPs with missing location
+cnv2 <- cnv2[!(is.na(cnv2$Chromosome) | is.na(cnv2$Start)),]
+# convert strand info to +,-,*
+
+cnv2$strand <- c( "*")
+#convert into GRanges object
+cnv2.gr <- GRanges(cnv2$Chromosome, IRanges(cnv2$Start,cnv2$End),cnv2$strand, value = cnv2$norm)
+return(cnv2.gr)
+}
+```
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+v1 <- list()
+for(un1 in unique(maskCNV.SARC$Sample)){
+  tmp <- maskCNV.SARC[maskCNV.SARC$Sample == un1, ]
+  tmp <- tmp[!grepl("X", tmp$Chromosome),]
+  tmp <- tmp[!grepl("Y", tmp$Chromosome),]
+  cnv2gr <- convert.to.gr.cnv(cnv2 = tmp)
+  
+  #Subset only the probes that are in autosomes
+  
+  v1<- c(v1, cnv2gr)
+}
+
+cnvgr.tcga.sarc <- GRangesList(v1)
+names(cnvgr.tcga.sarc)<- unique(maskCNV.SARC$Sample)
+```
+
+```{r cindex sum, include=FALSE, echo=FALSE, message=FALSE}
+# Run CINdex by chromosome 
+run.cin.chr(grl.seg = cnvgr.tcga.sarc, thr.gain=2.25, thr.loss=1.75, V.def=3, V.mode="sum")
+```
+
+```{r cindex amp, include=FALSE, echo=FALSE, message=FALSE}
+# Run CINdex by chromosome 
+run.cin.chr(grl.seg = cnvgr.tcga.sarc, thr.gain=2.25, thr.loss=1.75, V.def=3, V.mode="amp")
+```
+
+```{r cindex del , include=FALSE, echo=FALSE, message=FALSE}
+# Run CINdex by chromosome 
+run.cin.chr(grl.seg = cnvgr.tcga.sarc, thr.gain=2.25, thr.loss=1.75, V.def=3, V.mode="del")
+```
+
+```{r save cindex results, include=FALSE, echo=FALSE, message=FALSE}
+#cin.sarc.results <- load("/Users/aliciapliego/Projects/HRDsarcoma/output_chr_cin/dataMatrix_2.25_1.75_unnormalized_sum.RData")
+#cin.sarc.results.df <- dataMatrix
+#cin.sarc.results.df <- t(cin.sarc.results.df)
+#write.table(cin.sarc.results.df, "/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_results.tsv", sep="\t", quote = FALSE, row.names = T)
+
+#cin.sarc.amp.results <- load("/Users/aliciapliego/Projects/HRDsarcoma/output_chr_cin/dataMatrix_2.25_1.75_unnormalized_amp.RData")
+#cin.sarc.amp.results.df <- dataMatrix
+#cin.sarc.amp.results.df <- t(cin.sarc.amp.results.df)
+#write.table(cin.sarc.amp.results.df, "/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_results.tsv", sep="\t", quote = FALSE, row.names = T)
+
+cin.sarc.del.results <- load("/Users/aliciapliego/Projects/HRDsarcoma/output_chr_cin/dataMatrix_2.25_1.75_unnormalized_del.RData")
+#cin.sarc.del.results.df <- dataMatrix
+#cin.sarc.del.results.df <- t(cin.sarc.del.results.df)
+#write.table(cin.sarc.del.results.df, "/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results.tsv", sep="\t", quote = FALSE, row.names = T)
+```
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#Edit results in python and annotate them and add files back here
+cindex_results_sum_sarc <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sum_sarc) <- cindex_results_sum_sarc$Sample.ID
+cindex_results_sum_sarc$Sample.ID <- NULL
+
+cindex_results_sarc_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata.tsv', sep = '\t', header = TRUE)
+
+
+```
+
+```{r heatmap cindex all, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sum_sarc, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA",
+  row_side_colors = cindex_results_sarc_meta[, c( "Sample.Type", "Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+
+
+### CINdex MFS
+```{r cindex mfs, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_MFS <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_MFS.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_MFS) <- cindex_results_sarc_MFS$Sample.ID
+cindex_results_sarc_MFS$Sample.ID <- NULL
+
+cindex_results_sarc_MFS_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_MFS.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex mfs, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_MFS, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA MFS",
+  row_side_colors = cindex_results_sarc_MFS_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex ddLPS
+```{r cindex ddlps, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_ddLPS <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_ddLPS.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_ddLPS) <- cindex_results_sarc_ddLPS$Sample.ID
+cindex_results_sarc_ddLPS$Sample.ID <- NULL
+
+cindex_results_sarc_ddLPS_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_ddLPS.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex ddlps, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_ddLPS, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA ddLPS",
+  row_side_colors = cindex_results_sarc_ddLPS_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex LMS
+```{r cindex lms, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_LMS <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_LMS.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_LMS) <- cindex_results_sarc_LMS$Sample.ID
+cindex_results_sarc_LMS$Sample.ID <- NULL
+
+cindex_results_sarc_LMS_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_LMS.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex lms, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_LMS, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA LMS",
+  row_side_colors = cindex_results_sarc_LMS_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex UPS
+```{r cindex ups, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_UPS <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_UPS.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_UPS) <- cindex_results_sarc_UPS$Sample.ID
+cindex_results_sarc_UPS$Sample.ID <- NULL
+
+cindex_results_sarc_UPS_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_UPS.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex ups, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_UPS, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA UPS",
+  row_side_colors = cindex_results_sarc_UPS_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex uLMS
+```{r cindex ulms, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_uLMS <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_uLMS.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_uLMS) <- cindex_results_sarc_uLMS$Sample.ID
+cindex_results_sarc_uLMS$Sample.ID <- NULL
+
+cindex_results_sarc_uLMS_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_uLMS.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex ulms, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_uLMS, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA uLMS",
+  row_side_colors = cindex_results_sarc_uLMS_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex SS
+```{r cindex ss, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_SS <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_SS.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_SS) <- cindex_results_sarc_SS$Sample.ID
+cindex_results_sarc_SS$Sample.ID <- NULL
+
+cindex_results_sarc_SS_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_SS.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex ss, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_SS, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA SS",
+  row_side_colors = cindex_results_sarc_SS_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex MPNST
+```{r cindex mpnst, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_MPNST <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_MPNST.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_MPNST) <- cindex_results_sarc_MPNST$Sample.ID
+cindex_results_sarc_MPNST$Sample.ID <- NULL
+
+cindex_results_sarc_MPNST_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_MPNST.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex mpnst, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_MPNST, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA MPNST",
+  row_side_colors = cindex_results_sarc_MPNST_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex DT
+```{r cindex dt, include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sarc_DT <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_DT.tsv', sep = '\t', header = TRUE)
+
+rownames(cindex_results_sarc_DT) <- cindex_results_sarc_DT$Sample.ID
+cindex_results_sarc_DT$Sample.ID <- NULL
+
+cindex_results_sarc_DT_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_metadata_DT.tsv', sep = '\t', header = TRUE)
+```
+
+```{r heatmap cindex dt, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_sarc_DT, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  scale = "row",
+  main = "CINdex TCGA DT",
+  row_side_colors = cindex_results_sarc_DT_meta[, c("Tumor_type", "HRD34")]
+                                             
+  )
+```
+
+### CINdex CINmetrics HRDness correlation
+
+```{r cindex cinmetrics cindex correlation, include=FALSE, echo=FALSE, message=FALSE}
+cindex_cinmetrix_corr<- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_cinmetrix_corr.tsv', sep = '\t', header = TRUE)
+cindex_cinmetrix_corr<- cindex_cinmetrix_corr[!duplicated(cindex_cinmetrix_corr), ]
+rownames(cindex_cinmetrix_corr) <- cindex_cinmetrix_corr$Sample.ID
+cindex_cinmetrix_corr$Sample.ID <- NULL
+cindex_cinmetrix_corr_log10 <- log10(cindex_cinmetrix_corr)
+```
+
+```{r heatmap cinmetrics cindex correlation , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply_cor(
+  cor(cindex_cinmetrix_corr),
+  #xlab = "Features", 
+  #ylab = "Features"
+)
+```
+
+There is a High correlation between CINdex and the cna and break points, but there is also certain correlation with fga and base_segments.
+#### All meassurements 
+```{r all metrics, include=FALSE, echo=FALSE, message=FALSE}
+#Filtered only by primary tumor 
+all_metrics <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_cinmetrix_hrdscore_sarc.tsv', sep = '\t', header = TRUE)
+
+```
+##### fga in TCGA-SARC
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(all_metrics, y = ~fga, color = ~Tumor_type, type = "box",  text = all_metrics$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+##### break_points in TCGA-SARC
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(all_metrics, y = ~break_points, color = ~Tumor_type, type = "box",  text = all_metrics$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+##### cna in TCGA-SARC
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(all_metrics, y = ~cna, color = ~Tumor_type, type = "box",  text = all_metrics$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+##### base_segments	 in TCGA-SARC
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(all_metrics, y = ~base_segments, color = ~Tumor_type, type = "box",  text = all_metrics$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+##### CINdex	 in TCGA-SARC
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- plot_ly(all_metrics, y = ~CINdex_score, color = ~Tumor_type, type = "box",  text = all_metrics$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(title = "",
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig
+```
+
+### CINdex by Cytobands (work in progress)
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+# loading the example file
+#Obtain Cytoband data
+# URL for hg38
+#url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/cytoBand.txt.gz"
+#Download file and un-compress it
+#download.file(url, destfile = "cyto.txt.gz")
+#R.utils::gunzip("cyto.txt.gz")
+#Read in the downloaded cytoband ideogram txt file
+#cyto1 <- read.table(file = "cyto.txt",
+#header = FALSE, sep = "\t")
+#Adding column names
+#colnames(cyto1) <- c("Chrom", "Start", "End", "CytobandName", "Stain")
+#Add an extra column with strand information
+#cyto1$Strand <- c("*")
+#The user must ensure that the input object is a GRanges object
+## Convert object into GRanges object
+#cyto1.gr <- GRanges(cyto1$Chrom,
+#IRanges(cyto1$Start, cyto1$End),
+#cyto1$Strand,
+#cyto1$CytobandName, cyto1$Stain)
+#head(cyto1.gr, n = 3)
+#The user must ensure that the input object is a GRanges object
+#Save this object for future use
+#save(cyto1.gr, file = "hg18.ucsctrack.RData")
+```
+
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#Create annotations 
+#library(pd.genomewidesnp.6)
+```
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#connect to the underlying SQLite database that is part of the pd.genomewidesnp.6 package
+#con <- db(pd.genomewidesnp.6)
+# get the copy number probes
+#cnv2 <- dbGetQuery(con, "select man_fsetid, chrom, chrom_start, chrom_stop,
+#strand from featureSetCNV;")
+
+#get the SNP probes
+##snp2 <- dbGetQuery(con, "select man_fsetid, dbsnp_rs_id, chrom, physical_pos,
+#strand from featureSet;")
+
+# convert this copy number data into a GRanges object
+##cnv2gr <- convert.to.gr.cnv(cnv2 = cnv2)
+# convert this SNP data into a GRanges object
+##snp2gr <- convert.to.gr.snp(snp2 = snp2)
+```
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#download.file("http://hgdownload.cse.ucsc.edu/gbdb/hg19/liftOver/hg19ToHg38.over.chain.gz",
+#"hg19ToHg38.over.chain.gz")
+#system("gzip -d hg19ToHg38.over.chain.gz") ## have to decompress
+## now use liftOver from rtracklayer, using the hg19ToHg38.over.chain from UCSC
+#chain <- import.chain("hg19ToHg38.over.chain")
+#snpgr.38 <- unlist(liftOver(snp2gr, chain))
+#cnvgr.38 <- unlist(liftOver(cnv2gr, chain))
+```
+
+```{r}
+
+#subset only those probes that are in autosomes
+#snpgr.38.auto <- subset(snpgr.38, seqnames(snpgr.38) %in% c("chr1",
+#"chr2", "chr3","chr4",
+#"chr5", "chr6", "chr7",
+#"chr8", "chr9", "chr10",
+#"chr11", "chr12", "chr13",
+#"chr14", "chr15", "chr16",
+#"chr17", "chr18","chr19",
+#"chr20", "chr21", "chr22"))
+#subset only those probes that are in autosomes
+#cnvgr.38.auto <- subset(cnvgr.38, seqnames(cnvgr.38) %in% c("chr1",
+#"chr2", "chr3","chr4",
+##"chr5", "chr6", "chr7",
+#"chr8", "chr9", "chr10",
+#"chr11", "chr12", "chr13",
+#"chr14", "chr15", "chr16",
+#"chr17", "chr18","chr19",
+#"chr20", "chr21", "chr22"))
+#This gives us a total of 1756029 probes (about 1.7 million)
+#Save these objects for future
+#save(cnvgr.38.auto, file = "cnvgr.38.auto.RData")
+#save(snpgr.38.auto, file = "snpgr.38.auto.RData")
+```
+
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#run.cin.cyto(grl.seg = cnvgr.tcga.sarc, cnvgr=cnvgr.38.auto, snpgr=snpgr.38.auto,
+#genome.ucsc = cyto1.gr,thr.gain = 2.25,thr.loss = 1.75,
+#V.def = 3, V.mode="sum")
+```
+
+
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+##BiocManager::install("TxDb.Hsapiens.UCSC.hg38.knownGene")
+##BiocManager::install("Homo.sapiens")
+#library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+#library(Homo.sapiens)
+
+#TxDb(Homo.sapiens) <- TxDb.Hsapiens.UCSC.hg38.knownGene
+#z <- select(Homo.sapiens, keys(Homo.sapiens, "ENTREZID"),
+#c("CDSID","CDSCHROM","CDSSTRAND","CDSSTART","CDSEND","SYMBOL"), "ENTREZID")
+
+## 'select()' returned 1:many mapping between keys and columns
+#z1 <- na.omit(object = z) #remove NA values
+# extracting only the columns we want as a matrix
+#geneAnno <- cbind(z1$CDSCHROM, z1$CDSSTRAND, z1$CDSSTART, z1$CDSEND, z1$SYMBOL)
+#colnames(geneAnno) <- c("chrom","strand", "cdsStart", "cdsEnd", "GeneName")
+#So this gene annotation file looks like this
+#head(geneAnno, n=3)
+
+```
+
+

@@ -1,0 +1,425 @@
+	sample_id_v2	HRD34	Tumor_type	fga	cna	base_segments	break_points	Sample Type
+0	TCGA-WK-A8XT-01A	Low	Synovial Sarcoma	0.0701104613152608	22	201441853	56	Primary Tumor
+1	TCGA-IE-A4EJ-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	5.04283819365939e-05	14	146639	42	Blood Derived Normal
+2	TCGA-IE-A4EJ-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.586322564154003	196	1757450960	782	Primary Tumor
+3	TCGA-DX-A6YV-01A	High	Myxofibrosarcoma	0.736520895168039	188	2268574283	924	Primary Tumor
+4	TCGA-DX-A6YV-10B	None	Myxofibrosarcoma	6.82478650430095e-06	6	24345	24	Blood Derived Normal
+5	TCGA-SG-A6Z7-01A	High	Dedifferentiated liposarcoma	0.369387766821165	411	1064707233	1078	Primary Tumor
+6	TCGA-SG-A6Z7-11A	None	Dedifferentiated liposarcoma	2.01879196489098e-05	18	58004	52	Solid Tissue Normal
+7	TCGA-X6-A7WD-10A	None	Leiomyosarcoma (LMS)	4.21358956674586e-05	27	121379	62	Blood Derived Normal
+8	TCGA-X6-A7WD-01A	High	Leiomyosarcoma (LMS)	0.141616789333425	105	448894316	320	Primary Tumor
+9	TCGA-JV-A5VE-01A	High	Leiomyosarcoma Uterus (LMS)	0.423169782160823	193	1215975405	664	Primary Tumor
+10	TCGA-JV-A5VE-10A	None	Leiomyosarcoma Uterus (LMS)	0.0003022542680515	12	868438	30	Blood Derived Normal
+11	TCGA-HS-A5N8-10A	None	Leiomyosarcoma Uterus (LMS)	0.0002396826457082	17	742879	38	Blood Derived Normal
+12	TCGA-HS-A5N8-01A	High	Leiomyosarcoma Uterus (LMS)	0.629474940927007	130	1808609560	516	Primary Tumor
+13	TCGA-DX-AB2G-01A	Low	Dedifferentiated liposarcoma	0.100835188303797	242	289720009	604	Primary Tumor
+14	TCGA-DX-AB2G-10A	None	Dedifferentiated liposarcoma	7.00110538048428e-05	25	218507	64	Blood Derived Normal
+15	TCGA-MJ-A68H-01A	Low	Leiomyosarcoma (LMS)	0.505389934570213	120	1602849623	434	Primary Tumor
+16	TCGA-LI-A9QH-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001274295429448	7	366131	22	Blood Derived Normal
+17	TCGA-LI-A9QH-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.546793350950861	264	1591644086	882	Primary Tumor
+18	TCGA-DX-A7EI-01A	Low	Dedifferentiated liposarcoma	0.579948088611342	431	1683065399	1284	Primary Tumor
+19	TCGA-DX-A7EI-10A	None	Dedifferentiated liposarcoma	6.08877875170545e-05	12	174943	32	Blood Derived Normal
+20	TCGA-DX-AB3C-01A	Low	Synovial Sarcoma	0.0991019090148093	41	284839287	128	Primary Tumor
+21	TCGA-DX-AB3C-10A	None	Synovial Sarcoma	0.0003125511372814	78	903332	192	Blood Derived Normal
+22	TCGA-WK-A8XO-10A	None	Dedifferentiated liposarcoma	0.0001215399495323	9	349209	24	Blood Derived Normal
+23	TCGA-WK-A8XO-01A	Low	Dedifferentiated liposarcoma	0.210427743986639	210	604681701	554	Primary Tumor
+24	TCGA-FX-A3NK-10A	None	Dedifferentiated liposarcoma	7.70112542720265e-05	11	229315	28	Blood Derived Normal
+25	TCGA-FX-A3NK-01A	Low	Dedifferentiated liposarcoma	0.206977172094293	303	595276814	868	Primary Tumor
+26	TCGA-DX-A7EO-01A	Low	Synovial Sarcoma	0.0904475252939373	12	259874140	32	Primary Tumor
+27	TCGA-DX-A7EO-10A	None	Synovial Sarcoma	3.31240033243577e-05	9	95172	28	Blood Derived Normal
+28	TCGA-PC-A5DL-01A	Low	Leiomyosarcoma (LMS)	0.492568852149613	47	1415265391	140	Primary Tumor
+29	TCGA-SI-A71O-01A	High	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.55717106931159	311	1690775684	1238	Primary Tumor
+30	TCGA-SI-A71O-06A	High	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.352967671922566	186	1058524477	740	Metastatic
+31	TCGA-SI-A71O-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.0009040393631633	84	2608504	228	Blood Derived Normal
+32	TCGA-DX-A8BJ-10B	None	Undifferentiated Pleomorphic Sarcoma (UPS)	4.87267968879159e-05	14	140002	38	Blood Derived Normal
+33	TCGA-DX-A8BJ-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.504536269990275	241	1450546954	898	Primary Tumor
+34	TCGA-DX-A8BP-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.382483871188166	53	1098954405	170	Primary Tumor
+35	TCGA-DX-A8BP-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	1.66483164693116e-05	11	47834	28	Blood Derived Normal
+36	TCGA-DX-AB2F-10A	None	Dedifferentiated liposarcoma	1.7996289243607e-05	10	51707	26	Blood Derived Normal
+37	TCGA-DX-AB2F-01A	High	Dedifferentiated liposarcoma	0.266686990810572	361	895060732	1020	Primary Tumor
+38	TCGA-3B-A9HR-01A	High	Leiomyosarcoma (LMS)	0.615391512805137	160	1810863168	732	Primary Tumor
+39	TCGA-3B-A9HR-10A	None	Leiomyosarcoma (LMS)	0.0002772382879004	24	797746	58	Blood Derived Normal
+40	TCGA-DX-A7EN-11A	None	Leiomyosarcoma (LMS)	1.9517239675745e-05	16	56077	36	Solid Tissue Normal
+41	TCGA-DX-A7EN-01A	Low	Leiomyosarcoma (LMS)	0.397088396418527	70	1182499703	356	Primary Tumor
+42	TCGA-FX-A2QS-01A	Low	Dedifferentiated liposarcoma	0.478060236591719	887	1449030348	2324	Primary Tumor
+43	TCGA-FX-A3RE-10A	None	Leiomyosarcoma (LMS)	0.0001829369248028	18	535564	44	Blood Derived Normal
+44	TCGA-FX-A3RE-01A	High	Leiomyosarcoma (LMS)	0.31183374046305	116	955853667	366	Primary Tumor
+45	TCGA-QQ-A5VA-11A	None	Dedifferentiated liposarcoma	4.27404473609652e-05	14	122802	32	Solid Tissue Normal
+46	TCGA-QQ-A5VA-01A	High	Dedifferentiated liposarcoma	0.197170895693532	229	628982012	744	Primary Tumor
+47	TCGA-QQ-A5VD-10A	None	Leiomyosarcoma (LMS)	4.12584778094677e-05	14	123836	38	Blood Derived Normal
+48	TCGA-QQ-A5VD-01A	Low	Leiomyosarcoma (LMS)	0.107878679127193	23	309966175	58	Primary Tumor
+49	TCGA-3B-A9HO-01A	Low	Dedifferentiated liposarcoma	0.1256838976676	457	401303440	1102	Primary Tumor
+50	TCGA-DX-A8BU-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.581715532205906	275	1700946480	1222	Primary Tumor
+51	TCGA-DX-A8BU-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	2.90560699946484e-05	7	89648	18	Blood Derived Normal
+52	TCGA-DX-A6YX-01A	High	Myxofibrosarcoma	0.780582151546233	243	2293223141	978	Primary Tumor
+53	TCGA-DX-A6YX-10B	None	Myxofibrosarcoma	5.68184620130366e-05	9	163251	24	Blood Derived Normal
+54	TCGA-DX-A8BX-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.750131359912051	80	2155990951	386	Primary Tumor
+55	TCGA-DX-A8BX-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001961121144157	15	569280	36	Blood Derived Normal
+56	TCGA-DX-A48L-01A	Low	Leiomyosarcoma (LMS)	0.457689562740885	166	1372323013	570	Primary Tumor
+57	TCGA-DX-A48L-10A	None	Leiomyosarcoma (LMS)	1.54106735089723e-05	10	44278	32	Blood Derived Normal
+58	TCGA-DX-A8BZ-10A	None	Leiomyosarcoma (LMS)	5.43229895648833e-05	14	191546	40	Blood Derived Normal
+59	TCGA-DX-A8BZ-01A	Low	Leiomyosarcoma (LMS)	0.251598300419822	59	736292678	206	Primary Tumor
+60	TCGA-VT-AB3D-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	1.96818642877362e-05	23	57491	64	Blood Derived Normal
+61	TCGA-VT-AB3D-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0688811734890344	66	252959037	312	Primary Tumor
+62	TCGA-DX-AB2S-01A	Low	Myxofibrosarcoma	0.0159092817817257	96	46693455	240	Primary Tumor
+63	TCGA-DX-AB2S-10A	None	Myxofibrosarcoma	1.41357898858781e-05	14	718003	44	Blood Derived Normal
+64	TCGA-DX-AB2O-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	2.0023991124073e-05	20	503140	64	Blood Derived Normal
+65	TCGA-DX-AB2O-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.579575774215341	732	1805968358	2716	Primary Tumor
+66	TCGA-MO-A47P-10A	None	Dedifferentiated liposarcoma	4.1411616983413e-05	12	121214	36	Blood Derived Normal
+67	TCGA-MO-A47P-01A	Low	Dedifferentiated liposarcoma	3.45502859035114e-05	9	99270	22	Primary Tumor
+68	TCGA-DX-A23T-01A	Low	Dedifferentiated liposarcoma	0.067313217683541	366	194079720	864	Primary Tumor
+69	TCGA-DX-A23T-10A	None	Dedifferentiated liposarcoma	4.03358142864476e-05	13	125708	30	Blood Derived Normal
+70	TCGA-X6-A7WA-01A	Low	Leiomyosarcoma (LMS)	0.0886039683975304	34	309577049	152	Primary Tumor
+71	TCGA-X6-A7WA-10A	None	Leiomyosarcoma (LMS)	0.0001295599176806	14	373313	42	Blood Derived Normal
+72	TCGA-DX-A6B7-01A	High	Leiomyosarcoma (LMS)	0.125137761260038	62	359743296	184	Primary Tumor
+73	TCGA-DX-A6B7-10A	None	Leiomyosarcoma (LMS)	9.65796563536124e-05	15	279772	34	Blood Derived Normal
+74	TCGA-DX-A1KX-01A	High	Dedifferentiated liposarcoma	0.510289620352329	469	1591255645	2018	Primary Tumor
+75	TCGA-DX-A1KX-10A	None	Dedifferentiated liposarcoma	2.33136990152787e-05	10	66985	30	Blood Derived Normal
+76	TCGA-DX-AB35-01A	High	Dedifferentiated liposarcoma	0.452504439112234	185	1452564338	598	Primary Tumor
+77	TCGA-DX-AB35-11A	None	Dedifferentiated liposarcoma	0.0002517333065233	11	731849	40	Solid Tissue Normal
+78	TCGA-K1-A3PO-01A	Low	Leiomyosarcoma (LMS)	0.0264911301367578	15	76115927	52	Primary Tumor
+79	TCGA-K1-A3PO-11A	None	Leiomyosarcoma (LMS)	1.03873605599909e-05	9	32548	28	Solid Tissue Normal
+80	TCGA-K1-A3PO-10A	None	Leiomyosarcoma (LMS)	3.49463594943062e-05	12	100607	30	Blood Derived Normal
+81	TCGA-IW-A3M5-01A	High	Leiomyosarcoma Uterus (LMS)	0.589740952804814	211	1711823230	806	Primary Tumor
+82	TCGA-IW-A3M5-10A	None	Leiomyosarcoma Uterus (LMS)	8.44207539859366e-05	11	242558	30	Blood Derived Normal
+83	TCGA-QQ-A5VC-10A	None	Leiomyosarcoma (LMS)	5.41346979896461e-06	4	15554	14	Blood Derived Normal
+84	TCGA-QQ-A5VC-01A	High	Leiomyosarcoma (LMS)	0.456597390858399	244	1464261319	1036	Primary Tumor
+85	TCGA-DX-AB2W-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.3721542740285	286	1135836462	1090	Primary Tumor
+86	TCGA-DX-AB2W-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	3.07158898140687e-05	16	88253	38	Blood Derived Normal
+87	TCGA-FX-A48G-10A	None	Leiomyosarcoma Uterus (LMS)	0.0002952053414835	5	906072	22	Blood Derived Normal
+88	TCGA-FX-A48G-11A	None	Leiomyosarcoma Uterus (LMS)	0.0002958036283926	7	909667	18	Solid Tissue Normal
+89	TCGA-FX-A48G-01A	High	Leiomyosarcoma Uterus (LMS)	0.547818043448522	210	1575936679	808	Primary Tumor
+90	TCGA-Z4-AAPG-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.630754936266119	169	1812287247	796	Primary Tumor
+91	TCGA-Z4-AAPG-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001573654671025	6	454456	22	Blood Derived Normal
+92	TCGA-DX-A48J-10A	None	Leiomyosarcoma (LMS)	0.0001853979409368	39	539248	104	Blood Derived Normal
+93	TCGA-DX-A48J-01A	Low	Leiomyosarcoma (LMS)	0.137925659813818	41	396290147	122	Primary Tumor
+94	TCGA-Z4-A9VC-10A	None	Dedifferentiated liposarcoma	9.34444798106605e-05	13	269187	34	Blood Derived Normal
+95	TCGA-K1-A3PN-02A	Low	Leiomyosarcoma Uterus (LMS)	0.202200030715472	43	580961822	142	Recurrent Tumor
+96	TCGA-K1-A3PN-01A	Low	Leiomyosarcoma Uterus (LMS)	0.170354677889844	39	489463645	98	Primary Tumor
+97	TCGA-K1-A3PN-10A	None	Leiomyosarcoma Uterus (LMS)	2.11492160089934e-05	17	60766	46	Blood Derived Normal
+98	TCGA-QQ-A8VD-10A	None	Desmoid Tumor	0.0003400183883464	38	1027965	94	Blood Derived Normal
+99	TCGA-QQ-A8VD-01A	Low	Desmoid Tumor	0.0002073643632649	15	595800	44	Primary Tumor
+100	TCGA-DX-A48P-10A	None	Leiomyosarcoma (LMS)	0.0001002925852346	12	288161	28	Blood Derived Normal
+101	TCGA-DX-A48P-01A	Low	Leiomyosarcoma (LMS)	0.245386737114752	42	705047849	128	Primary Tumor
+102	TCGA-PC-A5DN-01A	Low	Leiomyosarcoma (LMS)	0.0549096121415567	182	204946406	480	Primary Tumor
+103	TCGA-PC-A5DN-10A	None	Leiomyosarcoma (LMS)	1.01663528885018e-05	14	29210	38	Blood Derived Normal
+104	TCGA-DX-A1L3-01A	Low	Dedifferentiated liposarcoma	0.0520077131983628	151	149471763	372	Primary Tumor
+105	TCGA-DX-A1L3-10A	None	Dedifferentiated liposarcoma	5.47524753390843e-05	11	157315	30	Blood Derived Normal
+106	TCGA-DX-AB36-10A	None	Dedifferentiated liposarcoma	3.38326200474316e-05	19	97684	60	Blood Derived Normal
+107	TCGA-DX-AB36-01A	Low	Dedifferentiated liposarcoma	0.101836365585212	299	292629457	714	Primary Tumor
+108	TCGA-DX-A48R-10A	None	Leiomyosarcoma (LMS)	0.0006264711299518	10	1801731	34	Blood Derived Normal
+109	TCGA-DX-A48R-01A	High	Leiomyosarcoma (LMS)	0.64682967587616	124	1860767613	390	Primary Tumor
+110	TCGA-FX-A76Y-01A	Low	Leiomyosarcoma Uterus (LMS)	0.0971856980216727	58	279234281	212	Primary Tumor
+111	TCGA-FX-A76Y-10A	None	Leiomyosarcoma Uterus (LMS)	4.13701997977323e-05	17	157112	44	Blood Derived Normal
+112	TCGA-K1-A42X-01A	High	Leiomyosarcoma Uterus (LMS)	0.24181132268737	98	696726084	284	Primary Tumor
+113	TCGA-K1-A42X-02A	High	Leiomyosarcoma Uterus (LMS)	0.262448354983883	91	756010879	252	Recurrent Tumor
+114	TCGA-DX-A1L4-01A	Low	Dedifferentiated liposarcoma	0.012796071661102	210	36769155	530	Primary Tumor
+115	TCGA-DX-A1L4-10A	None	Dedifferentiated liposarcoma	8.36762887744164e-05	13	243478	32	Blood Derived Normal
+116	TCGA-K1-A42W-10A	None	Leiomyosarcoma (LMS)	3.10534920839025e-05	18	89223	46	Blood Derived Normal
+117	TCGA-K1-A42W-01A	Low	Leiomyosarcoma (LMS)	0.598943357589218	77	1872940243	380	Primary Tumor
+118	TCGA-X6-A7WC-01A	High	Leiomyosarcoma (LMS)	0.658583128359072	332	2009299144	1164	Primary Tumor
+119	TCGA-X6-A7WC-10A	None	Leiomyosarcoma (LMS)	3.65926056142176e-05	6	105138	20	Blood Derived Normal
+120	TCGA-DX-A2J4-10A	None	Dedifferentiated liposarcoma	2.75640071794137e-05	15	100863	32	Blood Derived Normal
+121	TCGA-DX-A2J4-01A	Low	Dedifferentiated liposarcoma	0.0101239068860071	146	29091480	360	Primary Tumor
+122	TCGA-MO-A47R-10A	None	Leiomyosarcoma (LMS)	5.08575196672177e-05	18	146124	44	Blood Derived Normal
+123	TCGA-MO-A47R-01A	Low	Leiomyosarcoma (LMS)	0.673370761055589	74	1934846284	240	Primary Tumor
+124	TCGA-IW-A3M4-01A	Low	Leiomyosarcoma Uterus (LMS)	0.195537789958876	30	562484419	100	Primary Tumor
+125	TCGA-IW-A3M4-10B	None	Leiomyosarcoma Uterus (LMS)	2.50476521166315e-05	12	353678	28	Blood Derived Normal
+126	TCGA-HB-A43Z-01A	High	Leiomyosarcoma Uterus (LMS)	0.715264780358673	321	2156180416	934	Primary Tumor
+127	TCGA-DX-A6B9-01A	Low	Leiomyosarcoma (LMS)	0.127891612558777	54	367498692	206	Primary Tumor
+128	TCGA-DX-A6B9-10A	None	Leiomyosarcoma (LMS)	0.0001416850598213	31	407090	86	Blood Derived Normal
+129	TCGA-WK-A8XY-10A	None	Leiomyosarcoma (LMS)	2.111058317193e-05	3	60655	12	Blood Derived Normal
+130	TCGA-WK-A8XY-01A	High	Leiomyosarcoma (LMS)	0.946838890225452	120	2720486985	458	Primary Tumor
+131	TCGA-3B-A9HY-01A	Low	Leiomyosarcoma (LMS)	0.20355583899482	73	584857335	202	Primary Tumor
+132	TCGA-3B-A9HY-10A	None	Leiomyosarcoma (LMS)	0.0177637682905858	497	51125839	1662	Blood Derived Normal
+133	TCGA-DX-A7ER-01A	Low	Synovial Sarcoma	0.0006548746182393	13	1888398	38	Primary Tumor
+134	TCGA-DX-A7ER-01A	Low	Synovial Sarcoma	0.0004299504123764	20	1239105	64	Primary Tumor
+135	TCGA-DX-A7ER-10A	None	Synovial Sarcoma	0.0004088412213788	10	1177105	22	Blood Derived Normal
+136	TCGA-DX-A23U-10A	None	Dedifferentiated liposarcoma	7.81392635055641e-06	6	36176	14	Blood Derived Normal
+137	TCGA-DX-A23U-01A	Low	Dedifferentiated liposarcoma	0.0136766716815187	124	39315155	292	Primary Tumor
+138	TCGA-Z4-AAPF-10A	None	Synovial Sarcoma	4.8320978076961e-05	23	144465	54	Blood Derived Normal
+139	TCGA-Z4-AAPF-01A	Low	Synovial Sarcoma	0.409205466036491	37	1233272499	234	Primary Tumor
+140	TCGA-QQ-A5VB-11B	None	Leiomyosarcoma (LMS)	0.0002047021779433	11	588247	34	Solid Tissue Normal
+141	TCGA-QQ-A5VB-01A	High	Leiomyosarcoma (LMS)	0.494723169499097	133	1426510743	468	Primary Tumor
+142	TCGA-DX-AB2H-10A	None	Dedifferentiated liposarcoma	3.61975761541543e-05	14	104003	38	Blood Derived Normal
+143	TCGA-DX-AB2H-01A	Low	Dedifferentiated liposarcoma	0.13262959625082	228	497400013	618	Primary Tumor
+144	TCGA-HB-A5W3-10A	None	Leiomyosarcoma (LMS)	3.37313393664815e-05	12	136027	28	Blood Derived Normal
+145	TCGA-HB-A5W3-01A	High	Leiomyosarcoma (LMS)	0.732593516800656	123	2105196160	384	Primary Tumor
+146	TCGA-DX-AB2Z-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.164464385605838	114	504546595	496	Primary Tumor
+147	TCGA-DX-AB2Z-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	6.27644384850381e-05	12	180572	30	Blood Derived Normal
+148	TCGA-DX-A6BE-01A	Low	Dedifferentiated liposarcoma	0.0118597470796352	229	34075466	522	Primary Tumor
+149	TCGA-DX-A6BE-10A	None	Dedifferentiated liposarcoma	6.6202412940109e-05	9	190213	26	Blood Derived Normal
+150	TCGA-DX-A6YR-01A	High	Myxofibrosarcoma	0.601940464549028	437	1729542196	1284	Primary Tumor
+151	TCGA-DX-A6YR-10B	None	Myxofibrosarcoma	4.48485473077524e-05	15	130352	32	Blood Derived Normal
+152	TCGA-DX-AB2L-01A	Low	Myxofibrosarcoma	3.07385126465833e-05	16	88318	50	Primary Tumor
+153	TCGA-DX-AB2L-10A	None	Myxofibrosarcoma	1.83356317313266e-05	7	52682	26	Blood Derived Normal
+154	TCGA-DX-A3U9-10A	None	Leiomyosarcoma (LMS)	6.79617732225937e-05	12	203505	32	Blood Derived Normal
+155	TCGA-DX-A3U9-01A	High	Leiomyosarcoma (LMS)	0.461671962621292	90	1327044733	356	Primary Tumor
+156	TCGA-DX-A1KW-10A	None	Dedifferentiated liposarcoma	0.0006520523328722	24	1884127	56	Blood Derived Normal
+157	TCGA-DX-A1KW-01A	High	Dedifferentiated liposarcoma	0.606522265774087	412	1742663459	1032	Primary Tumor
+158	TCGA-DX-A8BK-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	2.4011526387461e-05	15	71512	36	Blood Derived Normal
+159	TCGA-DX-A8BK-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.39588121040358	278	1262105941	1092	Primary Tumor
+160	TCGA-DX-A8BG-01A	High	Myxofibrosarcoma	0.346818302960602	216	1107320949	956	Primary Tumor
+161	TCGA-DX-A8BG-10B	None	Myxofibrosarcoma	1.00723811226717e-05	13	35777	42	Blood Derived Normal
+162	TCGA-DX-A6BB-10A	None	Leiomyosarcoma (LMS)	3.77119137583266e-05	9	109814	28	Blood Derived Normal
+163	TCGA-DX-A6BB-01A	Low	Leiomyosarcoma (LMS)	0.317479509511278	70	1064620801	240	Primary Tumor
+164	TCGA-DX-A6YQ-10A	None	Myxofibrosarcoma	1.99133132665398e-05	16	57215	44	Blood Derived Normal
+165	TCGA-DX-A6YQ-01A	High	Myxofibrosarcoma	0.66003482125175	294	1998197200	906	Primary Tumor
+166	TCGA-DX-A7EL-01A	Low	Leiomyosarcoma (LMS)	0.201578352841665	89	579175615	284	Primary Tumor
+167	TCGA-DX-A7EL-01A	Low	Leiomyosarcoma (LMS)	0.201951447203322	90	580247591	290	Primary Tumor
+168	TCGA-DX-A7EL-10A	None	Leiomyosarcoma (LMS)	2.23673685290125e-05	9	64304	22	Blood Derived Normal
+169	TCGA-IE-A3OV-01A	High	Leiomyosarcoma (LMS)	0.617354087379273	230	1924917017	698	Primary Tumor
+170	TCGA-IE-A3OV-11A	None	Leiomyosarcoma (LMS)	0.0001056249608801	14	303482	40	Solid Tissue Normal
+171	TCGA-DX-A8BO-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.514417696308257	134	1490285058	572	Primary Tumor
+172	TCGA-UE-A6QT-10B	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001195341743972	13	343446	34	Blood Derived Normal
+173	TCGA-UE-A6QT-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0829676191487188	26	238388039	84	Primary Tumor
+174	TCGA-IF-A4AJ-11A	None	Leiomyosarcoma (LMS)	5.04704952094288e-05	10	145012	34	Solid Tissue Normal
+175	TCGA-IF-A4AJ-01A	Low	Leiomyosarcoma (LMS)	0.681404752923671	77	1957830959	226	Primary Tumor
+176	TCGA-DX-AB32-01A	High	Myxofibrosarcoma	0.351246568938125	127	1009203104	516	Primary Tumor
+177	TCGA-DX-AB32-10A	None	Myxofibrosarcoma	0.0003267262560915	21	940493	60	Blood Derived Normal
+178	TCGA-DX-A1KZ-01A	Low	Dedifferentiated liposarcoma	0.318806598974857	630	966804049	1722	Primary Tumor
+179	TCGA-DX-A1KZ-10A	None	Dedifferentiated liposarcoma	0.000219159908138	7	634146	20	Blood Derived Normal
+180	TCGA-DX-A23Y-01A	High	Dedifferentiated liposarcoma	0.304027334986153	518	906478676	1358	Primary Tumor
+181	TCGA-DX-A23Y-10A	None	Dedifferentiated liposarcoma	2.05968708520591e-05	21	66932	48	Blood Derived Normal
+182	TCGA-SG-A849-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.193798962507225	51	689072715	278	Primary Tumor
+183	TCGA-SG-A849-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	4.60273709035537e-05	14	132246	34	Blood Derived Normal
+184	TCGA-X6-A8C4-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.630483629336861	261	1959245952	950	Primary Tumor
+185	TCGA-X6-A8C4-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	5.49821841000022e-05	14	157975	40	Blood Derived Normal
+186	TCGA-DX-A7EF-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	6.37883826890084e-05	5	183277	16	Blood Derived Normal
+187	TCGA-DX-A7EF-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.579695322311482	480	1733345907	1682	Primary Tumor
+188	TCGA-IE-A6BZ-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001750394679937	10	502924	22	Blood Derived Normal
+189	TCGA-IE-A6BZ-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.769442333998104	241	2316410490	702	Primary Tumor
+190	TCGA-3B-A9HZ-01A	Low	Leiomyosarcoma (LMS)	0.199079537086909	59	627055204	154	Primary Tumor
+191	TCGA-3B-A9HZ-10A	None	Leiomyosarcoma (LMS)	0.0010667754907048	64	3481550	160	Blood Derived Normal
+192	TCGA-DX-A6BG-01A	Low	Dedifferentiated liposarcoma	0.0284704428226057	304	81816702	730	Primary Tumor
+193	TCGA-X6-A8C3-01A	High	Myxofibrosarcoma	0.409688291577151	126	1185926910	574	Primary Tumor
+194	TCGA-X6-A8C3-10A	None	Myxofibrosarcoma	2.51938304190338e-05	17	266288	48	Blood Derived Normal
+195	TCGA-DX-A3UF-10A	None	Leiomyosarcoma (LMS)	0.0001297617829553	13	372832	38	Blood Derived Normal
+196	TCGA-DX-A3UF-01A	High	Leiomyosarcoma (LMS)	0.638499243459939	129	1976959487	546	Primary Tumor
+197	TCGA-DX-AB2X-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.495745220694051	205	1554993268	972	Primary Tumor
+198	TCGA-DX-AB2X-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001547356498336	14	444587	50	Blood Derived Normal
+199	TCGA-3B-A9HT-01A	Low	Leiomyosarcoma (LMS)	0.0712956624615697	38	205952704	108	Primary Tumor
+200	TCGA-3B-A9HT-10A	None	Leiomyosarcoma (LMS)	0.0009901443000191	125	2890669	286	Blood Derived Normal
+201	TCGA-QC-A6FX-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.440572673115397	358	1347376550	1278	Primary Tumor
+202	TCGA-QC-A6FX-10B	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001466909705914	10	421473	40	Blood Derived Normal
+203	TCGA-DX-A3U8-01A	Low	Leiomyosarcoma (LMS)	0.232986839280995	20	669921813	60	Primary Tumor
+204	TCGA-DX-A3LW-01A	Low	Dedifferentiated liposarcoma	0.123432955764141	238	412019015	652	Primary Tumor
+205	TCGA-DX-A3LW-10A	None	Dedifferentiated liposarcoma	1.58801842945453e-05	10	45627	22	Blood Derived Normal
+206	TCGA-SI-A71P-01A	Low	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.172655444667677	24	496080528	86	Primary Tumor
+207	TCGA-SI-A71P-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.0018006841924866	165	5194580	438	Blood Derived Normal
+208	TCGA-FX-A8OO-10A	None	Synovial Sarcoma	4.10228523077383e-05	13	118235	32	Blood Derived Normal
+209	TCGA-FX-A8OO-01A	Low	Synovial Sarcoma	0.0351890374030394	9	101105263	28	Primary Tumor
+210	TCGA-DX-A7ES-10A	None	Dedifferentiated liposarcoma	1.69257072002988e-05	4	48631	10	Blood Derived Normal
+211	TCGA-DX-A7ES-01A	Low	Dedifferentiated liposarcoma	0.0167422513425225	139	48106017	346	Primary Tumor
+212	TCGA-PC-A5DO-01A	High	Leiomyosarcoma (LMS)	0.824148748902145	145	2435407834	564	Primary Tumor
+213	TCGA-MB-A8JK-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.586731545984987	194	1691594028	682	Primary Tumor
+214	TCGA-MB-A8JK-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	5.20234656506645e-05	15	155653	48	Blood Derived Normal
+215	TCGA-DX-A3U5-10A	None	Dedifferentiated liposarcoma	5.32809470949013e-05	8	179991	26	Blood Derived Normal
+216	TCGA-DX-A3U5-01A	High	Dedifferentiated liposarcoma	0.269849701080912	386	777071524	1006	Primary Tumor
+217	TCGA-KD-A5QS-01A	High	Leiomyosarcoma Uterus (LMS)	0.699428335048511	367	2161844107	1280	Primary Tumor
+218	TCGA-KD-A5QS-10A	None	Leiomyosarcoma Uterus (LMS)	2.13636108525168e-05	25	142762	64	Blood Derived Normal
+219	TCGA-HS-A5NA-10A	None	Leiomyosarcoma Uterus (LMS)	0.0001799409656907	14	519423	42	Blood Derived Normal
+220	TCGA-HS-A5NA-01A	Low	Leiomyosarcoma Uterus (LMS)	0.183887786468399	82	528472530	264	Primary Tumor
+221	TCGA-UE-A6QU-10B	None	Undifferentiated Pleomorphic Sarcoma (UPS)	5.16051172709323e-05	29	984570	74	Blood Derived Normal
+222	TCGA-UE-A6QU-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.235778177657341	174	720837205	666	Primary Tumor
+223	TCGA-DX-A6YT-01A	Low	Myxofibrosarcoma	0.760607122148463	153	2266017403	888	Primary Tumor
+224	TCGA-DX-A6YT-10B	None	Myxofibrosarcoma	6.64874606297935e-05	13	191032	38	Blood Derived Normal
+225	TCGA-JV-A5VF-01A	High	Leiomyosarcoma Uterus (LMS)	0.687638873629063	127	2012338109	494	Primary Tumor
+226	TCGA-JV-A5VF-10A	None	Leiomyosarcoma Uterus (LMS)	5.99122213703078e-05	17	172140	44	Blood Derived Normal
+227	TCGA-DX-AB2J-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	6.76673283563262e-05	67	199540	162	Blood Derived Normal
+228	TCGA-DX-AB2J-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.100583203709811	51	289189348	158	Primary Tumor
+229	TCGA-SI-AA8B-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.654989589562411	239	2010435157	760	Primary Tumor
+230	TCGA-SI-AA8B-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	3.57371145015871e-05	15	102680	36	Blood Derived Normal
+231	TCGA-DX-A48N-10A	None	Dedifferentiated liposarcoma	8.30153540214118e-06	8	24019	30	Blood Derived Normal
+232	TCGA-DX-A48N-01A	Low	Dedifferentiated liposarcoma	0.183312105685704	338	526728382	912	Primary Tumor
+233	TCGA-DX-A3LU-01A	Low	Dedifferentiated liposarcoma	0.0619987694146673	218	178135624	526	Primary Tumor
+234	TCGA-DX-AATS-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.58044359651191	523	1788636667	2054	Primary Tumor
+235	TCGA-DX-AATS-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	1.343622229581e-05	17	46257	52	Blood Derived Normal
+236	TCGA-HB-A3YV-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0003243139660583	9	933274	30	Blood Derived Normal
+237	TCGA-HB-A3YV-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.509987156562044	522	1498150724	1624	Primary Tumor
+238	TCGA-QQ-A5V2-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	8.60165337871616e-05	9	248965	34	Primary Tumor
+239	TCGA-QQ-A5V2-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	7.16962808053949e-05	12	209234	32	Blood Derived Normal
+240	TCGA-QQ-A5V9-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.372689242761801	111	1070813738	476	Primary Tumor
+241	TCGA-QQ-A5V9-11A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	1.80394466471734e-05	19	51831	48	Solid Tissue Normal
+242	TCGA-DX-AB3A-01A	Low	Dedifferentiated liposarcoma	0.173326011526679	414	498003194	1096	Primary Tumor
+243	TCGA-DX-A6YS-01A	High	Myxofibrosarcoma	0.533909312667809	429	1654214526	1492	Primary Tumor
+244	TCGA-DX-A6YS-10A	None	Myxofibrosarcoma	7.69541751253742e-05	8	221105	22	Blood Derived Normal
+245	TCGA-MB-A8JL-01A	Low	Leiomyosarcoma (LMS)	0.174398970011532	43	501084919	196	Primary Tumor
+246	TCGA-MB-A8JL-10A	None	Leiomyosarcoma (LMS)	3.38120854763799e-05	13	97149	42	Blood Derived Normal
+247	TCGA-DX-A23V-01A	Low	Dedifferentiated liposarcoma	0.0195425904738174	158	56172659	388	Primary Tumor
+248	TCGA-DX-A23V-10A	None	Dedifferentiated liposarcoma	5.3420860612915e-05	5	153489	14	Blood Derived Normal
+249	TCGA-PC-A5DK-10A	None	Leiomyosarcoma (LMS)	7.50594258913789e-05	12	215937	34	Blood Derived Normal
+250	TCGA-PC-A5DK-01A	Low	Leiomyosarcoma (LMS)	0.0695556328674035	37	200499563	90	Primary Tumor
+251	TCGA-QQ-A8VB-01A	Low	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.825869785062219	87	2383194573	342	Primary Tumor
+252	TCGA-QQ-A8VB-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	2.25027574805231e-05	6	64655	16	Blood Derived Normal
+253	TCGA-RN-AAAQ-01A	High	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.640101673677836	154	1850590860	588	Primary Tumor
+254	TCGA-RN-AAAQ-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	1.6076480872057e-05	11	46191	34	Blood Derived Normal
+255	TCGA-X6-A8C5-01A	Low	Leiomyosarcoma (LMS)	0.176495471406111	50	507191785	170	Primary Tumor
+256	TCGA-X6-A8C5-10A	None	Leiomyosarcoma (LMS)	0.0001747043020289	27	592418	62	Blood Derived Normal
+257	TCGA-IS-A3K6-01A	Low	Leiomyosarcoma Uterus (LMS)	0.0914117375631103	100	413667081	248	Primary Tumor
+258	TCGA-3B-A9HS-01A	High	Leiomyosarcoma (LMS)	0.384406226542613	428	1200782181	1302	Primary Tumor
+259	TCGA-3B-A9HS-10A	None	Leiomyosarcoma (LMS)	0.0005552360068861	50	1599361	124	Blood Derived Normal
+260	TCGA-SI-A71Q-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.0024907843011691	211	7388947	714	Blood Derived Normal
+261	TCGA-SI-A71Q-01A	High	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.587947295264106	425	1717837398	1306	Primary Tumor
+262	TCGA-DX-A6YZ-10B	None	Myxofibrosarcoma	0.0001617852724887	11	466667	34	Blood Derived Normal
+263	TCGA-DX-A6YZ-01A	High	Myxofibrosarcoma	0.516167553260868	207	1617318222	768	Primary Tumor
+264	TCGA-DX-A3U6-01A	Low	Dedifferentiated liposarcoma	0.013278092525012	138	38598106	354	Primary Tumor
+265	TCGA-QQ-A8VF-10A	None	Leiomyosarcoma (LMS)	4.99372924492376e-05	10	146847	28	Blood Derived Normal
+266	TCGA-QQ-A8VF-01A	Low	Leiomyosarcoma (LMS)	0.389401450286657	137	1118829583	502	Primary Tumor
+267	TCGA-DX-A48K-01A	High	Leiomyosarcoma (LMS)	0.24855946581946	80	714187446	324	Primary Tumor
+268	TCGA-DX-A48K-10A	None	Leiomyosarcoma (LMS)	7.55386818971121e-05	14	217327	34	Blood Derived Normal
+269	TCGA-3B-A9HI-10A	None	Dedifferentiated liposarcoma	0.0241909546849626	423	69688956	2310	Blood Derived Normal
+270	TCGA-3B-A9HI-01A	High	Dedifferentiated liposarcoma	0.493758539229588	288	1479185044	978	Primary Tumor
+271	TCGA-DX-AB2T-01A	High	Myxofibrosarcoma	0.456903706446952	271	1351220996	1038	Primary Tumor
+272	TCGA-DX-AB2T-10A	None	Myxofibrosarcoma	0.0002065200095467	24	605430	62	Blood Derived Normal
+273	TCGA-DX-A8BT-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.332276185076016	152	1078758230	486	Primary Tumor
+274	TCGA-DX-A8BM-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.52606408780249	507	1663681419	1956	Primary Tumor
+275	TCGA-DX-A8BM-10B	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.00039830803056	30	1147820	78	Blood Derived Normal
+276	TCGA-DX-A2IZ-10A	None	Dedifferentiated liposarcoma	0.0027778395062065	16	7981298	36	Blood Derived Normal
+277	TCGA-DX-A2IZ-01A	Low	Dedifferentiated liposarcoma	0.159340981936896	390	457820265	860	Primary Tumor
+278	TCGA-DX-AB2P-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	1.0366477945362e-05	7	32198	30	Blood Derived Normal
+279	TCGA-DX-AB2P-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.454884752989841	180	1306977167	740	Primary Tumor
+280	TCGA-DX-A8BN-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.302894120760919	139	1022660942	450	Primary Tumor
+281	TCGA-DX-A8BN-11A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	2.23604076574695e-05	5	64246	20	Solid Tissue Normal
+282	TCGA-DX-A1KY-10A	None	Dedifferentiated liposarcoma	6.78298647068545e-05	18	216963	64	Blood Derived Normal
+283	TCGA-DX-A1KY-01A	High	Dedifferentiated liposarcoma	0.493391699559056	518	1535631979	1540	Primary Tumor
+284	TCGA-3B-A9HP-10A	None	Leiomyosarcoma (LMS)	9.30410973047456e-05	26	267326	70	Blood Derived Normal
+285	TCGA-3B-A9HP-01A	Low	Leiomyosarcoma (LMS)	0.186891862304754	45	536979091	150	Primary Tumor
+286	TCGA-DX-A3M2-01A	High	Dedifferentiated liposarcoma	0.169029690957514	112	521051270	596	Primary Tumor
+287	TCGA-DX-A3M2-10A	None	Dedifferentiated liposarcoma	2.14481854417638e-05	9	61625	26	Blood Derived Normal
+288	TCGA-K1-A6RU-10A	None	Myxofibrosarcoma	8.86888123725062e-05	15	330286	38	Blood Derived Normal
+289	TCGA-K1-A6RU-01A	High	Myxofibrosarcoma	0.271820587283713	217	783283391	938	Primary Tumor
+290	TCGA-FX-A3TO-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.657922729593177	769	2039165546	2790	Primary Tumor
+291	TCGA-FX-A3TO-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0003539220331663	13	1016890	52	Blood Derived Normal
+292	TCGA-DX-AB2Q-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.44638825993383	301	1381219296	1072	Primary Tumor
+293	TCGA-DX-AB2Q-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	9.60227866301751e-05	15	275893	42	Blood Derived Normal
+294	TCGA-VT-A80G-11A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	4.1986584972862e-05	8	120636	28	Solid Tissue Normal
+295	TCGA-VT-A80G-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.782744914869204	468	2395657666	1362	Primary Tumor
+296	TCGA-DX-A3UC-01A	Low	Leiomyosarcoma (LMS)	0.177896957968654	47	548762623	122	Primary Tumor
+297	TCGA-DX-A3UC-10A	None	Leiomyosarcoma (LMS)	3.1833805783869e-05	11	91465	28	Blood Derived Normal
+298	TCGA-KF-A41W-10A	None	Leiomyosarcoma Uterus (LMS)	3.35221651766154e-05	12	105272	32	Blood Derived Normal
+299	TCGA-KF-A41W-01A	High	Leiomyosarcoma Uterus (LMS)	0.216062138970765	127	621699864	486	Primary Tumor
+300	TCGA-3B-A9I3-01A	High	Leiomyosarcoma (LMS)	0.0193323731973505	27	55554909	94	Primary Tumor
+301	TCGA-DX-A8BV-01A	High	Myxofibrosarcoma	0.263754512758689	114	834532604	490	Primary Tumor
+302	TCGA-DX-A8BV-10A	None	Myxofibrosarcoma	0.0013858406115762	19	3982804	44	Blood Derived Normal
+303	TCGA-QC-A7B5-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.190965584643282	31	548823608	78	Primary Tumor
+304	TCGA-QC-A7B5-11A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001458970831919	19	419192	46	Solid Tissue Normal
+305	TCGA-DX-A3LT-01A	Low	Dedifferentiated liposarcoma	0.509556280005709	338	1464058915	874	Primary Tumor
+306	TCGA-DX-A3LT-10A	None	Dedifferentiated liposarcoma	9.50520930935085e-05	9	273104	30	Blood Derived Normal
+307	TCGA-IE-A4EI-10A	None	Leiomyosarcoma (LMS)	0.0001963254651285	18	590941	56	Blood Derived Normal
+308	TCGA-IE-A4EI-01A	Low	Leiomyosarcoma (LMS)	0.460073402647973	47	1325436663	186	Primary Tumor
+309	TCGA-QC-AA9N-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.626841316061341	244	1953242538	784	Primary Tumor
+310	TCGA-QC-AA9N-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	6.8237075692118e-05	15	196059	38	Blood Derived Normal
+311	TCGA-X6-A7W8-01A	High	Myxofibrosarcoma	0.513807392150507	305	1596799051	1128	Primary Tumor
+312	TCGA-X6-A7W8-10A	None	Myxofibrosarcoma	8.2569858242662e-05	11	671525	30	Blood Derived Normal
+313	TCGA-WK-A8XX-10A	None	Leiomyosarcoma (LMS)	3.59170530309728e-05	16	105406	42	Blood Derived Normal
+314	TCGA-WK-A8XX-01A	High	Leiomyosarcoma (LMS)	0.42140241061128	72	1363201166	398	Primary Tumor
+315	TCGA-DX-AB37-10A	None	Dedifferentiated liposarcoma	0.0005550515437902	25	1599361	64	Blood Derived Normal
+316	TCGA-DX-AB37-01A	Low	Dedifferentiated liposarcoma	0.255071802467161	274	732873683	892	Primary Tumor
+317	TCGA-DX-A6BF-01A	Low	Dedifferentiated liposarcoma	0.231194526928713	262	664268908	770	Primary Tumor
+318	TCGA-X9-A973-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.159790698440106	49	585062338	172	Primary Tumor
+319	TCGA-N1-A6IA-11A	None	Leiomyosarcoma Uterus (LMS)	8.69385012230274e-05	23	249795	62	Solid Tissue Normal
+320	TCGA-N1-A6IA-01A	High	Leiomyosarcoma Uterus (LMS)	0.519173577445168	194	1517370989	610	Primary Tumor
+321	TCGA-FX-A3NJ-01A	Low	Leiomyosarcoma (LMS)	0.137358983614551	37	394660303	106	Primary Tumor
+322	TCGA-DX-A8BR-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.298268193875062	527	857482475	1462	Primary Tumor
+323	TCGA-IS-A3K7-01A	High	Leiomyosarcoma Uterus (LMS)	0.772823559251834	323	2232433202	850	Primary Tumor
+324	TCGA-IS-A3K7-10A	None	Leiomyosarcoma Uterus (LMS)	4.88997745457586e-05	14	232091	38	Blood Derived Normal
+325	TCGA-X2-A95T-01A	Low	Leiomyosarcoma Uterus (LMS)	0.229441013082237	102	685316107	320	Primary Tumor
+326	TCGA-DX-A7ET-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.298369176282666	109	857890732	404	Primary Tumor
+327	TCGA-DX-A7ET-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	6.17958332098344e-05	19	178361	48	Blood Derived Normal
+328	TCGA-IW-A3M6-01A	High	Leiomyosarcoma Uterus (LMS)	0.408316328507127	92	1316130690	298	Primary Tumor
+329	TCGA-MB-A5YA-01A	Low	Leiomyosarcoma (LMS)	0.0777116185338427	30	223281289	64	Primary Tumor
+330	TCGA-MB-A5YA-10A	None	Leiomyosarcoma (LMS)	0.0001028451368294	9	320074	22	Blood Derived Normal
+331	TCGA-DX-A48O-01A	Low	Leiomyosarcoma (LMS)	0.491854388294443	71	1413197716	314	Primary Tumor
+332	TCGA-DX-A8BL-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0007448320494505	18	2140054	52	Blood Derived Normal
+333	TCGA-DX-A8BL-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.555179223228486	309	1727818839	1358	Primary Tumor
+334	TCGA-MJ-A68J-01A	Low	Myxofibrosarcoma	0.0609854259219698	31	175223535	80	Primary Tumor
+335	TCGA-MJ-A68J-10A	None	Myxofibrosarcoma	0.0001194318495855	22	343152	48	Blood Derived Normal
+336	TCGA-HB-A3L4-01A	High	Leiomyosarcoma Uterus (LMS)	0.636427808859873	209	1890159336	646	Primary Tumor
+337	TCGA-HB-A3L4-10A	None	Leiomyosarcoma Uterus (LMS)	3.50239732120103e-05	9	100631	28	Blood Derived Normal
+338	TCGA-DX-A6BH-01A	Low	Dedifferentiated liposarcoma	0.0427779998707652	222	122911248	496	Primary Tumor
+339	TCGA-DX-A3U7-01A	High	Leiomyosarcoma (LMS)	0.62734826032581	294	1802559499	820	Primary Tumor
+340	TCGA-DX-A3U7-10A	None	Leiomyosarcoma (LMS)	4.46818344342984e-06	9	70219	24	Blood Derived Normal
+341	TCGA-DX-A3LS-01A	Low	Dedifferentiated liposarcoma	0.301292464243894	518	867821882	1246	Primary Tumor
+342	TCGA-DX-A3LS-10A	None	Dedifferentiated liposarcoma	2.449495891612e-05	12	128325	30	Blood Derived Normal
+343	TCGA-DX-AB3B-01A	Low	Synovial Sarcoma	0.0556983105593403	46	160667684	132	Primary Tumor
+344	TCGA-DX-AB3B-10A	None	Synovial Sarcoma	6.18226325652748e-05	26	182897	56	Blood Derived Normal
+345	TCGA-QQ-A8VG-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	5.41451392969606e-06	3	15557	10	Blood Derived Normal
+346	TCGA-QQ-A8VG-01A	Low	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.0249963438805319	13	71819581	48	Primary Tumor
+347	TCGA-3B-A9HQ-01A	Low	Leiomyosarcoma (LMS)	0.261899253245045	37	756828934	122	Primary Tumor
+348	TCGA-DX-AB2V-01A	High	Myxofibrosarcoma	0.594865065438522	372	1709168999	1506	Primary Tumor
+349	TCGA-DX-A3UA-10A	None	Leiomyosarcoma (LMS)	5.65821404241529e-05	13	166736	30	Blood Derived Normal
+350	TCGA-DX-A3UA-01A	Low	Leiomyosarcoma (LMS)	0.324881866326854	125	1079561980	470	Primary Tumor
+351	TCGA-HB-A2OT-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0002364928263236	24	715849	66	Blood Derived Normal
+352	TCGA-HB-A2OT-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.321235872142462	79	953301169	270	Primary Tumor
+353	TCGA-MB-A5Y8-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.449307273223843	93	1422812499	326	Primary Tumor
+354	TCGA-MB-A5Y8-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	7.90786331202874e-05	7	227209	18	Blood Derived Normal
+355	TCGA-3B-A9HU-01A	Low	Leiomyosarcoma (LMS)	0.190031239037595	52	693769742	138	Primary Tumor
+356	TCGA-3B-A9HU-10A	None	Leiomyosarcoma (LMS)	0.0016907657660387	89	5160230	264	Blood Derived Normal
+357	TCGA-LI-A67I-01A	High	Myxofibrosarcoma	0.434378068233624	133	1395232752	394	Primary Tumor
+358	TCGA-LI-A67I-10A	None	Myxofibrosarcoma	0.0002445051375131	16	702513	42	Blood Derived Normal
+359	TCGA-X6-A8C2-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0001490298234298	21	428193	54	Blood Derived Normal
+360	TCGA-X6-A8C2-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.574033905920113	308	1792784559	1052	Primary Tumor
+361	TCGA-X6-A8C7-10A	None	Synovial Sarcoma	2.3150118534019e-05	10	66515	28	Blood Derived Normal
+362	TCGA-JV-A75J-10A	None	Leiomyosarcoma Uterus (LMS)	4.1083063846585e-05	13	1350739	32	Blood Derived Normal
+363	TCGA-JV-A75J-01A	Low	Leiomyosarcoma Uterus (LMS)	0.195551106802225	295	683530255	800	Primary Tumor
+364	TCGA-X6-A7WB-01A	Low	Leiomyosarcoma Uterus (LMS)	0.796899241904045	172	2290119160	698	Primary Tumor
+365	TCGA-X6-A7WB-10A	None	Leiomyosarcoma Uterus (LMS)	0.0002625247456764	14	761337	44	Blood Derived Normal
+366	TCGA-WK-A8XQ-10A	None	Dedifferentiated liposarcoma	4.30797898486848e-05	10	123777	38	Blood Derived Normal
+367	TCGA-WK-A8XQ-01A	Low	Dedifferentiated liposarcoma	0.0001666888584472	16	478931	44	Primary Tumor
+368	TCGA-K1-A6RV-01A	High	Leiomyosarcoma (LMS)	0.591672917294383	317	1851531475	1184	Primary Tumor
+369	TCGA-K1-A6RV-10A	None	Leiomyosarcoma (LMS)	9.94395304270399e-06	14	35916	38	Blood Derived Normal
+370	TCGA-DX-A3UD-10A	None	Leiomyosarcoma (LMS)	2.35416675583108e-05	17	73285	44	Blood Derived Normal
+371	TCGA-DX-A3UD-01A	Low	Leiomyosarcoma (LMS)	0.375704649852898	65	1079481719	200	Primary Tumor
+372	TCGA-WP-A9GB-10A	None	Leiomyosarcoma Uterus (LMS)	0.0003116037626644	17	895301	44	Blood Derived Normal
+373	TCGA-WP-A9GB-01A	High	Leiomyosarcoma Uterus (LMS)	0.658808120433433	250	2036837960	886	Primary Tumor
+374	TCGA-DX-A6BA-01A	High	Leiomyosarcoma (LMS)	0.725769086344934	107	2203321557	298	Primary Tumor
+375	TCGA-DX-A6BA-10A	None	Leiomyosarcoma (LMS)	6.99170820390128e-05	7	354572	26	Blood Derived Normal
+376	TCGA-X6-A8C6-01A	High	Myxofibrosarcoma	0.432280399500887	374	1348541362	1480	Primary Tumor
+377	TCGA-X6-A8C6-10A	None	Myxofibrosarcoma	1.52944269542048e-05	7	43944	18	Blood Derived Normal
+378	TCGA-SI-AA8C-01A	Low	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.320518869309397	152	920915915	510	Primary Tumor
+379	TCGA-DX-A1KU-10A	None	Dedifferentiated liposarcoma	1.40379896406994e-05	6	40334	14	Blood Derived Normal
+380	TCGA-DX-A1KU-01A	Low	Dedifferentiated liposarcoma	0.233442738778353	455	671119473	1100	Primary Tumor
+381	TCGA-IE-A4EH-10A	None	Leiomyosarcoma Uterus (LMS)	0.0002711294270342	15	899148	40	Blood Derived Normal
+382	TCGA-IE-A4EH-01A	High	Leiomyosarcoma Uterus (LMS)	0.365316154670845	75	1050217754	308	Primary Tumor
+383	TCGA-WK-A8XS-01A	High	Leiomyosarcoma (LMS)	0.683661625837729	144	1982503258	406	Primary Tumor
+384	TCGA-DX-A6B8-10A	None	Leiomyosarcoma (LMS)	8.85840512557845e-05	19	257873	62	Blood Derived Normal
+385	TCGA-DX-A6B8-01A	High	Leiomyosarcoma (LMS)	0.766732081422187	299	2350714385	1592	Primary Tumor
+386	TCGA-KD-A5QU-10A	None	Leiomyosarcoma Uterus (LMS)	2.48005411768562e-05	19	72147	50	Blood Derived Normal
+387	TCGA-KD-A5QU-01A	High	Leiomyosarcoma Uterus (LMS)	0.686409061997253	124	2071429757	424	Primary Tumor
+388	TCGA-DX-A8BH-11A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	4.45443572213248e-05	26	146806	94	Solid Tissue Normal
+389	TCGA-DX-A8BH-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.582180700451767	175	1672742748	818	Primary Tumor
+390	TCGA-DX-A6YU-10A	None	Myxofibrosarcoma	2.5858593651387e-05	4	74297	14	Blood Derived Normal
+391	TCGA-DX-A6YU-01A	High	Myxofibrosarcoma	0.711085217968334	197	2180651766	820	Primary Tumor
+392	TCGA-HS-A5N7-01A	Low	Leiomyosarcoma (LMS)	0.897070827700818	92	2728991933	298	Primary Tumor
+393	TCGA-HS-A5N7-10A	None	Leiomyosarcoma (LMS)	9.22472099052704e-05	11	265687	34	Blood Derived Normal
+394	TCGA-DX-A3LY-10B	None	Dedifferentiated liposarcoma	0.0004962161692476	17	1500738	48	Blood Derived Normal
+395	TCGA-DX-A3LY-01B	High	Dedifferentiated liposarcoma	0.373583450241954	463	1222972936	1382	Primary Tumor
+396	TCGA-SG-A6Z4-01A	High	Undifferentiated Pleomorphic Sarcoma (UPS)	0.770570338359031	137	2233799848	548	Primary Tumor
+397	TCGA-SG-A6Z4-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	1.86203313774339e-05	12	53500	34	Blood Derived Normal
+398	TCGA-IS-A3K8-01A	Low	Leiomyosarcoma Uterus (LMS)	0.0795766869596224	25	228643314	92	Primary Tumor
+399	TCGA-IS-A3K8-10A	None	Leiomyosarcoma Uterus (LMS)	1.41274368400265e-05	9	44473	24	Blood Derived Normal
+400	TCGA-3B-A9HX-10A	None	Leiomyosarcoma (LMS)	0.0086925759347668	745	25260597	1996	Blood Derived Normal
+401	TCGA-3B-A9HX-01A	High	Leiomyosarcoma (LMS)	0.636594929292356	319	1884534476	758	Primary Tumor
+402	TCGA-DX-A23Z-01A	Low	Dedifferentiated liposarcoma	0.0297617109451377	297	85640926	714	Primary Tumor
+403	TCGA-DX-A23Z-10A	None	Dedifferentiated liposarcoma	1.36071116921898e-05	13	39564	38	Blood Derived Normal
+404	TCGA-DX-A6Z2-01A	Low	Leiomyosarcoma (LMS)	0.245544420693684	61	706009370	214	Primary Tumor
+405	TCGA-DX-A6Z2-01A	Low	Leiomyosarcoma (LMS)	0.243765689697869	71	700899428	254	Primary Tumor
+406	TCGA-DX-A6Z2-11A	None	Leiomyosarcoma (LMS)	1.11436592531342e-05	18	53844	44	Solid Tissue Normal
+407	TCGA-KD-A5QT-10A	None	Leiomyosarcoma Uterus (LMS)	5.68981639922036e-06	6	16348	20	Blood Derived Normal
+408	TCGA-KD-A5QT-01A	Low	Leiomyosarcoma Uterus (LMS)	0.19255371235842	112	582938292	352	Primary Tumor
+409	TCGA-DX-A1L2-01A	High	Dedifferentiated liposarcoma	0.481665905055088	330	1421400144	954	Primary Tumor
+410	TCGA-DX-A1L2-10A	None	Dedifferentiated liposarcoma	2.37296110899709e-05	17	78526	48	Blood Derived Normal
+411	TCGA-MB-A5Y9-01A	Low	Undifferentiated Pleomorphic Sarcoma (UPS)	0.0734232194364938	39	217150178	188	Primary Tumor
+412	TCGA-MB-A5Y9-10A	None	Undifferentiated Pleomorphic Sarcoma (UPS)	4.88381708326033e-05	12	140432	42	Blood Derived Normal
+413	TCGA-DX-A3UE-10A	None	Leiomyosarcoma (LMS)	2.17290566085225e-05	14	238175	46	Blood Derived Normal
+414	TCGA-DX-A3UE-01A	Low	Leiomyosarcoma (LMS)	0.181090137017869	59	580012320	180	Primary Tumor
+415	TCGA-DX-A7EQ-11B	None	Synovial Sarcoma	2.29221499909868e-05	11	68795	34	Solid Tissue Normal
+416	TCGA-DX-A7EQ-01A	Low	Synovial Sarcoma	0.0150142877230888	11	43139270	34	Primary Tumor
+417	TCGA-DX-A48U-01A	Low	Leiomyosarcoma (LMS)	0.165029269380682	49	474265063	134	Primary Tumor
+418	TCGA-DX-AB2E-01A	High	Myxofibrosarcoma	0.417948808303508	132	1201652776	550	Primary Tumor
+419	TCGA-DX-AB2E-10A	None	Myxofibrosarcoma	0.000112107620548	9	322108	20	Blood Derived Normal
+420	TCGA-IS-A3KA-01A	High	Leiomyosarcoma Uterus (LMS)	0.499946941626773	156	1576686905	552	Primary Tumor
+421	TCGA-QQ-A8VH-01A	High	Malignant Peripheral Nerve Sheath Tumors (MPNST)	0.397906052409973	269	1293653904	848	Primary Tumor
+422	TCGA-QQ-A8VH-10A	None	Malignant Peripheral Nerve Sheath Tumors (MPNST)	1.86377335562913e-05	6	63985	18	Blood Derived Normal
+423	TCGA-IE-A4EK-01A	Low	Leiomyosarcoma (LMS)	0.0763544069427919	34	220112408	92	Primary Tumor
