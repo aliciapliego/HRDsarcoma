@@ -1,0 +1,132 @@
+---
+title: "Cytobands"
+author: "Alicia Pliego"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: sandstone
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+#Gene Level copy number file from TCGA
+
+Downloading the Gene level Copy number files from TCGA, I computed CIN in the following way:
+  - gene CNV > 2.25 = Amp
+  - gene CNV < 1.75 = Del 
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+library(chromoMap)
+library(tidyverse)
+library(dplyr)
+library(Matrix)
+library(data.table)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+## select() interface:
+## Objects in this package can be accessed using the select() interface
+## from the AnnotationDbi package. See ?select for details.
+
+## Bimap interface:
+x <- as.list(org.Hs.egMAP)
+# Get the entrez gene identifiers that are mapped to any cytoband
+mapped_genes <- mappedkeys(x)
+# Convert to a list
+xx <- as.list(x[mapped_genes])
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+# chromosome files
+list_gene_names <- read.table("gene_level/gene_level_template.tsv",sep = "\t", header = TRUE)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+list_gene_names$entrez <- mapIds(org.Hs.eg.db,
+                            keys=list_gene_names$gene_name,
+                            column="ENTREZID",
+                            keytype="SYMBOL",
+                            multiVals="first")
+list_gene_names <- na.omit(list_gene_names)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+list_gene_names_cyto <- xx[list_gene_names$entrez]
+# Mapping -> converting the list to 
+# dataframe
+list_gene_names_cyto <- t(sapply(list_gene_names_cyto,c))
+list_gene_names_cyto <- t(list_gene_names_cyto)
+#write.table(list_gene_names_cyto, "gene_level/cytoband_anno.tsv",sep = "\t", quote = FALSE)
+list_gene_names_cyto_df <- read.table("gene_level/cytoband_anno.tsv", header = TRUE)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+list_gene_names_cyto_df$symbol <- mapIds(org.Hs.eg.db,
+                            keys=list_gene_names_cyto_df$entrez,
+                            column="SYMBOL",
+                            keytype="ENTREZID",
+                            multiVals="first")
+list_gene_names_cyto_df <- na.omit(list_gene_names_cyto_df)
+```
+
+I have mapped cytobands to gene entrez ids using org.Hs.egMAP and using the cytobands I extract the gene level CIN which will be added at cytoband level for all the genes in that cytoband across all the different cases that we have from TCGA-SARC
+
+Plots:
+ 1- Overall boxplots: for each chromosome all the cytoband CIN per sarcoma type 
+ 1b - Overall heatmap: for each chromosome a heatmap with all the CIN per cytobands and annotation on the side for each sarcoma type 
+ 2- HRD boxplots: The same as before but separating HRDhigh/low
+ 2b - is there any cytoband differentially expressed between HRD/low groups in particular?
+ 3- Make enrichment in those cytobands :)
+ 
+
+
+## ------------------- ChromoMAP -----------------------##
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+# chromosome files
+chr_file_1 = read.table("/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/chr_anno.tsv",sep = "\t")
+
+# annotation files
+anno_file_1 = read.table("/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/gene_level1.tsv",sep = "\t")
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+# passing data.frames directly instead of files
+chromoMap(list(chr_file_1),list(anno_file_1))
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+chromoMap("/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/chr_anno.tsv","/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/gene_level1.tsv",
+          data_based_color_map = T,
+          data_type = "numeric",
+          plots = "bar",
+          data_colors = list(c("orange","yellow")))
+```
+
+  
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cindex_gene_level_cnv <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_all_gene_level.tsv', sep = '\t', header = TRUE)
+cindex_gene_level_cnv <- unique(cindex_gene_level_cnv)
+rownames(cindex_gene_level_cnv) <- cindex_gene_level_cnv$Case_ID
+cindex_gene_level_cnv$Case_ID <- NULL
+cindex_gene_level_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_all_gene_level_meta.tsv', sep = '\t', header = TRUE)
+cindex_gene_level_meta$X <- NULL
+cindex_gene_level_meta <- cindex_gene_level_meta[cindex_gene_level_meta$Case_ID %in% rownames(cindex_gene_level_cnv),]
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cindex_gene_level_cnv_t <- t(cindex_gene_level_cnv)
+cindex_gene_level_cnv_t$entrez <- mapIds(org.Hs.eg.db,
+                            keys=rownames(cindex_gene_level_cnv_t),
+                            column="ENSEMBL",
+                            keytype="SYMBOL",
+                            multiVals="first")
+```

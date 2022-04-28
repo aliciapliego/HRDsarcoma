@@ -721,7 +721,197 @@ heatmaply(cindex_results_sum_sarc,
   )
 ```
 
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+cindex_results_sum_sarc_bp <- read.table('data/cindex_results_sarc_ptumor.tsv', sep = '\t', header = TRUE)
+cindex_results_sum_sarc_meta_bp <- read.table('data/cindex_results_sarc_metadata_ptumor.tsv', sep = '\t', header = TRUE)
+cindex_results_sum_sarc_bp$HRD34 <- cindex_results_sum_sarc_meta_bp$HRD34
+cindex_results_sum_sarc_bp$Tumor_type <- cindex_results_sum_sarc_meta_bp$Tumor_type
+```
 
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+cindex_results_sum_sarc_bp$sums <- rowSums(cindex_results_sum_sarc_bp[2:23])
+
+fig1 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~sums, color = ~HRD34, type = "box",  notched=TRUE) %>% 
+layout(title = list(text = "CINdex CIN score by HRD"), boxmode= 'group',
+     yaxis = list())
+fig1
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+fig1 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr1, color = ~HRD34, type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig2 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr2, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig3 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr3, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig4 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr4, color = ~HRD34, type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig5 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr5, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig6 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr6, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig7 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr7, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig8 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr8, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig1, fig2, fig3 , fig4, fig5, fig6, fig7, fig8, nrows = 2) %>% 
+  layout(title = list(text = "CINdex CIN score chromosomes by HRD"),boxmode = "group", annotations = list(
+ list(x = 0.1 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.35 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.6 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.9 , y = 1.02,  text = "Chr4", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.1 , y = 0.47,  text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list( x = 0.35 , y = 0.47, text = "Chr6", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.6 , y = 0.47, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.9 , y = 0.47, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+fig9 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr9, color = ~HRD34, type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig10 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr10, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig11 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr11, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig12 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr12, color = ~HRD34, type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig13 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr13, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig14 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr14, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig15 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr15, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig16 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr16, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10, fig11 , fig12, fig13, fig14, fig15, fig16, nrows = 2) %>% 
+  layout(title = list(text = "CINdex CIN score chromosomes by HRD"),boxmode = "group",  annotations = list(
+ list(x = 0.1 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.35 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.6 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.9 , y = 1.02,  text = "Chr12", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.1 , y = 0.47,  text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list( x = 0.35 , y = 0.47, text = "Chr14", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.6 , y = 0.47, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.9 , y = 0.47, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+fig17 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr17, color = ~HRD34, type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig18 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr18, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig19 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr19, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig20 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr20, color = ~HRD34, type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig21 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr21, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+fig22 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr22, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(
+     yaxis = list(range=c(0,150)))
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18, fig19 , fig20, fig21, fig22, nrows = 2) %>% 
+  layout(title = list(text = "CINdex Amplifications"), boxmode = "group", annotations = list(
+ list(x = 0.1 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.5 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.85 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.1 , y = 0.45,  text = "Chr20", showarrow = F, xref='paper', yref='paper'),
+ list(x = 0.5 , y = 0.45,  text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list( x = 0.85 , y = 0.45, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+Summary:
+ * chr1: CIN is significantly higher in UPS HRD high and LMS HRD high.
+ * chr2: CIN is significantly higher in MFS MPNST and UPS in HRD high groups.
+ * chr3: CIN is significantly higher in MFS, LMS and UPS in HRD high groups.
+ * chr4: CIN is significantly higher in MFS, uLMS and UPS and MPNST in HRD high groups.
+ * chr5: CIN is significantly higher in LMS, UPS, uLMS, MFS and MPNST in HRD high groups.
+ * chr6: CIN is significantly higher in MFS, and UPS in HRD high groups.
+ * chr7: CIN is significantly higher in MPNST in HRD high groups.
+ * chr8: CIN is significantly higher in MPNST, MFS, LMS and UPS in HRD high groups.
+ * chr9: CIN is significantly higher in UPS HRD high and LMS HRD high.
+ * chr10: CIN is significantly higher in uLMS in HRD high groups.
+ * chr11: CIN is significantly higher in MFS, LMS, MPNST and UPS in HRD high groups.
+ * chr12: CIN is significantly higher in ddLPS and MPNST in HRD high groups. MFS patient TCGA-DX-AB2S-01A with low HRD shows a very high number of CIN in chromosome 12.
+ * chr13: CIN is significantly higher in UPSand ddLPS in HRD high groups.
+ * chr14: CIN is significantly higher in MPNST in HRD high groups.
+ * chr15: CIN is significantly higher in MPNST in HRD high groups.
+ * chr16: CIN is significantly higher in MPNST, MFS, LMS and UPS in HRD high groups.
+ * chr17: CIN is significantly higher in LMS, ddLPS and UPS in HRD high groups.
+ * chr18: CIN is significantly higher in MFS, MPNST, uLMS and UPS in HRD high groups.
+ * chr19: CIN is significantly higher in UPS  in HRD high groups.
+ * chr20: CIN is significantly higher in MFS and UPS in HRD high groups.
+ * chr21: -
+ * chr22: -
+
+In general we can see how HRD high groups show high CIN in individual chromosomes.
 
 ### CINdex MFS
 ```{r cindex mfs, include=FALSE, echo=FALSE, message=FALSE}
@@ -1079,121 +1269,4 @@ layout(
 
 fig
 ```
-
-### CINdex by Cytobands (work in progress)
-```{r , include=FALSE, echo=FALSE, message=FALSE}
-# loading the example file
-#Obtain Cytoband data
-# URL for hg38
-#url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/cytoBand.txt.gz"
-#Download file and un-compress it
-#download.file(url, destfile = "cyto.txt.gz")
-#R.utils::gunzip("cyto.txt.gz")
-#Read in the downloaded cytoband ideogram txt file
-#cyto1 <- read.table(file = "cyto.txt",
-#header = FALSE, sep = "\t")
-#Adding column names
-#colnames(cyto1) <- c("Chrom", "Start", "End", "CytobandName", "Stain")
-#Add an extra column with strand information
-#cyto1$Strand <- c("*")
-#The user must ensure that the input object is a GRanges object
-## Convert object into GRanges object
-#cyto1.gr <- GRanges(cyto1$Chrom,
-#IRanges(cyto1$Start, cyto1$End),
-#cyto1$Strand,
-#cyto1$CytobandName, cyto1$Stain)
-#head(cyto1.gr, n = 3)
-#The user must ensure that the input object is a GRanges object
-#Save this object for future use
-#save(cyto1.gr, file = "hg18.ucsctrack.RData")
-```
-
-
-```{r , include=FALSE, echo=FALSE, message=FALSE}
-#Create annotations 
-#library(pd.genomewidesnp.6)
-```
-
-```{r , include=FALSE, echo=FALSE, message=FALSE}
-#connect to the underlying SQLite database that is part of the pd.genomewidesnp.6 package
-#con <- db(pd.genomewidesnp.6)
-# get the copy number probes
-#cnv2 <- dbGetQuery(con, "select man_fsetid, chrom, chrom_start, chrom_stop,
-#strand from featureSetCNV;")
-
-#get the SNP probes
-##snp2 <- dbGetQuery(con, "select man_fsetid, dbsnp_rs_id, chrom, physical_pos,
-#strand from featureSet;")
-
-# convert this copy number data into a GRanges object
-##cnv2gr <- convert.to.gr.cnv(cnv2 = cnv2)
-# convert this SNP data into a GRanges object
-##snp2gr <- convert.to.gr.snp(snp2 = snp2)
-```
-
-```{r , include=FALSE, echo=FALSE, message=FALSE}
-#download.file("http://hgdownload.cse.ucsc.edu/gbdb/hg19/liftOver/hg19ToHg38.over.chain.gz",
-#"hg19ToHg38.over.chain.gz")
-#system("gzip -d hg19ToHg38.over.chain.gz") ## have to decompress
-## now use liftOver from rtracklayer, using the hg19ToHg38.over.chain from UCSC
-#chain <- import.chain("hg19ToHg38.over.chain")
-#snpgr.38 <- unlist(liftOver(snp2gr, chain))
-#cnvgr.38 <- unlist(liftOver(cnv2gr, chain))
-```
-
-```{r}
-
-#subset only those probes that are in autosomes
-#snpgr.38.auto <- subset(snpgr.38, seqnames(snpgr.38) %in% c("chr1",
-#"chr2", "chr3","chr4",
-#"chr5", "chr6", "chr7",
-#"chr8", "chr9", "chr10",
-#"chr11", "chr12", "chr13",
-#"chr14", "chr15", "chr16",
-#"chr17", "chr18","chr19",
-#"chr20", "chr21", "chr22"))
-#subset only those probes that are in autosomes
-#cnvgr.38.auto <- subset(cnvgr.38, seqnames(cnvgr.38) %in% c("chr1",
-#"chr2", "chr3","chr4",
-##"chr5", "chr6", "chr7",
-#"chr8", "chr9", "chr10",
-#"chr11", "chr12", "chr13",
-#"chr14", "chr15", "chr16",
-#"chr17", "chr18","chr19",
-#"chr20", "chr21", "chr22"))
-#This gives us a total of 1756029 probes (about 1.7 million)
-#Save these objects for future
-#save(cnvgr.38.auto, file = "cnvgr.38.auto.RData")
-#save(snpgr.38.auto, file = "snpgr.38.auto.RData")
-```
-
-
-```{r , include=FALSE, echo=FALSE, message=FALSE}
-#run.cin.cyto(grl.seg = cnvgr.tcga.sarc, cnvgr=cnvgr.38.auto, snpgr=snpgr.38.auto,
-#genome.ucsc = cyto1.gr,thr.gain = 2.25,thr.loss = 1.75,
-#V.def = 3, V.mode="sum")
-```
-
-
-
-```{r , include=FALSE, echo=FALSE, message=FALSE}
-##BiocManager::install("TxDb.Hsapiens.UCSC.hg38.knownGene")
-##BiocManager::install("Homo.sapiens")
-#library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-#library(Homo.sapiens)
-
-#TxDb(Homo.sapiens) <- TxDb.Hsapiens.UCSC.hg38.knownGene
-#z <- select(Homo.sapiens, keys(Homo.sapiens, "ENTREZID"),
-#c("CDSID","CDSCHROM","CDSSTRAND","CDSSTART","CDSEND","SYMBOL"), "ENTREZID")
-
-## 'select()' returned 1:many mapping between keys and columns
-#z1 <- na.omit(object = z) #remove NA values
-# extracting only the columns we want as a matrix
-#geneAnno <- cbind(z1$CDSCHROM, z1$CDSSTRAND, z1$CDSSTART, z1$CDSEND, z1$SYMBOL)
-#colnames(geneAnno) <- c("chrom","strand", "cdsStart", "cdsEnd", "GeneName")
-#So this gene annotation file looks like this
-#head(geneAnno, n=3)
-
-```
-
 

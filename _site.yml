@@ -1,23 +1,28 @@
 name: "personal-website"
 output_dir: "."
 navbar:
-  title: "HRDsarcoma"
+  logo:
+    image: images/logo.png
+    title: "HRDsarcoma"
+  
   left:
-    
-        - text: "Home"
-          href: index.html
-        - text: "HRDness"
-          href: HRDness_TCGA_sarcoma.html
-        - text: "CIN"
-          href: CIN_TCGA_sarcoma.html
-        - text: "Signatures"
-          href: Signatures_TCGA_sarcoma.html
-        - text: "RPPA"
-          href: RPPA_TCGA_sarcoma.html
-        - text : "CNV"
-          href: CNV_TCGA_sarcoma.html
-        - text: "RNAseq"
-          href: RNAseq_TCGA_sarcoma.html
+        - text: "TCGA"
+          menu:
+            - text: "HRDness"
+              href: HRDness_TCGA_sarcoma.html
+            - text: "CIN"
+              href: CIN_TCGA_sarcoma.html
+            - text: "Signatures"
+              href: Signatures_TCGA_sarcoma.html
+            - text: "RPPA"
+              href: RPPA_TCGA_sarcoma.html
+            - text : "CNV"
+              href: CNV_TCGA_sarcoma.html
+            - text : "Cytobands"
+              href: Cytobands.html
+            - text: "RNAseq"
+              href: RNAseq_TCGA_sarcoma.html
+          
         
 output:
   html_document:
