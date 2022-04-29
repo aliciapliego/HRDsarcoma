@@ -16,9 +16,9 @@ text-align: justify}
 </style>
 
 ```{r setup, include=FALSE, echo=FALSE, message=FALSE}
-library("DESeq2")
+library(DESeq2)
 library(tximport)
-library("pcaExplorer")
+library(pcaExplorer)
 library(plotly)
 library(pheatmap)
 library(org.Hs.eg.db)

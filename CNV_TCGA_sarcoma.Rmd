@@ -96,7 +96,7 @@ amp_boxplot_data <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cin
 amp_boxplot_data$sum <- rowSums(amp_boxplot_data[3:24])
 
 fig1 <- plot_ly(amp_boxplot_data, y = ~sum, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
-layout(
+layout(title = list(text = "CINdex Amplifications Boxplot"),
      xaxis = list(),
      categoryorder = "array",
      categoryarray = c(
@@ -447,51 +447,115 @@ layout(
 
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig1, fig2, fig3 , fig4, fig5, fig6, fig7, fig8, nrows = 2) %>% 
+fig <- subplot(fig1, fig2 ) %>% 
   layout(title = list(text = "CINdex Amplifications"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr4", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr5", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr6", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr8", showarrow = F, xref='paper', yref='paper')
- )
-)
-fig
-```
-
-
-```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig9, fig10, fig11 , fig12, fig13, fig14, fig15, fig16, nrows = 2) %>% 
-  layout(title = list(text = "CINdex Amplifications"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr12", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr13", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr14", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ list(x = 0.2 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper')
  )
 )
 fig
 ```
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig17, fig18, fig19 , fig20, fig21, fig22, nrows = 2) %>% 
+fig <- subplot(fig3, fig4 ) %>% 
   layout(title = list(text = "CINdex Amplifications"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr20", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr21", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ list(x = 0.2 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr4", showarrow = F, xref='paper', yref='paper')
  )
 )
 fig
 ```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig5, fig6 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr6", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig7, fig8 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig11, fig12 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr12", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig13, fig14 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr14", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig15, fig15 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig19, fig20 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr20", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig21, fig22 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
 
 ## CINdex deletions
 ```{r , echo=FALSE, warning=FALSE, message=FALSE}
@@ -524,12 +588,14 @@ heatmaply(cindex_results_del_sarc_scale,
 del_boxplot_data <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results_onlytumor_boxplots.tsv', sep = '\t', header = TRUE)
 ```
 
+
 ```{r , echo=FALSE, warning=FALSE, message=FALSE}
 del_boxplot_data$sum <- rowSums(del_boxplot_data[3:24])
 
-fig1 <- plot_ly(del_boxplot_data, y = ~sum, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
-layout(
+fig1 <- plot_ly(amp_boxplot_data, y = ~sum, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(title = list(text = "CINdex Deletions Boxplot"),
      xaxis = list(),
+     categoryorder = "array",
      categoryarray = c(
                          'UPS',
                          'MFS',
@@ -857,47 +923,110 @@ layout(
 
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig1, fig2, fig3 , fig4, fig5, fig6, fig7, fig8, nrows = 2) %>% 
+fig <- subplot(fig1, fig2 ) %>% 
   layout(title = list(text = "CINdex Deletions"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr4", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr5", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr6", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr8", showarrow = F, xref='paper', yref='paper')
- )
-)
-fig
-```
-
-
-```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig9, fig10, fig11 , fig12, fig13, fig14, fig15, fig16, nrows = 2) %>% 
-  layout(title = list(text = "CINdex Deletions"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr12", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr13", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr14", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ list(x = 0.2 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper')
  )
 )
 fig
 ```
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig17, fig18, fig19 , fig20, fig21, fig22, nrows = 2) %>% 
+fig <- subplot(fig3, fig4 ) %>% 
   layout(title = list(text = "CINdex Deletions"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr20", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr21", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ list(x = 0.2 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr4", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig5, fig6 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr6", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig7, fig8 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig11, fig12 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr12", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig13, fig14 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr14", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig15, fig15 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig19, fig20 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr20", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig21, fig22 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr22", showarrow = F, xref='paper', yref='paper')
  )
 )
 fig
@@ -1323,47 +1452,110 @@ layout(
 
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig1, fig2, fig3 , fig4, fig5, fig6, fig7, fig8, nrows = 2) %>% 
-  layout(title = list(text = "CINdex CIN score"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr4", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr5", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr6", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr8", showarrow = F, xref='paper', yref='paper')
- )
-)
-fig
-```
-
-
-```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig9, fig10, fig11 , fig12, fig13, fig14, fig15, fig16, nrows = 2) %>% 
-  layout(title = list(text = "CINdex CIN score"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr12", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr13", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr14", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+fig <- subplot(fig1, fig2 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper')
  )
 )
 fig
 ```
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig17, fig18, fig19 , fig20, fig21, fig22, nrows = 2) %>% 
-  layout(title = list(text = "CINdex CIN score"), annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr20", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr21", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+fig <- subplot(fig3, fig4 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr4", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig5, fig6 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr6", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig7, fig8 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig11, fig12 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr12", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig13, fig14 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr14", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig15, fig15 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig19, fig20 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr20", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig21, fig22 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr22", showarrow = F, xref='paper', yref='paper')
  )
 )
 fig

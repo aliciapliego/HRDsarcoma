@@ -1,10 +1,7 @@
 name: "personal-website"
 output_dir: "."
 navbar:
-  logo:
-    image: images/logo.png
-    title: "HRDsarcoma"
-  
+  title: "HRDsarcoma" 
   left:
         - text: "TCGA"
           menu:
@@ -22,10 +19,11 @@ navbar:
               href: Cytobands.html
             - text: "RNAseq"
               href: RNAseq_TCGA_sarcoma.html
-          
+
         
 output:
   html_document:
+    css: style.css
     theme: sandstone
     highlight: default
     include:

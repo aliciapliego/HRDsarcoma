@@ -732,7 +732,7 @@ cindex_results_sum_sarc_bp$Tumor_type <- cindex_results_sum_sarc_meta_bp$Tumor_t
 cindex_results_sum_sarc_bp$sums <- rowSums(cindex_results_sum_sarc_bp[2:23])
 
 fig1 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~sums, color = ~HRD34, type = "box",  notched=TRUE) %>% 
-layout(title = list(text = "CINdex CIN score by HRD"), boxmode= 'group',
+layout(boxmode = "group", title = list(text = "CINdex CIN score by HRD"), boxmode= 'group',
      yaxis = list())
 fig1
 ```
@@ -741,172 +741,199 @@ fig1
 ```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig1 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr1, color = ~HRD34, type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig1
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig2 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr2, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
 
+fig2
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig3 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr3, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig3
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig4 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr4, color = ~HRD34, type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig4
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig5 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr5, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig5
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig6 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr6, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig6
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig7 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr7, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig7
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig8 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr8, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig8
 
 ```
 
-
-```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig1, fig2, fig3 , fig4, fig5, fig6, fig7, fig8, nrows = 2) %>% 
-  layout(title = list(text = "CINdex CIN score chromosomes by HRD"),boxmode = "group", annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr4", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr5", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr6", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr8", showarrow = F, xref='paper', yref='paper')
- )
-)
-fig
-```
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig9 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr9, color = ~HRD34, type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig9
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig10 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr10, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig10
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 fig11 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr11, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig11
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig12 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr12, color = ~HRD34, type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig12
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig13 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr13, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig13
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig14 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr14, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig14
+
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig15 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr15, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig15
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig16 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr16, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
 
-
+fig16
 ```
 
-```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig9, fig10, fig11 , fig12, fig13, fig14, fig15, fig16, nrows = 2) %>% 
-  layout(title = list(text = "CINdex CIN score chromosomes by HRD"),boxmode = "group",  annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.35 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.9 , y = 1.02,  text = "Chr12", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.1 , y = 0.47,  text = "Chr13", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.35 , y = 0.47, text = "Chr14", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.6 , y = 0.47, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.9 , y = 0.47, text = "Chr16", showarrow = F, xref='paper', yref='paper')
- )
-)
-
-fig
-```
 
 ```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig17 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr17, color = ~HRD34, type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig17
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig18 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr18, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig18
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig19 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr19, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig19
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig20 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr20, color = ~HRD34, type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig20
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig21 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr21, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
+fig21
+```
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
 
 fig22 <- plot_ly(cindex_results_sum_sarc_bp,x =~Tumor_type,  y = ~chr22, color = ~HRD34,  type = "box",  notched=TRUE) %>%
-layout(
+layout(boxmode = "group",
      yaxis = list(range=c(0,150)))
-
+fig22
 ```
 
-```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
-fig <- subplot(fig17, fig18, fig19 , fig20, fig21, fig22, nrows = 2) %>% 
-  layout(title = list(text = "CINdex Amplifications"), boxmode = "group", annotations = list(
- list(x = 0.1 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.5 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.85 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
-  list(x = 0.1 , y = 0.45,  text = "Chr20", showarrow = F, xref='paper', yref='paper'),
- list(x = 0.5 , y = 0.45,  text = "Chr21", showarrow = F, xref='paper', yref='paper'),
-  list( x = 0.85 , y = 0.45, text = "Chr22", showarrow = F, xref='paper', yref='paper')
- )
-)
-fig
-```
+
+
 Summary:
- * chr1: CIN is significantly higher in UPS HRD high and LMS HRD high.
- * chr2: CIN is significantly higher in MFS MPNST and UPS in HRD high groups.
- * chr3: CIN is significantly higher in MFS, LMS and UPS in HRD high groups.
- * chr4: CIN is significantly higher in MFS, uLMS and UPS and MPNST in HRD high groups.
- * chr5: CIN is significantly higher in LMS, UPS, uLMS, MFS and MPNST in HRD high groups.
- * chr6: CIN is significantly higher in MFS, and UPS in HRD high groups.
- * chr7: CIN is significantly higher in MPNST in HRD high groups.
- * chr8: CIN is significantly higher in MPNST, MFS, LMS and UPS in HRD high groups.
- * chr9: CIN is significantly higher in UPS HRD high and LMS HRD high.
- * chr10: CIN is significantly higher in uLMS in HRD high groups.
- * chr11: CIN is significantly higher in MFS, LMS, MPNST and UPS in HRD high groups.
- * chr12: CIN is significantly higher in ddLPS and MPNST in HRD high groups. MFS patient TCGA-DX-AB2S-01A with low HRD shows a very high number of CIN in chromosome 12.
- * chr13: CIN is significantly higher in UPSand ddLPS in HRD high groups.
- * chr14: CIN is significantly higher in MPNST in HRD high groups.
- * chr15: CIN is significantly higher in MPNST in HRD high groups.
- * chr16: CIN is significantly higher in MPNST, MFS, LMS and UPS in HRD high groups.
- * chr17: CIN is significantly higher in LMS, ddLPS and UPS in HRD high groups.
- * chr18: CIN is significantly higher in MFS, MPNST, uLMS and UPS in HRD high groups.
- * chr19: CIN is significantly higher in UPS  in HRD high groups.
+
+ * chr1: CIN is significantly higher in UPS HRD high and LMS HRD high.  
+ 
+ * chr2: CIN is significantly higher in MFS MPNST and UPS in HRD high groups.  
+ 
+ * chr3: CIN is significantly higher in MFS, LMS and UPS in HRD high groups.  
+ 
+ * chr4: CIN is significantly higher in MFS, uLMS and UPS and MPNST in HRD high groups.  
+ 
+ * chr5: CIN is significantly higher in LMS, UPS, uLMS, MFS and MPNST in HRD high groups.  
+ 
+ * chr6: CIN is significantly higher in MFS, and UPS in HRD high groups.  
+ 
+ * chr7: CIN is significantly higher in MPNST in HRD high groups.  
+ 
+ * chr8: CIN is significantly higher in MPNST, MFS, LMS and UPS in HRD high groups.  
+ 
+ * chr9: CIN is significantly higher in UPS HRD high and LMS HRD high.  
+ 
+ * chr10: CIN is significantly higher in uLMS in HRD high groups.  
+ 
+ * chr11: CIN is significantly higher in MFS, LMS, MPNST and UPS in HRD high groups.  
+ 
+ * chr12: CIN is significantly higher in ddLPS and MPNST in HRD high groups. MFS patient TCGA-DX-AB2S-01A with low HRD shows a very high number of CIN in chromosome 12.  
+ 
+ * chr13: CIN is significantly higher in UPSand ddLPS in HRD high groups.  
+ 
+ * chr14: CIN is significantly higher in MPNST in HRD high groups.  
+ 
+ * chr15: CIN is significantly higher in MPNST in HRD high groups.  
+ 
+ * chr16: CIN is significantly higher in MPNST, MFS, LMS and UPS in HRD high groups.  
+ 
+ * chr17: CIN is significantly higher in LMS, ddLPS and UPS in HRD high groups.  
+ 
+ * chr18: CIN is significantly higher in MFS, MPNST, uLMS and UPS in HRD high groups.  
+ 
+ * chr19: CIN is significantly higher in UPS  in HRD high groups.  
+ 
  * chr20: CIN is significantly higher in MFS and UPS in HRD high groups.
  * chr21: -
  * chr22: -

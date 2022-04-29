@@ -23,6 +23,7 @@ Downloading the Gene level Copy number files from TCGA, I computed CIN in the fo
 ```{r , echo=FALSE, warning=FALSE, message=FALSE}
 library(chromoMap)
 library(tidyverse)
+library(org.Hs.eg.db)
 library(dplyr)
 library(Matrix)
 library(data.table)
@@ -74,15 +75,20 @@ list_gene_names_cyto_df$symbol <- mapIds(org.Hs.eg.db,
                             keytype="ENTREZID",
                             multiVals="first")
 list_gene_names_cyto_df <- na.omit(list_gene_names_cyto_df)
+list_gene_names_cyto_df <- as.data.frame(list_gene_names_cyto_df)
+#write.table(list_gene_names_cyto_df, "gene_level/cytoband_anno.tsv",sep = "\t", quote = FALSE)
 ```
 
 I have mapped cytobands to gene entrez ids using org.Hs.egMAP and using the cytobands I extract the gene level CIN which will be added at cytoband level for all the genes in that cytoband across all the different cases that we have from TCGA-SARC
 
 Plots:
- 1- Overall boxplots: for each chromosome all the cytoband CIN per sarcoma type 
- 1b - Overall heatmap: for each chromosome a heatmap with all the CIN per cytobands and annotation on the side for each sarcoma type 
- 2- HRD boxplots: The same as before but separating HRDhigh/low
- 2b - is there any cytoband differentially expressed between HRD/low groups in particular?
+ 1- Overall boxplots: for each chromosome all the cytoband CIN per sarcoma type  
+ 
+ 1b - Overall heatmap: for each chromosome a heatmap with all the CIN per cytobands and annotation on the side for each sarcoma type  
+ 
+ 2- HRD boxplots: The same as before but separating HRDhigh/low  
+ 
+ 2b - is there any cytoband differentially expressed between HRD/low groups in particular?  
  3- Make enrichment in those cytobands :)
  
 
