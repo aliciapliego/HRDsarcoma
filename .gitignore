@@ -1,4 +1,6 @@
 *.Rproj.user
+data/*
+gene_level/*
 *.Rhistory
 *.RData
 *.Ruserdata
