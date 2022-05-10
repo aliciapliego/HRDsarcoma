@@ -1,0 +1,770 @@
+---
+title: "Cytobands"
+author: "Alicia Pliego"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: sandstone
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+# Gene Level copy number file from TCGA
+
+Downloading the Gene level Copy number files from TCGA, I computed CIN in the following way:
+  - gene CNV > 2.25 = Amp
+  - gene CNV < 1.75 = Del 
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+library(chromoMap)
+library(tidyverse)
+library(heatmaply)
+library(org.Hs.eg.db)
+library(dplyr)
+library(Matrix)
+library(data.table)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+## select() interface:
+## Objects in this package can be accessed using the select() interface
+## from the AnnotationDbi package. See ?select for details.
+
+## Bimap interface:
+x <- as.list(org.Hs.egMAP)
+# Get the entrez gene identifiers that are mapped to any cytoband
+mapped_genes <- mappedkeys(x)
+# Convert to a list
+xx <- as.list(x[mapped_genes])
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+# chromosome files
+list_gene_names <- read.table("gene_level/gene_level_template.tsv",sep = "\t", header = TRUE)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+list_gene_names$entrez <- mapIds(org.Hs.eg.db,
+                            keys=list_gene_names$gene_name,
+                            column="ENTREZID",
+                            keytype="SYMBOL",
+                            multiVals="first")
+list_gene_names <- na.omit(list_gene_names)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+list_gene_names_cyto <- xx[list_gene_names$entrez]
+# Mapping -> converting the list to 
+# dataframe
+list_gene_names_cyto <- t(sapply(list_gene_names_cyto,c))
+list_gene_names_cyto <- t(list_gene_names_cyto)
+#write.table(list_gene_names_cyto, "gene_level/cytoband_anno.tsv",sep = "\t", quote = FALSE)
+list_gene_names_cyto_df <- read.table("gene_level/cytoband_anno.tsv", header = TRUE)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#list_gene_names_cyto_df$symbol <- mapIds(org.Hs.eg.db,
+#                            keys=list_gene_names_cyto_df$entrez,
+#                            column="SYMBOL",
+#                            keytype="ENTREZID",
+#                            multiVals="first")
+list_gene_names_cyto_df <- na.omit(list_gene_names_cyto_df)
+list_gene_names_cyto_df <- as.data.frame(list_gene_names_cyto_df)
+#write.table(list_gene_names_cyto_df, "gene_level/cytoband_anno.tsv",sep = "\t", quote = FALSE)
+```
+
+I have mapped cytobands to gene entrez ids using org.Hs.egMAP and using the cytobands I extract the gene level CIN which will be added at cytoband level for all the genes in that cytoband across all the different cases that we have from TCGA-SARC
+
+Plots:
+ 1- Overall boxplots: for each chromosome all the cytoband CIN per sarcoma type  
+ 
+ 1b - Overall heatmap: for each chromosome a heatmap with all the CIN per cytobands and annotation on the side for each sarcoma type  
+ 
+ 2- HRD boxplots: The same as before but separating HRDhigh/low  
+ 
+ 2b - is there any cytoband differentially expressed between HRD/low groups in particular?  
+ 3- Make enrichment in those cytobands :)
+ 
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cyto_chr1 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr1.tsv', sep = '\t', header = TRUE)
+cyto_chr2 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr2.tsv', sep = '\t', header = TRUE)
+cyto_chr3 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr3.tsv', sep = '\t', header = TRUE)
+cyto_chr4 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr4.tsv', sep = '\t', header = TRUE)
+cyto_chr5 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr5.tsv', sep = '\t', header = TRUE)
+cyto_chr6 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr6.tsv', sep = '\t', header = TRUE)
+cyto_chr7 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr7.tsv', sep = '\t', header = TRUE)
+cyto_chr8 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr8.tsv', sep = '\t', header = TRUE)
+cyto_chr9 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr9.tsv', sep = '\t', header = TRUE)
+cyto_chr10 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr10.tsv', sep = '\t', header = TRUE)
+cyto_chr11 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr11.tsv', sep = '\t', header = TRUE)
+cyto_chr12 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr12.tsv', sep = '\t', header = TRUE)
+cyto_chr13 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr13.tsv', sep = '\t', header = TRUE)
+cyto_chr14 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr14.tsv', sep = '\t', header = TRUE)
+cyto_chr15 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr15.tsv', sep = '\t', header = TRUE)
+cyto_chr16 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr16.tsv', sep = '\t', header = TRUE)
+cyto_chr17 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr17.tsv', sep = '\t', header = TRUE)
+cyto_chr18 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr18.tsv', sep = '\t', header = TRUE)
+cyto_chr19 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr19.tsv', sep = '\t', header = TRUE)
+cyto_chr20 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr20.tsv', sep = '\t', header = TRUE)
+cyto_chr21 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr21.tsv', sep = '\t', header = TRUE)
+cyto_chr22 <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr22.tsv', sep = '\t', header = TRUE)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+gene_level_anno <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/HRDgenes_gene_level_meta.tsv', sep = '\t', header = TRUE)
+row.names(gene_level_anno) <- gene_level_anno$Case_ID
+```
+
+## Chromosome 1 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr1) <- cyto_chr1$Case_ID
+cyto_chr1$Case_ID <-NULL
+cyto_chr1_scaled <-  scale(cyto_chr1)
+
+z_scores_chr1 <- (data-mean(cyto_chr1))/sd(cyto_chr1)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr1_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr1_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr1_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,2000)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr1_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,2000)))
+fig
+
+```
+
+## Chromosome 2 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr2) <- cyto_chr2$Case_ID
+cyto_chr2$Case_ID <-NULL
+cyto_chr2_scaled <-  scale(cyto_chr2)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr2_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr2_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr2_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,2000)))
+fig
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr2_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 3 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr3) <- cyto_chr3$Case_ID
+cyto_chr3$Case_ID <-NULL
+cyto_chr3_scaled <-  scale(cyto_chr3)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr3_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr3_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr3_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr3_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 4 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr4) <- cyto_chr4$Case_ID
+cyto_chr4$Case_ID <-NULL
+cyto_chr4_scaled <-  scale(cyto_chr4)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr4_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr4_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr4_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr4_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 5 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr5) <- cyto_chr5$Case_ID
+cyto_chr5$Case_ID <-NULL
+cyto_chr5_scaled <-  scale(cyto_chr5)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr5_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr5_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr5_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr5_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 6 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr6) <- cyto_chr6$Case_ID
+cyto_chr6$Case_ID <-NULL
+cyto_chr6_scaled <-  scale(cyto_chr6)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr6_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr6_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr6_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr6_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 7 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr7) <- cyto_chr7$Case_ID
+cyto_chr7$Case_ID <-NULL
+cyto_chr7_scaled <-  scale(cyto_chr7)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr7_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr7_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr7_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr7_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 8 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr8) <- cyto_chr8$Case_ID
+cyto_chr8$Case_ID <-NULL
+cyto_chr8_scaled <-  scale(cyto_chr8)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr8_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr8_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr8_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr8_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+
+## Chromosome 9 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr9) <- cyto_chr9$Case_ID
+cyto_chr9$Case_ID <-NULL
+cyto_chr9_scaled <-  scale(cyto_chr9)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr9_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr9_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr9_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr9_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 10 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr10) <- cyto_chr10$Case_ID
+cyto_chr10$Case_ID <-NULL
+cyto_chr10_scaled <-  scale(cyto_chr10)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr10_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr10_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr10_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr10_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 11 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr11) <- cyto_chr11$Case_ID
+cyto_chr11$Case_ID <-NULL
+cyto_chr11_scaled <-  scale(cyto_chr11)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr11_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr11_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr11_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr11_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 12 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr12) <- cyto_chr12$Case_ID
+cyto_chr12$Case_ID <-NULL
+cyto_chr12_scaled <-  scale(cyto_chr12)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr12_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr12_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr12_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr12_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 13 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr13) <- cyto_chr13$Case_ID
+cyto_chr13$Case_ID <-NULL
+cyto_chr13_scaled <-  scale(cyto_chr13)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr13_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr13_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr13_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr13_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 14 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr14) <- cyto_chr14$Case_ID
+cyto_chr14$Case_ID <-NULL
+cyto_chr14_scaled <-  scale(cyto_chr14)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr14_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr14_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr14_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr14_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 15 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr15) <- cyto_chr15$Case_ID
+cyto_chr15$Case_ID <-NULL
+cyto_chr15_scaled <-  scale(cyto_chr15)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr15_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr15_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr15_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr15_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 16 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr16) <- cyto_chr16$Case_ID
+cyto_chr16$Case_ID <-NULL
+cyto_chr16_scaled <-  scale(cyto_chr16)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr16_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr16_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr16_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr16_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 17 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr17) <- cyto_chr17$Case_ID
+cyto_chr17$Case_ID <-NULL
+cyto_chr17_scaled <-  scale(cyto_chr17)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr17_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr17_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr17_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr17_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 18 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr18) <- cyto_chr18$Case_ID
+cyto_chr18$Case_ID <-NULL
+cyto_chr18_scaled <-  scale(cyto_chr18)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr18_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr18_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr18_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr18_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 19 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr19) <- cyto_chr19$Case_ID
+cyto_chr19$Case_ID <-NULL
+cyto_chr19_scaled <-  scale(cyto_chr19)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr19_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr19_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr19_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr19_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 20 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr20) <- cyto_chr20$Case_ID
+cyto_chr20$Case_ID <-NULL
+cyto_chr20_scaled <-  scale(cyto_chr20)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr20_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr20_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr20_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr20_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 21 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr21) <- cyto_chr21$Case_ID
+cyto_chr21$Case_ID <-NULL
+cyto_chr21_scaled <-  scale(cyto_chr21)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr21_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr21_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr21_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr21_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+## Chromosome 22 Cytobands
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+rownames(cyto_chr22) <- cyto_chr22$Case_ID
+cyto_chr22$Case_ID <-NULL
+cyto_chr22_scaled <-  scale(cyto_chr22)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 30, fig.height = 7, fig.align='center'}
+cyto_chr22_bp <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/gene_level/cytobands_chr22_bp.tsv', sep = '\t', header = TRUE)
+
+fig <- plot_ly(cyto_chr22_bp,x =~cytoband,  y = ~CN, color = ~Type,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 20, fig.height = 7, fig.align='center'}
+fig <- plot_ly(cyto_chr22_bp,x =~cytoband,  y = ~CN, color = ~HRD34,  type = "box",  notched=TRUE) %>%
+layout(boxmode = "group",
+     yaxis = list(range=c(0,35)))
+fig
+
+```
+
+T -test of cytobands in python pval < 0.01
+
+* Chromosome 1:
+
+  - ddLPS 2p11.1 6.978914699947862e-05
+  - ddLPS 2p11.2 0.0009328203594964292
+  - ddLPS 2q11.1 0.0003306106662498429
+  - ddLPS 2q11.2 0.0007483821759446633
+  - ddLPS 2q11.2-q12.1 0.0008703008338573793
+  - ddLPS 2q12-q14 0.004288188013925764
+  - ddLPS 2q12.1 0.0010700572210934063
+  - ddLPS 2q12.1-q12.2 0.0015421657073293685
+  - ddLPS 2q12.2 0.0010208739707162464
+  - ddLPS 2q12.3 0.0010315552453219951
+  - ddLPS 2q13 0.0021797548258337828
+  - ddLPS 2q13-q14.1 0.004288188013925764
+  - ddLPS 2q14.1 0.006122195261664565
+  - ddLPS 2q14.1-q14.2 0.0049770919257404525
+  - ddLPS 2q21.2 0.009925282742590597
+  - LMS 2p11.1 0.0030093585067312214
+  - LMS 2q11.1 0.0009351673246347108
+  - LMS 2q11.2 0.0010391549785624679
+  - LMS 2q14.2-q14.3 0.00864557480824809
+  - uLMS 2p14 0.008471017648941986
+  - uLMS 2p15 0.003009416227452064
+  - uLMS 2p15-p14 0.0072849500425245595
+  - uLMS 2p16.1 0.004216181947663537
+  - uLMS 2p16.1-p15 0.0037613261075078942
+  - uLMS 2q11.1 0.0016958778150337173
+  - uLMS 2q11.2 0.006741728286083317
+  - uLMS 2q12-q14 0.0031034299247518155
+  - uLMS 2q12.2 0.007912738358005785
+  - uLMS 2q14.1 0.00422135953924269
+  
+* Chromosome 2:
+
+
+
+
+
+## ------------------- ChromoMAP -----------------------##
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+# chromosome files
+chr_file_1 = read.table("/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/chr_anno.tsv",sep = "\t")
+
+# annotation files
+anno_file_1 = read.table("/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/gene_level1.tsv",sep = "\t")
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+# passing data.frames directly instead of files
+chromoMap(list(chr_file_1),list(anno_file_1))
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+chromoMap("/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/chr_anno.tsv","/Users/aliciapliego/Projects/HRDsarcoma/chromoMap/gene_level1.tsv",
+          data_based_color_map = T,
+          data_type = "numeric",
+          plots = "bar",
+          data_colors = list(c("orange","yellow")))
+```
+
+  
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cindex_gene_level_cnv <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_all_gene_level.tsv', sep = '\t', header = TRUE)
+cindex_gene_level_cnv <- unique(cindex_gene_level_cnv)
+rownames(cindex_gene_level_cnv) <- cindex_gene_level_cnv$Case_ID
+cindex_gene_level_cnv$Case_ID <- NULL
+cindex_gene_level_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_all_gene_level_meta.tsv', sep = '\t', header = TRUE)
+cindex_gene_level_meta$X <- NULL
+cindex_gene_level_meta <- cindex_gene_level_meta[cindex_gene_level_meta$Case_ID %in% rownames(cindex_gene_level_cnv),]
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cindex_gene_level_cnv_t <- t(cindex_gene_level_cnv)
+cindex_gene_level_cnv_t$entrez <- mapIds(org.Hs.eg.db,
+                            keys=rownames(cindex_gene_level_cnv_t),
+                            column="ENSEMBL",
+                            keytype="SYMBOL",
+                            multiVals="first")
+```

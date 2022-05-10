@@ -1,0 +1,1716 @@
+---
+title: "CNV"
+author: "Alicia Pliego"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: sandstone
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+# Copy Number Analysis
+```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+library(CINmetrics)
+library(cowplot)
+library(TCGAbiolinks)
+library(heatmaply)
+library(GenomicRanges)
+library(AnnotationHub)
+library(pd.genomewidesnp.6)
+library(rtracklayer)
+library(biovizBase) #needed for stain information
+library(CINdex)
+library(IRanges)
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+library(Homo.sapiens)
+library(ComplexHeatmap)
+library(pheatmap)
+library(limma)
+library(Glimma)
+library(edgeR)
+library(dplyr)
+```
+
+## CINdex amplification
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#Add amplifications CINdex
+
+cindex_results_amp_sarc <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_results.tsv', sep = '\t', header = TRUE)
+names(cindex_results_amp_sarc) <- sub("^X", "", names(cindex_results_amp_sarc))
+cindex_results_amp_sarc<- cindex_results_amp_sarc[!duplicated(cindex_results_amp_sarc), ]
+rownames(cindex_results_amp_sarc) <- cindex_results_amp_sarc$sample_id
+cindex_results_amp_sarc$sample_id <- NULL
+
+#Add deletions CINdex
+
+cindex_results_del_sarc <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results.tsv', sep = '\t', header = TRUE)
+names(cindex_results_del_sarc) <- sub("^X", "", names(cindex_results_del_sarc))
+cindex_results_del_sarc<- cindex_results_del_sarc[!duplicated(cindex_results_del_sarc), ]
+rownames(cindex_results_del_sarc) <- cindex_results_del_sarc$sample_id
+cindex_results_del_sarc$sample_id <- NULL
+
+cindex_results_sarc_amp_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_meta_results.tsv', sep = '\t', header = TRUE)
+
+cindex_results_sarc_del_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_meta_results.tsv', sep = '\t', header = TRUE)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_amp_sarc_scale <- scale(t(cindex_results_amp_sarc), center = TRUE, scale = TRUE)
+cindex_results_amp_sarc_scale <- cindex_results_amp_sarc_scale[, colSums(is.na(cindex_results_amp_sarc_scale)) != nrow(cindex_results_amp_sarc_scale)]
+cindex_results_amp_sarc_scale <- t(cindex_results_amp_sarc_scale)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_amp_sarc_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA amplifications",
+  row_side_colors = cindex_results_sarc_amp_meta[, c( "Sample.Type", "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+amp_boxplot_data <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_results_onlytumor_boxplots.tsv', sep = '\t', header = TRUE)
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+amp_boxplot_data$sum <- rowSums(amp_boxplot_data[3:24])
+
+fig1 <- plot_ly(amp_boxplot_data, y = ~sum, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(title = list(text = "CINdex Amplifications Boxplot"),
+     xaxis = list(),
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+fig1
+```
+
+```{r amp plots, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig1 <- plot_ly(amp_boxplot_data, y = ~X1, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(),
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+
+
+fig2 <- plot_ly(amp_boxplot_data, y = ~X2, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig3 <- plot_ly(amp_boxplot_data, y = ~X3, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig4 <- plot_ly(amp_boxplot_data, y = ~X4, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig5 <- plot_ly(amp_boxplot_data, y = ~X5, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig6 <- plot_ly(amp_boxplot_data, y = ~X6, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig7 <- plot_ly(amp_boxplot_data, y = ~X7, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig8 <- plot_ly(amp_boxplot_data, y = ~X8, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig9 <- plot_ly(amp_boxplot_data, y = ~X9, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig10 <- plot_ly(amp_boxplot_data, y = ~X10, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig11 <- plot_ly(amp_boxplot_data, y = ~X11, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig12 <- plot_ly(amp_boxplot_data, y = ~X12, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig13 <- plot_ly(amp_boxplot_data, y = ~X13, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig14 <- plot_ly(amp_boxplot_data, y = ~X14, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig15 <- plot_ly(amp_boxplot_data, y = ~X15, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig16 <- plot_ly(amp_boxplot_data, y = ~X16, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig17 <- plot_ly(amp_boxplot_data, y = ~X17, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig18 <- plot_ly(amp_boxplot_data, y = ~X18, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig19 <- plot_ly(amp_boxplot_data, y = ~X19, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig20 <- plot_ly(amp_boxplot_data, y = ~X20, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig21 <- plot_ly(amp_boxplot_data, y = ~X21, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig22 <- plot_ly(amp_boxplot_data, y = ~X22, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig1, fig2 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig3, fig4 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr4", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig5, fig6 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr6", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig7, fig8 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig11, fig12 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr12", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig13, fig14 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr14", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig15, fig15 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig19, fig20 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr20", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig21, fig22 ) %>% 
+  layout(title = list(text = "CINdex Amplifications"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+
+## CINdex deletions
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_del_sarc_scale <- scale(t(cindex_results_del_sarc), center = TRUE, scale = TRUE)
+cindex_results_del_sarc_scale <- cindex_results_del_sarc_scale[, colSums(is.na(cindex_results_del_sarc_scale)) != nrow(cindex_results_del_sarc_scale)]
+cindex_results_del_sarc_scale <- t(cindex_results_del_sarc_scale)
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_del_sarc_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA deletions",
+  row_side_colors = cindex_results_sarc_del_meta[, c( "Sample.Type", "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+del_boxplot_data <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results_onlytumor_boxplots.tsv', sep = '\t', header = TRUE)
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+del_boxplot_data$sum <- rowSums(del_boxplot_data[3:24])
+
+fig1 <- plot_ly(amp_boxplot_data, y = ~sum, color = ~Tumor_type, type = "box",  text = amp_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(title = list(text = "CINdex Deletions Boxplot"),
+     xaxis = list(),
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+fig1
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig1 <- plot_ly(del_boxplot_data, y = ~X1, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(),
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+
+
+fig2 <- plot_ly(del_boxplot_data, y = ~X2, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig3 <- plot_ly(del_boxplot_data, y = ~X3, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig4 <- plot_ly(del_boxplot_data, y = ~X4, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig5 <- plot_ly(del_boxplot_data, y = ~X5, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig6 <- plot_ly(del_boxplot_data, y = ~X6, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig7 <- plot_ly(del_boxplot_data, y = ~X7, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig8 <- plot_ly(del_boxplot_data, y = ~X8, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig9 <- plot_ly(del_boxplot_data, y = ~X9, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig10 <- plot_ly(del_boxplot_data, y = ~X10, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig11 <- plot_ly(del_boxplot_data, y = ~X11, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig12 <- plot_ly(del_boxplot_data, y = ~X12, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig13 <- plot_ly(del_boxplot_data, y = ~X13, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig14 <- plot_ly(del_boxplot_data, y = ~X14, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig15 <- plot_ly(del_boxplot_data, y = ~X15, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig16 <- plot_ly(del_boxplot_data, y = ~X16, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig17 <- plot_ly(del_boxplot_data, y = ~X17, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig18 <- plot_ly(del_boxplot_data, y = ~X18, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig19 <- plot_ly(del_boxplot_data, y = ~X19, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig20 <- plot_ly(del_boxplot_data, y = ~X20, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig21 <- plot_ly(del_boxplot_data, y = ~X21, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig22 <- plot_ly(del_boxplot_data, y = ~X22, color = ~Tumor_type, type = "box",  text = del_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig1, fig2 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig3, fig4 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr4", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig5, fig6 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr6", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig7, fig8 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig11, fig12 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr12", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig13, fig14 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr14", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig15, fig15 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig19, fig20 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr20", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig21, fig22 ) %>% 
+  layout(title = list(text = "CINdex Deletions"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+### CINdex Amplifications/Deletions only tumor
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#Add amplifications CINdex
+
+cindex_results_amp_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_results_onlytumor.tsv', sep = '\t', header = TRUE)
+names(cindex_results_amp_sarc_tumor) <- sub("^X", "", names(cindex_results_amp_sarc_tumor))
+cindex_results_amp_sarc_tumor<- cindex_results_amp_sarc_tumor[!duplicated(cindex_results_amp_sarc_tumor), ]
+rownames(cindex_results_amp_sarc_tumor) <- cindex_results_amp_sarc_tumor$sample_id
+cindex_results_amp_sarc_tumor$sample_id <- NULL
+
+#Add deletions CINdex
+
+cindex_results_del_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_results_onlytumor.tsv', sep = '\t', header = TRUE)
+names(cindex_results_del_sarc_tumor) <- sub("^X", "", names(cindex_results_del_sarc_tumor))
+cindex_results_del_sarc_tumor<- cindex_results_del_sarc_tumor[!duplicated(cindex_results_del_sarc_tumor), ]
+rownames(cindex_results_del_sarc_tumor) <- cindex_results_del_sarc_tumor$sample_id
+cindex_results_del_sarc_tumor$sample_id <- NULL
+
+cindex_results_sarc_amp_meta_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_amp_meta_results_onlytumor.tsv', sep = '\t', header = TRUE)
+
+cindex_results_sarc_del_meta_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_sarc_del_meta_results_onlytumor.tsv', sep = '\t', header = TRUE)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_amp_sarc_tumor_scale <- scale(t(cindex_results_amp_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_amp_sarc_tumor_scale <- cindex_results_amp_sarc_tumor_scale[, colSums(is.na(cindex_results_amp_sarc_tumor_scale)) != nrow(cindex_results_amp_sarc_tumor_scale)]
+cindex_results_amp_sarc_tumor_scale <- t(cindex_results_amp_sarc_tumor_scale)
+```
+
+
+```{r heatmap cindex plot amp pm, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_amp_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA amplifications Primary Tumor",
+  row_side_colors = cindex_results_sarc_amp_meta_tumor[, c(  "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+
+cindex_results_del_sarc_tumor_scale <- scale(t(cindex_results_del_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_del_sarc_tumor_scale <- cindex_results_del_sarc_tumor_scale[, colSums(is.na(cindex_results_del_sarc_tumor_scale)) != nrow(cindex_results_del_sarc_tumor_scale)]
+cindex_results_del_sarc_tumor_scale <- t(cindex_results_del_sarc_tumor_scale)
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+heatmaply(cindex_results_del_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "CINdex TCGA deletions Primary Tumor",
+  row_side_colors = cindex_results_sarc_del_meta_tumor[, c(  "Tumor_type", "HRD34")]
+                           
+  )
+```
+
+## CINdex boxplots 
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cin_boxplot_data <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/cindex_results_sarc_ptumor_boxplot.tsv', sep = '\t', header = TRUE)
+```
+
+```{r cin boxplots, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig1 <- plot_ly(cin_boxplot_data, y = ~chr1, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(),
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+
+
+fig2 <- plot_ly(cin_boxplot_data, y = ~chr2, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig3 <- plot_ly(cin_boxplot_data, y = ~chr3, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig4 <- plot_ly(cin_boxplot_data, y = ~chr4, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig5 <- plot_ly(cin_boxplot_data, y = ~chr5, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig6 <- plot_ly(cin_boxplot_data, y = ~chr6, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig7 <- plot_ly(cin_boxplot_data, y = ~chr7, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig8 <- plot_ly(cin_boxplot_data, y = ~chr8, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig9 <- plot_ly(cin_boxplot_data, y = ~chr9, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig10 <- plot_ly(cin_boxplot_data, y = ~chr10, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig11 <- plot_ly(cin_boxplot_data, y = ~chr11, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig12 <- plot_ly(cin_boxplot_data, y = ~chr12, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig13 <- plot_ly(cin_boxplot_data, y = ~chr13, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig14 <- plot_ly(cin_boxplot_data, y = ~chr14, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig15 <- plot_ly(cin_boxplot_data, y = ~chr15, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig16 <- plot_ly(cin_boxplot_data, y = ~chr16, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig17 <- plot_ly(cin_boxplot_data, y = ~chr17, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig18 <- plot_ly(cin_boxplot_data, y = ~chr18, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig19 <- plot_ly(cin_boxplot_data, y = ~chr19, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig20 <- plot_ly(cin_boxplot_data, y = ~chr20, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig21 <- plot_ly(cin_boxplot_data, y = ~chr21, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+fig22 <- plot_ly(cin_boxplot_data, y = ~chr22, color = ~Tumor_type, type = "box",  text = cin_boxplot_data$Sample.ID, notched=TRUE) %>%
+layout(
+     xaxis = list(
+     categoryorder = "array",
+     categoryarray = c(
+                         'UPS',
+                         'MFS',
+                         'uLMS',
+                         'MPNST',
+                         'LMS',
+                         'ddLPS',
+                         'SS',
+                         'DT'))
+)
+
+
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig1, fig2 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr1", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr2", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig3, fig4 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr3", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr4", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig5, fig6 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr5", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr6", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig7, fig8 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr7", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr8", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig9, fig10 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr9", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr10", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig11, fig12 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr11", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr12", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig13, fig14 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr13", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr14", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig15, fig15 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr15", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr16", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig17, fig18 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr17", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr18", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig19, fig20 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr19", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr20", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+fig <- subplot(fig21, fig22 ) %>% 
+  layout(title = list(text = "CINdex CIN"), annotations = list(
+ list(x = 0.2 , y = 1.02, text = "Chr21", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 1.02, text = "Chr22", showarrow = F, xref='paper', yref='paper')
+ )
+)
+fig
+```
+
+## CIN personalized method.
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+#Add amplifications CINdex
+
+cindex_results_amp_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/AMP_ownscript_sarc.tsv', sep = '\t', header = TRUE)
+names(cindex_results_amp_sarc_tumor) <- sub("^X", "", names(cindex_results_amp_sarc_tumor))
+cindex_results_amp_sarc_tumor<- cindex_results_amp_sarc_tumor[!duplicated(cindex_results_amp_sarc_tumor), ]
+rownames(cindex_results_amp_sarc_tumor) <- cindex_results_amp_sarc_tumor$sample_id
+cindex_results_amp_sarc_tumor$sample_id <- NULL
+
+cindex_results_amp_sarc_tumor_scale <- scale(t(cindex_results_amp_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_amp_sarc_tumor_scale <- cindex_results_amp_sarc_tumor_scale[, colSums(is.na(cindex_results_amp_sarc_tumor_scale)) != nrow(cindex_results_amp_sarc_tumor_scale)]
+cindex_results_amp_sarc_tumor_scale <- t(cindex_results_amp_sarc_tumor_scale)
+
+#Add deletions CINdex
+
+cindex_results_del_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/DEL_ownscript_sarc.tsv', sep = '\t', header = TRUE)
+names(cindex_results_del_sarc_tumor) <- sub("^X", "", names(cindex_results_del_sarc_tumor))
+cindex_results_del_sarc_tumor<- cindex_results_del_sarc_tumor[!duplicated(cindex_results_del_sarc_tumor), ]
+rownames(cindex_results_del_sarc_tumor) <- cindex_results_del_sarc_tumor$sample_id
+cindex_results_del_sarc_tumor$sample_id <- NULL
+
+cindex_results_del_sarc_tumor_scale <- scale(t(cindex_results_del_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_del_sarc_tumor_scale <- cindex_results_del_sarc_tumor_scale[, colSums(is.na(cindex_results_del_sarc_tumor_scale)) != nrow(cindex_results_del_sarc_tumor_scale)]
+cindex_results_del_sarc_tumor_scale <- t(cindex_results_del_sarc_tumor_scale)
+
+#Add cin CINdex
+
+cindex_results_cin_sarc_tumor <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/CIN_ownscript_sarc.tsv', sep = '\t', header = TRUE)
+names(cindex_results_cin_sarc_tumor) <- sub("^X", "", names(cindex_results_cin_sarc_tumor))
+cindex_results_cin_sarc_tumor<- cindex_results_cin_sarc_tumor[!duplicated(cindex_results_cin_sarc_tumor), ]
+rownames(cindex_results_cin_sarc_tumor) <- cindex_results_cin_sarc_tumor$sample_id
+cindex_results_cin_sarc_tumor$sample_id <- NULL
+
+cindex_results_cin_sarc_tumor_scale <- scale(t(cindex_results_cin_sarc_tumor), center = TRUE, scale = TRUE)
+cindex_results_cin_sarc_tumor_scale <- cindex_results_cin_sarc_tumor_scale[, colSums(is.na(cindex_results_cin_sarc_tumor_scale)) != nrow(cindex_results_cin_sarc_tumor_scale)]
+cindex_results_cin_sarc_tumor_scale <- t(cindex_results_cin_sarc_tumor_scale)
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+cindex_results_cin_sarc_tumor_scale <- unique(cindex_results_cin_sarc_tumor_scale)
+
+heatmaply(cindex_results_cin_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "Total CIN TCGA-SARC Primary Tumor"
+  )
+```
+
+```{r cindex ampr sarc, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+cindex_results_amp_sarc_tumor_scale <- unique(cindex_results_amp_sarc_tumor_scale)
+heatmaply(cindex_results_amp_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "Total Amplifications TCGA-SARC Primary Tumor"
+  )
+```
+
+
+```{r cindex del sarc, echo=FALSE, warning=FALSE, message=FALSE, fig.width= 7, fig.height = 7, fig.align='center'}
+
+cindex_results_del_sarc_tumor_scale <- unique(cindex_results_del_sarc_tumor_scale)
+heatmaply(cindex_results_del_sarc_tumor_scale, 
+          
+  scale_fill_gradient_fun = ggplot2::scale_fill_gradient2(
+    low = "blue", 
+    high = "red", 
+    midpoint = 0.5, 
+    limits = c(0, 1)
+  ),
+  Colv = FALSE,
+  Rowv =TRUE,
+  showticklabels = c(TRUE, FALSE),
+  main = "Total Deletions TCGA-SARC Primary Tumor"
+  )
+```
+
+## Gene level CNV
+
+Downloading the Gene level Copy number files from TCGA, I computed CIN in the following way:
+  - gene CNV > 2.25 = Amp
+  - gene CNV < 1.75 = Del 
+  
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cindex_gene_level_cnv <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_all_gene_level.tsv', sep = '\t', header = TRUE)
+cindex_gene_level_cnv <- unique(cindex_gene_level_cnv)
+rownames(cindex_gene_level_cnv) <- cindex_gene_level_cnv$Case_ID
+cindex_gene_level_cnv$Case_ID <- NULL
+cindex_gene_level_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_all_gene_level_meta.tsv', sep = '\t', header = TRUE)
+cindex_gene_level_meta$X <- NULL
+cindex_gene_level_meta <- cindex_gene_level_meta[cindex_gene_level_meta$Case_ID %in% rownames(cindex_gene_level_cnv),]
+
+```
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+cindex_gene_level_cnv_scale <- scale(cindex_gene_level_cnv, center = TRUE, scale = TRUE)
+
+```
+
+
+```{r limma, include=FALSE, echo=FALSE, message=FALSE}
+#Run limma model in RPPA data
+
+HRDscore <- cindex_gene_level_meta$HRD34
+design <- model.matrix(~ 0 + HRDscore )
+
+tcga.nmf.limma <- lmFit(t(cindex_gene_level_cnv_scale), design = design)
+
+head(coef(tcga.nmf.limma))
+```
+
+Linear regression was applies using the R package limma (@limma).
+
+```{r , include=FALSE, echo=FALSE, message=FALSE}
+#Make contrast and fit Bayes
+contr <- makeContrasts(HRDscoreHigh - HRDscoreLow, levels = colnames(coef(tcga.nmf.limma)))
+tmp <- contrasts.fit(tcga.nmf.limma, contr)
+tmp <- eBayes(tmp)
+```
+
+```{r topgenes  ,include=FALSE, echo=FALSE, message=FALSE}
+top.table <- topTable(tmp, sort.by = "P", n = Inf)
+rownames(top.table)
+```
+
+## HRD genes gene level CNV 
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+hrd_cin_gene_level <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_lara_gene_level.tsv', sep = '\t', header = TRUE)
+hrd_cin_gene_level <- unique(hrd_cin_gene_level)
+rownames(hrd_cin_gene_level) <- hrd_cin_gene_level$Case_ID
+hrd_cin_gene_level$Case_ID <- NULL
+hrd_cin_gene_level_meta <- read.table('/Users/aliciapliego/Projects/HRDsarcoma/data/HRDgenes_lara_gene_level_meta.tsv', sep = '\t', header = TRUE)
+```
+

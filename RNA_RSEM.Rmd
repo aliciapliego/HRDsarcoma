@@ -1,0 +1,28 @@
+---
+title: "HRDness sarcoma"
+author: "Alicia Pliego"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+    theme: sandstone
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+# RNAseq expression 
+
+Gene expression download RSEM and normalize within sample to a fixed upper quartile. (workflow: https://gdcapi.nci.nih.gov/legacy/data/e34a93ee-d3c4-44c7-8bfa-0c19c6df0866)
+
+Filter genes by removing all genes that had <90% expression data greater than zero across all tumors. 
+Expression values log2 transfromed, followed by median centering for each gene across all tumors and for all genes within each tumor, respectively.
+
+Genes were filtered to 2,038 by selecting genes with a standard deviation across all tumors >= 2. 
+**Does it make sense??
+
+Maybe also try to do it in the samples of the upper and lower quartiles.
