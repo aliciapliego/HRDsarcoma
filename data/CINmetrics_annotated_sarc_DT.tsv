@@ -1,5 +1,0 @@
-sample_id	Tumor_type	cna	base_segments	break_points	fga	Sample Type	HRD34
-TCGA-Z4-A8JB-01A-23D-A37B-01	Desmoid Tumor	5	36059246	16	0.012550189	Primary Tumor	Low
-TCGA-Z4-A8JB-10A-01D-A37E-01	Desmoid Tumor	20	76024	48	2.22E-05	Blood Derived Normal	None
-TCGA-QQ-A8VD-10A-01D-A38Y-01	Desmoid Tumor	38	1027965	94	0.000340018	Blood Derived Normal	None
-TCGA-QQ-A8VD-01A-42D-A38Y-01	Desmoid Tumor	15	595800	44	0.000207364	Primary Tumor	Low
