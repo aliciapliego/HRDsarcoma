@@ -1,0 +1,7 @@
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/MPNST.counts.out.txt
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/uLMS.counts.out.txt
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/MFS.counts.out.txt
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/UPS.counts.out.txt
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/ddLPS.counts.out.txt
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/LMS.counts.out.txt
+/Users/aliciapliego/Projects/RNAseq_TCGA/TCGA-SARC/data/SS.counts.out.txt
